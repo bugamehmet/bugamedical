@@ -11,7 +11,13 @@
     <nav id="myTopnav">
       <div class="navbar-links">
         <img src="assets/images/buga-logo.png" alt="">
-        <a href="#home" class="active">Home</a>
+        <div class="search-container">
+          <form action="#">
+            <input type="text" placeholder="Enter Part Number or Part Name" name="search">
+            <button type="submit"><i class="fa fa-search"></i></button>
+          </form>
+        </div>
+        <a href="#home">Home</a>
         <a href="#catalog">Parts Catalog</a>
         <a href="#why">Why Bugamed</a>
         <a href="#about">About</a>
@@ -19,9 +25,6 @@
         <a href="javascript:void(0);" class="icon" onclick="myFunction()">
           <i class="fa fa-bars"></i>
         </a>
-      </div>
-      <div class="navbar-search-bar">
-        <input type="text" id="search-parts" placeholder="Enter Part Number or Part Name">
       </div>
     </nav> 
   </header>
