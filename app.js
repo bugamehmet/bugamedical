@@ -11,7 +11,7 @@ app.use('/assets', express.static('assets'));
 app.use(express.urlencoded({ extended: true }));
 
 app.get('/', (req,res)=>{
-  res.sendFile(__dirname + "/viewsindex.html");
+  res.sendFile(__dirname + "/views/index.html");
 })
 app.get('/about', (req,res)=>{
   res.sendFile(__dirname + "/about.html")
