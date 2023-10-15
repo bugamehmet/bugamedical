@@ -1,16 +1,10 @@
 const express = require('express');
-
 const app = express();
 
 app.use('/assets', express.static('assets')); 
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static('views'));
-app.use('/assets', express.static('assets'));
-const router = require('./routers/routes');
-
-
-
 
 
 app.listen(5001, ()=>{

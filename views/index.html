@@ -29,6 +29,19 @@
     </nav> 
   </header>
 <body>
+  <div class="slideshow-container">
+    <div class="mySlides">
+        <img src="/assets/images/foto1.jpeg" style="width:100%">
+    </div>
+
+    <div class="mySlides">
+        <img src="/assets/images/foto2.jpeg" style="width:100%">
+    </div>
+
+    <div class="mySlides">
+        <img src="/assets/images/foto3.jpeg" style="width:100%">
+    </div>
+</div>
 </body>
 </html>
 <script>
@@ -40,4 +53,23 @@
     x.className = "nav";
   }
 }
+var slideIndex = 0;
+    showSlides();
+
+    function showSlides() {
+        var i;
+        var slides = document.getElementsByClassName("mySlides");
+
+        for (i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";
+        }
+
+        slideIndex++;
+        if (slideIndex > slides.length) {
+            slideIndex = 1;
+        }
+
+        slides[slideIndex - 1].style.display = "block";
+        setTimeout(showSlides, 3000); // 3 saniye aralıklarla fotoğrafı değiştir
+    }
 </script>
