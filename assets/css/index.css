@@ -2,6 +2,8 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: 'Andale Mono';
+  src: url('/assets/font/Andale-Mono.ttf') format('truetype');
 }
 nav{
   background-color: #d1d0d0;
@@ -22,7 +24,7 @@ nav a{
   text-align: center;
   padding: 14px 36px;
   text-decoration: none;
-  font-size: 16px;
+  font-size: 14px;
 }
 nav a.active {
   background-color: rgb(109,131,113);
@@ -50,7 +52,7 @@ nav input[type=text] {
   padding: 6px;
   margin-top: 17px;
   width: 295px;
-  font-size: 15px;
+  font-size: 13px;
   border: none;
   border-radius: 10px;
 }
@@ -60,23 +62,62 @@ nav .search-container button {
   margin-top: 17px;
   margin-right: 206px;
   margin-left: 2px;
-  background-color: rgb(109,131,113);
-  font-size: 15px;
+  background-color: rgb(109, 131, 113);
+  font-size: 13px;
   border: none;
   border-radius: 10px;
   cursor: pointer;
 }
 nav .search-container button:hover {
-  background: #04AA6D;
+  background: #025d3c;
 }
-.slideshow-container {
+.foto-container{
     position: relative;
     max-width: 100%;
     margin: auto;
 }
-.mySlides {
-    display: none;
+.body-search {
+  text-align: center;
 }
+.body-search input[type=text]{
+  padding: 6px;
+  margin-top: 17px;
+  width: 295px;
+  font-size: 13px;
+  border: none;
+  border-radius: 10px;
+}
+.body-search button{
+  padding: 6px 10px;
+  margin-top: 17px;
+  margin-right: 206px;
+  margin-left: 2px;
+  background-color: rgb(109, 131, 113);
+  font-size: 13px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.body-search form {
+  display: inline-block; 
+}
+
+.yazilar {
+  color: rgb(109, 131, 113);
+  position: absolute;
+  top: 50%;
+  left: 50%; 
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+.yazilar h1{
+  font-size: 50px;   
+}
+.yazilar p{
+font-size: 20px;}
+
+
 @media screen and (max-width: 600px) {
   nav a {display: none;}
   nav .search-container {display: none;}
@@ -114,4 +155,20 @@ nav .search-container button:hover {
     text-align: left;
   }
 }
+@media screen and (max-width:600px) {
+    .yazilar {
+        left: 0; 
+        top: auto; 
+        transform: none; 
+        width: 100%; 
+        top: 20%;
+        left: 0%; 
+}
+.yazilar p{
+  font-size: 14px;
 
+}
+.yazilar h1{
+  font-size: 24px;
+}
+}

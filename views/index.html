@@ -5,11 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="assets/css/index.css">
-  <title>BUGAMED</title>
+  <title>BugaMed - MRI & CT Parts | Service - GE, Siemens, Philips</title>
   <link rel="shortcut icon" type="png" href="/assets/images/favicon.png" />
 </head>
   <header>
-    <nav id="myTopnav">
+    <nav id="navbar">
       <div class="navbar-links">
         <img src="assets/images/buga-logo.png" alt="">
         <div class="search-container">
@@ -23,54 +23,38 @@
         <a href="#why">Why Bugamed</a>
         <a href="#about">About</a>
         <a href="#contact">Contact Us</a>
-        <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+        <a href="javascript:void(0);" class="icon" onclick="navFunction()">
           <i class="fa fa-bars"></i>
         </a>
       </div>
     </nav> 
   </header>
 <body>
-  <div class="slideshow-container">
-    <div class="mySlides">
-        <img src="/assets/images/foto1.jpeg" style="width:100%">
-    </div>
-
-    <div class="mySlides">
-        <img src="/assets/images/foto2.jpeg" style="width:100%">
-    </div>
-
-    <div class="mySlides">
-        <img src="/assets/images/foto3.jpeg" style="width:100%">
-    </div>
+<div class="foto-container">
+  <img src="/assets/images/Adsız tasarım.png" style="width: 100%;">
+  <div class="yazilar">
+    <h1>MRI & CT Parts and Service</h1>
+    <p>Buy GE, Siemens & Philips Parts</p>
+  </div>
+  <div class="body-search">
+    <form action="#">
+      <input type="text" placeholder="Enter Part Number or Part Name" name="search">
+      <button type="submit"><i class="fa fa-search"></i></button>
+    </form>
+  </div>
 </div>
+
+
 </body>
 </html>
 <script>
-  function myFunction() {
-  var x = document.getElementById("myTopnav");
+  function navFunction() {
+  var x = document.getElementById("navbar");
   if (x.className === "nav") {
     x.className += " responsive";
   } else {
     x.className = "nav";
   }
 }
-var slideIndex = 0;
-    showSlides();
 
-    function showSlides() {
-        var i;
-        var slides = document.getElementsByClassName("mySlides");
-
-        for (i = 0; i < slides.length; i++) {
-            slides[i].style.display = "none";
-        }
-
-        slideIndex++;
-        if (slideIndex > slides.length) {
-            slideIndex = 1;
-        }
-
-        slides[slideIndex - 1].style.display = "block";
-        setTimeout(showSlides, 3000); // 3 saniye aralıklarla fotoğrafı değiştir
-    }
 </script>
