@@ -1,9 +1,8 @@
 const express = require('express');
-const app = express();
 const connection = require('./db');
-const { error } = require('winston');
+const app = express();
+const port = 5001
 app.use('/assets', express.static('assets')); 
-
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static('views'));
 
@@ -21,7 +20,7 @@ connection.query(parts_query, (err, parts)=>{
 
 
 
-
-app.listen(5001, ()=>{
-  console.log('Server http://localhost:5001 adresinde başladı');
+app.listen(port, (error)=>{
+  if(error){throw error};
+  console.log(`Server http://localhost:${port} adresinde başladı`);
 })
