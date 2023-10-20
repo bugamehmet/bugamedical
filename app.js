@@ -8,10 +8,15 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static('views'));
 
 
-connection.query('SELECT model_name FROM models', (err, data)=>{
+/*
+const parts_query = 'SELECT products.product_name, parts.part_name FROM products INNER JOIN parts ON products.product_id = parts.product_id'
+
+connection.query(parts_query, (err, parts)=>{
   if(err){throw err}
-  console.log(data)
+  console.log(parts)
 })
+*/
+
 
 
 
