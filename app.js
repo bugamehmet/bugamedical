@@ -13,14 +13,14 @@ app.get('/', (req,res)=>{
 app.get('/about', (req,res)=>{
   res.sendFile(__dirname + "/views/about.html");
 })
-app.get('/why-bugamed', (req,res)=>{
-  res.sendFile(__dirname + "/views/about.html");
+app.get('/why', (req,res)=>{
+  res.sendFile(__dirname + "/views/why-bugamed.html");
 })
-app.get('contactus', (req,res)=>{
-  res.sendFile(__dirname + "/views/about.html");
+app.get('/contactus', (req,res)=>{
+  res.sendFile(__dirname + "/views/contactus.html");
 })
-app.get('parts-catalog', (req, res)=>{
-  res.sendFile(__dirname + "/views/about.html");
+app.get('/parts-catalog', (req, res)=>{
+  res.sendFile(__dirname + "/views/parts-catalog.html");
 })
 
 /*
