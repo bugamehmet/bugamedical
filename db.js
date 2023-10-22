@@ -5,7 +5,7 @@ const connection = mysql.createConnection(config.db)
 
 connection.connect((error)=>{
   if(error) throw error
-  else console.log('bağlanıldı')
+  else console.log('Veri Tabanına Bağlanıldı')
 })
 
 module.exports = connection;
