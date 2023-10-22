@@ -1,0 +1,110 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Andale Mono';
+  src: url('/assets/font/Andale-Mono.ttf') format('truetype');
+}
+nav{
+  background-color: #d1d0d0;
+  overflow: hidden;
+}
+nav img {
+  float: left;
+  margin-left: 10%;
+  margin-right: 8%;
+  width: 70px;
+  padding: 10px;
+}
+nav a{
+  float: left;
+  display: block;
+  margin-top: 14px;
+  color: rgb(109,131,113);
+  text-align: center;
+  padding: 14px 36px;
+  text-decoration: none;
+  font-size: 14px;
+}
+nav a.active {
+  background-color: rgb(109,131,113);
+  border-radius: 10px;
+  color: black;
+}
+nav a:hover {
+  background-color: rgb(109,131,113);
+  color: black;
+  border-radius: 10px;
+}
+nav .icon {
+  display: none;
+}
+nav .icon:hover{
+  background-color: rgb(109,131,113);
+  color: black;
+  border-radius: 10px;
+}
+nav .search-container{
+  float: right;
+  
+}
+nav input[type=text] {
+  padding: 6px;
+  margin-top: 22px;
+  width: 295px;
+  font-size: 13px;
+  border: none;
+  border-radius: 10px;
+}
+nav .search-container button {
+  float: right;
+  padding: 6px 10px;
+  margin-top: 22px;
+  margin-right: 206px;
+  margin-left: 2px;
+  background-color: rgb(109, 131, 113);
+  font-size: 13px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
+nav .search-container button:hover {
+  background: #025d3c;
+}
+@media screen and (max-width: 600px) {
+  nav a {display: none;}
+  nav .search-container {display: none;}
+  nav a.icon {
+    float: right;
+    display: block;
+    margin-right: 5px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  nav.responsive {position: relative;}
+  nav.responsive a.icon {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+  nav.responsive .search-container{
+    float:none;
+    display: block;
+    text-align: left;
+    margin-left: 12px;
+  }
+  nav.responsive .search-container button{
+    float: none;
+  }
+  nav.responsive img{
+    float: none;
+    display: block;
+    align-items: left;
+  }
+  nav.responsive a {
+    float: none;
+    display: block;
+    text-align: left;
+  }
+}

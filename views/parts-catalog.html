@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="assets/css/index.css">
+  <title>Parts Catalog</title>
+</head>
+<header>
+  <nav id="navbar">
+    <div class="navbar-links">
+      <img src="assets/images/buga-logo.png" alt="">
+      <div class="search-container">
+        <form action="#">
+          <input type="text" placeholder="Enter Part Number or Part Name" name="search">
+          <button type="submit"><i class="fa fa-search"></i></button>
+        </form>
+      </div>
+      <a href="/">Home</a>
+      <a href="/parts-catalog" class="active">Parts Catalog</a>
+      <a href="/why">Why Bugamed</a>
+      <a href="/about">About</a>
+      <a href="/contactus">Contact Us</a>
+      <a href="javascript:void(0);" class="icon" onclick="navFunction()">
+        <i class="fa fa-bars"></i>
+      </a>
+    </div>
+  </nav> 
+</header>
+<body>
+  
+  H12
+  <h1>catalog</h1>
+</body>
+</html>
+<script>
+  function navFunction() {
+  var x = document.getElementById("navbar");
+  if (x.className === "nav") {
+    x.className += " responsive";
+  } else {
+    x.className = "nav";
+  }
+}
+
+</script>
