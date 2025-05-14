@@ -36,7 +36,7 @@ connection.query(parts_query, (err, parts)=>{
 
 
 
-app.listen(port, (error)=>{
+app.listen(port && 5003, (error)=>{
   if(error){throw error};
   console.log(`Server http://localhost:${port} adresinde başladı`);
 })

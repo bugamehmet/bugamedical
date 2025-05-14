@@ -1,0 +1,238 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap');
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    margin: 0;
+    background-color: #f0f2f5;
+    color: #333;
+    line-height: 1.6;
+}
+
+header {
+    background: rgb(109, 131, 113);
+    color: #fff;
+    padding: 2rem 1rem;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2.8rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+header p {
+    margin-top: 0.5rem;
+    font-size: 1.1rem;
+    font-weight: 300;
+}
+
+.gallery-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 2rem auto;
+}
+
+.gallery-item {
+    background-color: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+}
+
+.gallery-item:hover {
+    transform: translateY(-8px) scale(1.03);
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.12);
+}
+
+/* YENİ: Tıklama anında küçük bir geri bildirim efekti */
+.gallery-item:active {
+    transform: translateY(0px) scale(0.98); /* Hafifçe içeri bastırma efekti */
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.07);
+}
+
+.gallery-item img {
+    width: 100%;
+    height: auto;
+    display: block;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+}
+
+.image-caption {
+    padding: 1rem;
+    text-align: center;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #555;
+    background-color: #f9f9f9;
+}
+
+/* Modal (Açılır Pencere) Stilleri */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    padding-top: 50px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.92); /* Arka planı biraz daha koyulaştırdık */
+}
+
+.modal-content {
+    margin: auto;
+    display: block;
+    width: auto;
+    max-width: 85%;
+    max-height: 85vh;
+    border-radius: 8px;
+    /* GÜNCELLENDİ: Yeni animasyon adı ve süresi */
+    animation-name: modalContentZoom;
+    animation-duration: 0.5s; /* Animasyon süresini biraz artırdık */
+    animation-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Daha esnek bir geçiş */
+}
+
+/* GÜNCELLENDİ: Daha dinamik bir modal açılış animasyonu */
+@keyframes modalContentZoom {
+    0% {
+        opacity: 0;
+        transform: scale(0.6);
+    }
+    80% { /* Hafif bir sıçrama efekti için */
+        opacity: 1;
+        transform: scale(1.05);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* ESKİ animasyonu silebilir veya yorum satırı yapabilirsiniz:
+@keyframes zoom {
+    from {transform: scale(0.8)}
+    to {transform: scale(1)}
+}
+*/
+
+.caption-text {
+    margin: auto;
+    display: block;
+    width: 80%;
+    max-width: 700px;
+    text-align: center;
+    color: #ccc;
+    padding: 15px 0;
+    font-size: 1.1rem;
+    font-weight: 400;
+    animation-name: fadeIn; /* Başlık için de hafif bir fade-in */
+    animation-duration: 0.5s;
+    animation-delay: 0.2s; /* Resimden biraz sonra gelsin */
+    animation-fill-mode: forwards; /* Animasyon sonunda stil kalsın */
+    opacity: 0; /* Başlangıçta gizli */
+}
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+    }
+}
+
+.close {
+    position: absolute;
+    top: 20px;
+    right: 35px;
+    color: #f1f1f1;
+    font-size: 45px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.close:hover,
+.close:focus {
+    color: #bbb;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.prev, .next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    width: auto;
+    padding: 18px;
+    margin-top: -25px; /* Dikey ortalama için yarısı */
+    color: white;
+    font-weight: bold;
+    font-size: 28px;
+    transition: 0.4s ease;
+    border-radius: 0 3px 3px 0;
+    user-select: none;
+    background-color: rgba(0,0,0,0.3);
+}
+
+.next {
+    right: 0;
+    border-radius: 3px 0 0 3px;
+}
+
+.prev:hover, .next:hover {
+    background-color: rgba(0,0,0,0.6);
+}
+
+footer {
+    text-align: center;
+    padding: 1.5rem;
+    background-color: #333;
+    color: #f0f2f5;
+    font-size: 0.9rem;
+    margin-top: 2rem;
+}
+
+/* Duyarlılık */
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 2.2rem;
+    }
+    header p {
+        font-size: 1rem;
+    }
+    .gallery-container {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        padding: 1rem;
+        gap: 1rem;
+    }
+    .modal-content {
+        max-width: 90%;
+        max-height: 80vh; /* Mobil için yüksekliği biraz daha ayarlayalım */
+    }
+}
+
+@media (max-width: 480px) {
+    header h1 {
+        font-size: 1.8rem;
+    }
+    .prev, .next {
+        font-size: 20px;
+        padding: 12px;
+    }
+    .caption-text {
+        font-size: 1rem;
+    }
+}
+footer {
+  background-color: rgb(109, 131, 113); /* Ana yeşil renginiz */
+  color: #fff;
+  padding: 30px 20px;
+  text-align: center;
+}
