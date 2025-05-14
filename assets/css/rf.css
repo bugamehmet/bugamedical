@@ -173,78 +173,86 @@ font-size: 20px;}
 }
 }
 
-/* Mevcut CSS kodlarınızın altına ekleyin */
 
-.services {
-  padding: 40px 20px;
+.rf-hero {
+  background-color: #e9ecef; /* MRI Hero Arka Plan Rengi (renk bütünlüğü için) */
+  padding: 80px 20px;
   text-align: center;
-  background-color: #f9f9f9;
 }
 
-.services h2 {
+.rf-hero h1 {
+  font-size: 36px;
+  margin-bottom: 20px;
+  color: rgb(109, 131, 113); /* MRI Başlık Rengi */
+}
+
+.rf-hero p {
+  font-size: 18px;
+  color: #555; /* MRI Paragraf Rengi */
+}
+
+.rf-content {
+  padding: 40px 20px;
+  text-align: center; /* Slider'ı ortalamak için */
+}
+
+/* rf-kafesi.css */
+
+/* ... önceki stiller ... */
+
+.rf-content h2 {
   font-size: 28px;
   color: rgb(109, 131, 113);
   margin-bottom: 30px;
+  text-align: center; /* Başlığı ortala */
 }
 
-.service-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 20px;
+.slider-container {
+  width: 80%;
+  margin: 0 auto 30px;
+}
+
+.slider-container .slick-dots {
+  text-align: center;
   margin-top: 20px;
 }
 
-.service-item {
-  background-color: #fff;
-  padding: 20px;
+.slider-container .slick-dots li {
+  display: inline-block;
+  margin: 0 5px;
+}
+
+.slider-container .slick-dots li button {
+  font-size: 0;
+  line-height: 0;
+  display: block;
+  width: 20px;
+  height: 20px;
+  padding: 5px;
+  border: none;
+  border-radius: 50%;
+  background-color: #ccc;
+  cursor: pointer;
+  outline: none;
+}
+
+.slider-container .slick-dots li.slick-active button {
+  background-color: rgb(109, 131, 113);
+}
+
+.slider-container .slick-slide img {
+  width: 100%;
+  height: auto;
+  max-height: 700px; /* İsteğe bağlı */
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  text-align: center;
+  display: block;
+  object-fit: cover; /* Fotoğrafı container'a sığdır ve kırp */
 }
-
-.service-item img {
-  max-width: 80%;
-  height: auto;
-  border-radius: 5px;
-  margin-bottom: 15px;
-}
-
-.service-item h3 {
-  font-size: 20px;
-  color: #333;
-  margin-bottom: 10px;
-}
-
-.service-item p {
-  color: #666;
-  margin-bottom: 15px;
-  font-size: 14px;
-}
-
-.button-secondary {
-  display: inline-block;
-  background-color: rgb(109, 131, 113);
-  color: #fff;
-  padding: 10px 20px;
-  text-decoration: none;
-  border-radius: 5px;
-  font-size: 14px;
-  transition: background-color 0.3s ease;
-}
-
-.button-secondary:hover {
-  background-color: #025d3c;
-}
-
-@media screen and (max-width: 768px) {
-  .service-grid {
-    grid-template-columns: 1fr;
-  }
-  .service-item {
-    margin-bottom: 20px;
-  }
-  .services h2 {
-    font-size: 24px;
+/* Küçük ekranlar için düzenlemeler */
+@media (max-width: 768px) {
+  .slider-container {
+      width: 95%;
   }
 }
 /* assets/css/style.css (veya ilgili diğer CSS dosyaları) */

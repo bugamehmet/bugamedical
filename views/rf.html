@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="assets/css/rf.css">
+    <title>RF Kafesi Kurulumu - [İşletme Adı]</title>
+    <link rel="shortcut icon" type="png" href="/assets/images/favicon.png" />
+</head>
+<body>
+    <header>
+        <nav id="navbar" class="nav">
+            <div class="navbar-links">
+                <img src="assets/images/buga-logo.png" alt="">
+                <div class="search-container">
+                    <form action="#">
+                        <input type="text" placeholder="Enter Part Number or Part Name" name="search">
+                        <button type="submit"><i class="fa fa-search"></i></button>
+                    </form>
+                </div>
+                <a href="/">Home</a>
+                <a href="/parts-catalog">Parts Catalog</a>
+                <a href="/why">Why Bugamed</a>
+                <a href="/about">About</a>
+                <a href="/contactus">Contact Us</a>
+                <a href="javascript:void(0);" class="icon" onclick="navFunction()">
+                    <i class="fa fa-bars"></i>
+                </a>
+            </div>
+        </nav>
+    </header>
+
+    <div class="rf-hero">
+        <h1>RF Kafesi Kurulumu</h1>
+        <p>MRI sistemleri için yüksek performanslı radyo frekans koruyucu kafes çözümleri.</p>
+    </div>
+
+    <section class="rf-content">
+      <h2>RF Kafesi Galeri</h2>
+      <div class="slider-container">
+          <div class="slider">
+              <div><img src="assets/images/rf1.webp" alt="RF Kafesi Kurulum Örneği 1"></div>
+              <div><img src="assets/images/rf2.png" alt="RF Kafesi Kurulum Örneği 2"></div>
+              <div><img src="assets/images/rf4.png" alt="RF Kafesi Kurulum Örneği 3"></div>
+              </div>
+      </div>
+      <div class="rf-description">
+          <h3>RF Kafeslerinin Önemi</h3>
+          <p>Radyo frekans (RF) kafesleri, manyetik rezonans görüntüleme (MRI) sistemlerinin doğru ve güvenilir çalışması için kritik öneme sahiptir. Bu özel olarak tasarlanmış yapılar, dış kaynaklardan gelen radyo dalgalarını engelleyerek MRI cihazının hassas sinyallerini korur ve görüntü kalitesini artırır.</p>
+          <p>Yüksek performanslı RF kafesleri, parazitleri en aza indirerek daha net ve doğru görüntüler elde edilmesini sağlar. Ayrıca, hastaların ve operatörlerin güvenliğini de artırır.</p>
+      </div>
+  </section>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+  <script>
+      $(document).ready(function(){
+          $('.slider').slick({
+              dots: true,
+              infinite: true,
+              speed: 300,
+              slidesToShow: 1,
+              adaptiveHeight: true,
+              autoplay: true,
+              autoplaySpeed: 2000
+          });
+      });
+  </script>
+
+<footer>
+  <div class="footer-content">
+      <div class="contact-info">
+          <h3>İletişim</h3>
+          <p><i class="fa fa-phone"></i> Telefon: <a href="tel:+90XXXXXXXXXX">+90 536 721 05 65</a></p>
+          <p><i class="fa fa-envelope"></i> E-posta: <a href="mailto:info@sirketiniz.com">bugamedical@gmail.com</a></p>
+      </div>
+      <div class="copyright">
+          <p>&copy; 2025 BugaMedical. Tüm hakları saklıdır.</p>
+      </div>
+  </div>
+</footer>
+
+    <script>
+        function navFunction() {
+        var x = document.getElementById("navbar");
+        if (x.className === "nav") {
+            x.className += " responsive";
+        } else {
+            x.className = "nav";
+        }
+    }
+    </script>
+</body>
+</html>

@@ -4,8 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
   <link rel="stylesheet" href="assets/css/why.css">
-  <title>Document</title>
+  <title>Why BugaMed</title>
 </head>
 <header>
   <nav id="navbar">
@@ -29,7 +31,43 @@
   </nav> 
 </header>
 <body>
-  <h1>WHYY</h1>
+  <!-- Slider Section -->
+  <div class="slider-section">
+    <div class="slider">
+      <div><img src="/assets/images/foto1.jpeg" alt="Proje 1"></div>
+      <div><img src="/assets/images/foto2.jpeg" alt="Proje 2"></div>
+      <div><img src="/assets/images/foto3.jpeg" alt="Proje 3"></div>
+    </div>
+  </div>
+
+  <!-- jQuery ve Slick Slider JS -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+  <script>
+    $(document).ready(function(){
+      $('.slider').slick({
+        dots: true,
+        infinite: true,
+        speed: 300,
+        slidesToShow: 1,
+        adaptiveHeight: true,
+        autoplay: true,
+        autoplaySpeed: 2000
+      });
+    });
+  </script>
+<footer>
+  <div class="footer-content">
+      <div class="contact-info">
+          <h3>İletişim</h3>
+          <p><i class="fa fa-phone"></i> Telefon: <a href="tel:+90XXXXXXXXXX">+90 536 721 05 65</a></p>
+          <p><i class="fa fa-envelope"></i> E-posta: <a href="mailto:info@sirketiniz.com">bugamedical@gmail.com</a></p>
+      </div>
+      <div class="copyright">
+          <p>&copy; 2025 BugaMedical. Tüm hakları saklıdır.</p>
+      </div>
+  </div>
+</footer>
 </body>
 </html>
 <script>

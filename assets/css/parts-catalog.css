@@ -108,3 +108,68 @@ nav .search-container button:hover {
     text-align: left;
   }
 }
+
+/* assets/css/style.css (veya ilgili diğer CSS dosyaları) */
+
+footer {
+  background-color: rgb(109, 131, 113); /* Ana yeşil renginiz */
+  color: #fff;
+  padding: 30px 20px;
+  text-align: center;
+}
+
+.footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap; /* Küçük ekranlarda alt alta sıralama için */
+}
+
+.contact-info {
+  text-align: left;
+}
+
+.contact-info h3 {
+  font-size: 20px;
+  margin-bottom: 10px;
+  color: #fff;
+}
+
+.contact-info p {
+  margin-bottom: 8px;
+  font-size: 16px;
+}
+
+.contact-info a {
+  color: #fff;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.contact-info a:hover {
+  color: #d1d0d0; /* Açık bir renk tonu */
+}
+
+.contact-info .fa {
+  margin-right: 8px;
+}
+
+.copyright {
+  font-size: 14px;
+}
+
+/* Küçük ekranlar için düzenleme */
+@media (max-width: 600px) {
+  .footer-content {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+  }
+
+  .contact-info {
+      text-align: center;
+      margin-bottom: 20px;
+  }
+}

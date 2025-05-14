@@ -173,78 +173,84 @@ font-size: 20px;}
 }
 }
 
-/* Mevcut CSS kodlarınızın altına ekleyin */
-
-.services {
-  padding: 40px 20px;
+.rontgen-hero {
+  background-color: #e9ecef; /* MRI Hero Arka Plan Rengi */
+  padding: 80px 20px;
   text-align: center;
-  background-color: #f9f9f9;
 }
 
-.services h2 {
-  font-size: 28px;
-  color: rgb(109, 131, 113);
+.rontgen-hero h1 {
+  font-size: 36px;
+  margin-bottom: 20px;
+  color: rgb(109, 131, 113); /* MRI Başlık Rengi */
+}
+
+.rontgen-hero p {
+  font-size: 18px;
+  color: #555; /* MRI Paragraf Rengi */
+}
+
+.rontgen-content {
+  padding: 40px 20px;
+}
+
+.image-description-container {
+  display: flex;
+  flex-wrap: wrap;
   margin-bottom: 30px;
+  align-items: center;
 }
 
-.service-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 20px;
-  margin-top: 20px;
+.image-wrapper {
+  flex: 1 1 300px;
+  margin-right: 20px;
+  margin-bottom: 20px;
 }
 
-.service-item {
-  background-color: #fff;
-  padding: 20px;
+.image-wrapper img {
+  width: 100%;
+  height: auto;
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  text-align: center;
 }
 
-.service-item img {
-  max-width: 80%;
-  height: auto;
-  border-radius: 5px;
-  margin-bottom: 15px;
+.description {
+  flex: 1 1 400px;
 }
 
-.service-item h3 {
-  font-size: 20px;
-  color: #333;
+.description h3 {
+  font-size: 24px;
+  color: rgb(109, 131, 113); /* MRI Açıklama Başlık Rengi */
   margin-bottom: 10px;
 }
 
-.service-item p {
-  color: #666;
+.description p {
+  font-size: 16px;
+  color: #555; /* MRI Açıklama Paragraf Rengi */
   margin-bottom: 15px;
-  font-size: 14px;
 }
 
-.button-secondary {
-  display: inline-block;
-  background-color: rgb(109, 131, 113);
-  color: #fff;
-  padding: 10px 20px;
-  text-decoration: none;
-  border-radius: 5px;
-  font-size: 14px;
-  transition: background-color 0.3s ease;
+.reversed {
+  flex-direction: row-reverse;
 }
 
-.button-secondary:hover {
-  background-color: #025d3c;
+.reversed .image-wrapper {
+  margin-left: 20px;
+  margin-right: 0;
 }
 
-@media screen and (max-width: 768px) {
-  .service-grid {
-    grid-template-columns: 1fr;
+@media (max-width: 768px) {
+  .image-description-container {
+      flex-direction: column;
   }
-  .service-item {
-    margin-bottom: 20px;
+
+  .image-wrapper {
+      margin-right: 0;
+      margin-bottom: 20px;
   }
-  .services h2 {
-    font-size: 24px;
+
+  .reversed .image-wrapper {
+      margin-left: 0;
   }
 }
 /* assets/css/style.css (veya ilgili diğer CSS dosyaları) */
