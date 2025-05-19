@@ -1,32 +1,75 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap');
-
-body {
-    font-family: 'Montserrat', sans-serif;
-    margin: 0;
-    background-color: #f0f2f5;
-    color: #333;
-    line-height: 1.6;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Andale Mono';
+  src: url('/assets/font/Andale-Mono.ttf') format('truetype');
 }
-
-header {
-    background: rgb(109, 131, 113);
-    color: #fff;
-    padding: 2rem 1rem;
-    text-align: center;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+nav{
+  background-color: #d1d0d0;
+  overflow: hidden;
 }
-
-header h1 {
-    margin: 0;
-    font-size: 2.8rem;
-    font-weight: 700;
-    letter-spacing: 1px;
+nav img {
+  float: left;
+  margin-left: 10%;
+  margin-right: 8%;
+  width: 70px;
+  padding: 10px;
 }
-
-header p {
-    margin-top: 0.5rem;
-    font-size: 1.1rem;
-    font-weight: 300;
+nav a{
+  float: left;
+  display: block;
+  margin-top: 14px;
+  color: rgb(109,131,113);
+  text-align: center;
+  padding: 14px 36px;
+  text-decoration: none;
+  font-size: 14px;
+}
+nav a.active {
+  background-color: rgb(109,131,113);
+  border-radius: 10px;
+  color: black;
+}
+nav a:hover {
+  background-color: rgb(109,131,113);
+  color: black;
+  border-radius: 10px;
+}
+nav .icon {
+  display: none;
+}
+nav .icon:hover{
+  background-color: rgb(109,131,113);
+  color: black;
+  border-radius: 10px;
+}
+nav .search-container{
+  float: right;
+  
+}
+nav input[type=text] {
+  padding: 6px;
+  margin-top: 22px;
+  width: 295px;
+  font-size: 13px;
+  border: none;
+  border-radius: 10px;
+}
+nav .search-container button {
+  float: right;
+  padding: 6px 10px;
+  margin-top: 22px;
+  margin-right: 206px;
+  margin-left: 2px;
+  background-color: rgb(109, 131, 113);
+  font-size: 13px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
+nav .search-container button:hover {
+  background: #025d3c;
 }
 
 .gallery-container {
@@ -235,4 +278,45 @@ footer {
   color: #fff;
   padding: 30px 20px;
   text-align: center;
+}
+.footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap; /* Küçük ekranlarda alt alta sıralama için */
+}
+
+.contact-info {
+  text-align: left;
+}
+
+.contact-info h3 {
+  font-size: 20px;
+  margin-bottom: 10px;
+  color: #fff;
+}
+
+.contact-info p {
+  margin-bottom: 8px;
+  font-size: 16px;
+}
+
+.contact-info a {
+  color: #fff;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.contact-info a:hover {
+  color: #d1d0d0; /* Açık bir renk tonu */
+}
+
+.contact-info .fa {
+  margin-right: 8px;
+}
+
+.copyright {
+  font-size: 14px;
 }

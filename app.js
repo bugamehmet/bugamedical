@@ -1,7 +1,7 @@
 const express = require('express');
 const connection = require('./db');
 const app = express();
-const port = 5001
+const port = 5001 && 5003
 
 app.use('/assets', express.static('assets')); 
 app.use(express.urlencoded({ extended: true }));
@@ -22,6 +22,10 @@ app.get('/contactus', (req,res)=>{
 app.get('/parts-catalog', (req, res)=>{
   res.sendFile(__dirname + "/views/parts-catalog.html");
 })
+app.get('/photos', (req, res)=>{
+  res.sendFile(__dirname + "/views/photos.html");
+})
+
 
 /*
 const parts_query = 'SELECT products.product_name, parts.part_name FROM products INNER JOIN parts ON products.product_id = parts.product_id'
@@ -36,7 +40,7 @@ connection.query(parts_query, (err, parts)=>{
 
 
 
-app.listen(port && 5003, (error)=>{
+app.listen(port, (error)=>{
   if(error){throw error};
   console.log(`Server http://localhost:${port} adresinde başladı`);
 })
