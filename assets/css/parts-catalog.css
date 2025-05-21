@@ -173,3 +173,36 @@ footer {
       margin-bottom: 20px;
   }
 }
+
+.poster-container {
+            max-width: 90%; /* Afişin maksimum genişliği, responsive olması için */
+            height: 60%; /* Oranları koruyarak yüksekliği otomatik ayarlar */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Hafif bir gölge ekler */
+            border-radius: 8px; /* Köşeleri hafifçe yuvarlar */
+            overflow: hidden; /* Taşmayı engeller */
+            
+        }
+
+        .poster-container img {
+            width: 60%; /* İçindeki resmin konteynırına göre genişliğini ayarlar */
+            height: auto; /* Oranları korur */
+            display:block; /* Resmin altında oluşabilecek boşlukları engeller */
+            position: relative;
+            left: 25%;
+            right: 50%;
+        }
+
+        /* Küçük ekranlar için medya sorgusu */
+        @media (max-width: 768px) {
+            .poster-container {
+                max-width: 95%; /* Daha küçük ekranlarda daha fazla alan kullanır */
+            }
+        }
+
+        /* Çok küçük ekranlar için medya sorgusu */
+        @media (max-width: 480px) {
+            .poster-container {
+                max-width: 100%; /* Çok küçük ekranlarda tam genişlik */
+                border-radius: 0; /* Köşe yuvarlamayı kaldırabiliriz */
+            }
+        }
