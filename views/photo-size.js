@@ -52,6 +52,14 @@ function showSlides(n) {
     captionText.innerHTML = galleryItems[currentImageIndex].alt;
 }
 
+	function navFunction() {
+		var x = document.getElementById('navbar');
+		if (x.className === 'nav') {
+			x.className += ' responsive';
+		} else {
+			x.className = 'nav';
+		}
+	}
 // İlk yüklemede navigasyon oklarını gizle/göster (opsiyonel)
 // Bu kısım, galeri boşsa veya tek resim varsa okları gizlemek için eklenebilir.
 // function checkNavigation() {
