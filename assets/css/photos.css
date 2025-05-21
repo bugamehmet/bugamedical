@@ -72,6 +72,61 @@ nav .search-container button:hover {
   background: #025d3c;
 }
 
+@media screen and (max-width: 600px) {
+  nav a {display: none;}
+  nav .search-container {display: none;}
+  nav a.icon {
+    float: right;
+    display: block;
+    margin-right: 5px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  nav.responsive {position: relative;}
+  nav.responsive a.icon {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+  nav.responsive .search-container{
+    float:none;
+    display: block;
+    text-align: left;
+    margin-left: 12px;
+  }
+  nav.responsive .search-container button{
+    float: none;
+  }
+  nav.responsive img{
+    float: none;
+    display: block;
+    align-items: left;
+  }
+  nav.responsive a {
+    float: none;
+    display: block;
+    text-align: left;
+  }
+}
+@media screen and (max-width:600px) {
+    .yazilar {
+        left: 0; 
+        top: auto; 
+        transform: none; 
+        width: 100%; 
+        top: 20%;
+        left: 0%; 
+}
+.yazilar p{
+  font-size: 14px;
+
+}
+.yazilar h1{
+  font-size: 24px;
+}
+}
+
 .gallery-container {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
