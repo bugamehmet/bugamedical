@@ -190,6 +190,8 @@ footer {
             position: relative;
             left: 25%;
             right: 50%;
+            margin-top: 30px;
+            margin-bottom: 30px;
         }
 
         /* Küçük ekranlar için medya sorgusu */
