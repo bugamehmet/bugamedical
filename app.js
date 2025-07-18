@@ -4,7 +4,7 @@ const app = express();
 const nodemailer = require('nodemailer');
 const bodyParser = require('body-parser');
 const cors = require('cors'); // CORS hatalarını önlemek için
-const port = 5001;
+const port = process.env.PORT || 5001;
 require('dotenv').config();
 
 app.use('/assets', express.static('assets'));
