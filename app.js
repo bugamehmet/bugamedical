@@ -48,44 +48,44 @@ const transporter = nodemailer.createTransport({
 	},
 });
 
-// İletişim formu gönderimlerini işleyecek POST endpoint'i
-app.post('/send-email', async (req, res) => {
-	const { name, email, subject, country } = req.body;
-	console.log(name, email, subject, country);
-	console.log('Transporter User:', transporter.options.auth.user);
-	console.log('Transporter Pass:', transporter.options.auth.pass);
+app.post('/send-email', async (req, res) => { // Bu rota muhtemelen bir POST rotası olacak
+  const { name, email, subject, country } = req.body; // body-parser veya express.json ile gelen veriler
 
-	// Gelen verileri kontrol et
-	if (!name || !email || !subject || !country) {
-		return res.status(400).json({ success: false, message: 'Lütfen tüm alanları doldurun.' });
-	}
+  // 1. Alan Doğrulaması
+  if (!name || !email || !subject || !country) {
+    return res.status(400).json({ success: false, message: 'Lütfen tüm alanları doldurun.' });
+  }
 
-	// E-posta içeriği
-	const mailOptions = {
-		from: `"${name}" <${email}>`, // Gönderen adı ve e-posta adresi
-		to: 'bugamedical@gmail.com', // E-postanın gönderileceği adres (kendi adresiniz olabilir)
-		subject: `Yeni İletişim Formu Mesajı: ${subject}`,
-		html: `
+  const mailOptions = {
+    from: `"${name}" <${email}>`,
+    to: 'bugamedical@gmail.com',
+    subject: `Yeni İletişim Formu Mesajı: ${subject}`,
+    html: `
             <p><strong>Ad Soyad:</strong> ${name}</p>
             <p><strong>E-posta:</strong> ${email}</p>
             <p><strong>Konu:</strong> ${subject}</p>
             <p><strong>Mesaj:</strong></p>
             <p>${country}</p>
         `,
-	};
+  };
 
-	try {
-		// E-postayı gönder
-		await transporter.sendMail(mailOptions);
-		console.log('E-posta başarıyla gönderildi!');
-		res.sendFile(__dirname + '/views/contactus.html');
-	} catch (error) {
-		console.error('E-posta gönderme hatası:', error);
-		res.status(500).json({ success: false, message: 'E-posta gönderilirken bir hata oluştu.' });
-		app.get('/send-email', (req, res) => {
-			res.sendFile(__dirname + '/views/contactus.html');
-		});
-	}
+  try {
+    // 2. E-posta Gönderme
+    await transporter.sendMail(mailOptions);
+    console.log('E-posta başarıyla gönderildi!');
+    // Başarılı olduğunda da JSON yanıtı gönderin
+    return res.status(200).json({ success: true, message: 'E-postanız başarıyla gönderildi!' });
+
+  } catch (error) {
+    console.error('E-posta gönderme hatası:', error);
+    // E-posta gönderme hatası olduğunda da JSON yanıtı gönderin
+    return res.status(500).json({ success: false, message: 'E-posta gönderilirken bir hata oluştu. Lütfen daha sonra tekrar deneyin.' });
+  }
+});
+
+// Ayrıca contactus.html dosyasını sunan bir GET rotasına ihtiyacınız olacak
+app.get('/contactus', (req, res) => {
+  res.sendFile(__dirname + '/views/contactus.html');
 });
 
 /*

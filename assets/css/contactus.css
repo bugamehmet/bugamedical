@@ -1,208 +1,224 @@
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: 'Andale Mono';
-  src: url('/assets/font/Andale-Mono.ttf') format('truetype');
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: 'Andale Mono';
+	src: url('/assets/font/Andale-Mono.ttf') format('truetype');
 }
-nav{
-  background-color: #d1d0d0;
-  overflow: hidden;
+nav {
+	background-color: #d1d0d0;
+	overflow: hidden;
 }
 nav img {
-  float: left;
-  margin-left: 10%;
-  margin-right: 8%;
-  width: 70px;
-  padding: 10px;
+	float: left;
+	margin-left: 10%;
+	margin-right: 8%;
+	width: 70px;
+	padding: 10px;
 }
-nav a{
-  float: left;
-  display: block;
-  margin-top: 14px;
-  color: rgb(109,131,113);
-  text-align: center;
-  padding: 14px 36px;
-  text-decoration: none;
-  font-size: 14px;
+nav a {
+	float: left;
+	display: block;
+	margin-top: 14px;
+	color: rgb(109, 131, 113);
+	text-align: center;
+	padding: 14px 36px;
+	text-decoration: none;
+	font-size: 14px;
 }
 nav a.active {
-  background-color: rgb(109,131,113);
-  border-radius: 10px;
-  color: black;
+	background-color: rgb(109, 131, 113);
+	border-radius: 10px;
+	color: black;
 }
 nav a:hover {
-  background-color: rgb(109,131,113);
-  color: black;
-  border-radius: 10px;
+	background-color: rgb(109, 131, 113);
+	color: black;
+	border-radius: 10px;
 }
 nav .icon {
-  display: none;
+	display: none;
 }
-nav .icon:hover{
-  background-color: rgb(109,131,113);
-  color: black;
-  border-radius: 10px;
+nav .icon:hover {
+	background-color: rgb(109, 131, 113);
+	color: black;
+	border-radius: 10px;
 }
-nav .search-container{
-  float: right;
-  
+nav .search-container {
+	float: right;
 }
-nav input[type=text] {
-  padding: 6px;
-  margin-top: 22px;
-  width: 295px;
-  font-size: 13px;
-  border: none;
-  border-radius: 10px;
+nav input[type='text'] {
+	padding: 6px;
+	margin-top: 22px;
+	width: 295px;
+	font-size: 13px;
+	border: none;
+	border-radius: 10px;
 }
 nav .search-container button {
-  float: right;
-  padding: 6px 10px;
-  margin-top: 22px;
-  margin-right: 206px;
-  margin-left: 2px;
-  background-color: rgb(109, 131, 113);
-  font-size: 13px;
-  border: none;
-  border-radius: 10px;
-  cursor: pointer;
+	float: right;
+	padding: 6px 10px;
+	margin-top: 22px;
+	margin-right: 206px;
+	margin-left: 2px;
+	background-color: rgb(109, 131, 113);
+	font-size: 13px;
+	border: none;
+	border-radius: 10px;
+	cursor: pointer;
 }
 nav .search-container button:hover {
-  background: #025d3c;
+	background: #025d3c;
 }
 @media screen and (max-width: 600px) {
-  nav a {display: none;}
-  nav .search-container {display: none;}
-  nav a.icon {
-    float: right;
-    display: block;
-    margin-right: 5px;
-  }
+	nav a {
+		display: none;
+	}
+	nav .search-container {
+		display: none;
+	}
+	nav a.icon {
+		float: right;
+		display: block;
+		margin-right: 5px;
+	}
 }
 
 @media screen and (max-width: 600px) {
-  nav.responsive {position: relative;}
-  nav.responsive a.icon {
-    position: absolute;
-    right: 0;
-    top: 0;
-  }
-  nav.responsive .search-container{
-    float:none;
-    display: block;
-    text-align: left;
-    margin-left: 12px;
-  }
-  nav.responsive .search-container button{
-    float: none;
-  }
-  nav.responsive img{
-    float: none;
-    display: block;
-    align-items: left;
-  }
-  nav.responsive a {
-    float: none;
-    display: block;
-    text-align: left;
-  }
+	nav.responsive {
+		position: relative;
+	}
+	nav.responsive a.icon {
+		position: absolute;
+		right: 0;
+		top: 0;
+	}
+	nav.responsive .search-container {
+		float: none;
+		display: block;
+		text-align: left;
+		margin-left: 12px;
+	}
+	nav.responsive .search-container button {
+		float: none;
+	}
+	nav.responsive img {
+		float: none;
+		display: block;
+		align-items: left;
+	}
+	nav.responsive a {
+		float: none;
+		display: block;
+		text-align: left;
+	}
 }
-body{
-      input[type=text], select, textarea {
-        width: 100%; /* Full width */
-        padding: 12px; /* Some padding */ 
-        border: 1px solid #ccc; /* Gray border */
-        border-radius: 4px; /* Rounded borders */
-        box-sizing: border-box; /* Make sure that padding and width stays in place */
-        margin-top: 6px; /* Add a top margin */
-        margin-bottom: 16px; /* Bottom margin */
-        resize: vertical /* Allow the user to vertically resize the textarea (not horizontally) */
-    }
+body {
+	input[type='text'],
+	select,
+	textarea {
+		width: 100%; /* Full width */
+		padding: 12px; /* Some padding */
+		border: 1px solid #ccc; /* Gray border */
+		border-radius: 4px; /* Rounded borders */
+		box-sizing: border-box; /* Make sure that padding and width stays in place */
+		margin-top: 6px; /* Add a top margin */
+		margin-bottom: 16px; /* Bottom margin */
+		resize: vertical; /* Allow the user to vertically resize the textarea (not horizontally) */
+	}
 
-/* Style the submit button with a specific background color etc */
-input[type=submit] {
-  background-color: #04AA6D;
-  color: white;
-  padding: 12px 20px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
+	/* Style the submit button with a specific background color etc */
+	input[type='submit'] {
+		background-color: #04aa6d;
+		color: white;
+		padding: 12px 20px;
+		border: none;
+		border-radius: 4px;
+		cursor: pointer;
+	}
 
-/* When moving the mouse over the submit button, add a darker green color */
-input[type=submit]:hover {
-  background-color: #45a049;
-}
+	/* When moving the mouse over the submit button, add a darker green color */
+	input[type='submit']:hover {
+		background-color: #45a049;
+	}
 
-/* Add a background color and some padding around the form */
-.container {
-  border-radius: 5px;
-  background-color: #f2f2f2;
-  padding: 20px;
-}
+	/* Add a background color and some padding around the form */
+	.container {
+		border-radius: 5px;
+		background-color: #f2f2f2;
+		padding: 20px;
+	}
 }
 /* assets/css/style.css (veya ilgili diğer CSS dosyaları) */
 
 footer {
-  background-color: rgb(109, 131, 113); /* Ana yeşil renginiz */
-  color: #fff;
-  padding: 30px 20px;
-  text-align: center;
+	background-color: rgb(109, 131, 113); /* Ana yeşil renginiz */
+	color: #fff;
+	padding: 30px 20px;
+	text-align: center;
 }
 
 .footer-content {
-  max-width: 1200px;
-  margin: 0 auto;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap; /* Küçük ekranlarda alt alta sıralama için */
+	max-width: 1200px;
+	margin: 0 auto;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	flex-wrap: wrap; /* Küçük ekranlarda alt alta sıralama için */
 }
 
 .contact-info {
-  text-align: left;
+	text-align: left;
 }
 
 .contact-info h3 {
-  font-size: 20px;
-  margin-bottom: 10px;
-  color: #fff;
+	font-size: 20px;
+	margin-bottom: 10px;
+	color: #fff;
 }
 
 .contact-info p {
-  margin-bottom: 8px;
-  font-size: 16px;
+	margin-bottom: 8px;
+	font-size: 16px;
 }
 
 .contact-info a {
-  color: #fff;
-  text-decoration: none;
-  transition: color 0.3s ease;
+	color: #fff;
+	text-decoration: none;
+	transition: color 0.3s ease;
 }
 
 .contact-info a:hover {
-  color: #d1d0d0; /* Açık bir renk tonu */
+	color: #d1d0d0; /* Açık bir renk tonu */
 }
 
 .contact-info .fa {
-  margin-right: 8px;
+	margin-right: 8px;
 }
 
 .copyright {
-  font-size: 14px;
+	font-size: 14px;
 }
 
 /* Küçük ekranlar için düzenleme */
 @media (max-width: 600px) {
-  .footer-content {
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-  }
+	.footer-content {
+		flex-direction: column;
+		align-items: center;
+		text-align: center;
+	}
 
-  .contact-info {
-      text-align: center;
-      margin-bottom: 20px;
-  }
+	.contact-info {
+		text-align: center;
+		margin-bottom: 20px;
+	}
+}
+
+.message-success {
+	color: green;
+	margin-top: 10px;
+}
+.message-error {
+	color: red;
+	margin-top: 10px;
 }

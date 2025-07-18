@@ -34,7 +34,7 @@
 </header>
 <body>
   <div class="container">
-    <form method="POST" action="/send-email">
+    <form method="POST" action="/send-email" id="contactForm">
   
       <label for="name">Firstname and Lastname</label>
       <input type="text" id="name" name="name" placeholder="Your name and lastname..">
@@ -53,6 +53,7 @@
       <textarea id="subject" name="subject" placeholder="Write something.." style="height:200px"></textarea>
   
       <input type="submit" value="Submit">
+      <div id="formMessage"></div>
   
     </form>
   </div>
@@ -79,5 +80,42 @@
     x.className = "nav";
   }
 }
+ document.getElementById('contactForm').addEventListener('submit', async function(event) {
+            event.preventDefault(); // Formun varsayılan gönderimini engelle
 
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const subject = document.getElementById('subject').value;
+            const country = document.getElementById('country').value; // Burada aslında mesajı temsil ediyor
+
+            const formMessageDiv = document.getElementById('formMessage');
+            formMessageDiv.textContent = ''; // Önceki mesajı temizle
+            formMessageDiv.className = ''; // Önceki sınıfı temizle
+
+            try {
+                const response = await fetch('/send-email', { // Sunucunuzdaki POST rotası
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ name, email, subject, country })
+                });
+
+                const result = await response.json(); // Sunucudan gelen JSON yanıtını oku
+
+                if (result.success) {
+                    formMessageDiv.textContent = result.message;
+                    formMessageDiv.classList.add('message-success');
+                    // Formu sıfırlayabilirsiniz
+                    document.getElementById('contactForm').reset();
+                } else {
+                    formMessageDiv.textContent = result.message;
+                    formMessageDiv.classList.add('message-error');
+                }
+            } catch (error) {
+                console.error('Gönderme sırasında ağ veya sunucu hatası:', error);
+                formMessageDiv.textContent = 'Bir sorun oluştu. Lütfen internet bağlantınızı kontrol edin veya daha sonra tekrar deneyin.';
+                formMessageDiv.classList.add('message-error');
+            }
+        });
 </script>
