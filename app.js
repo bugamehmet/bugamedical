@@ -5,7 +5,7 @@ const app = express();
 const nodemailer = require('nodemailer');
 const bodyParser = require('body-parser');
 const cors = require('cors'); // CORS hatalarını önlemek için
-const port = process.env.PORT || 5001;
+const port = process.env.PORT || 10000; 
 require('dotenv').config();
 
 app.use('/assets', express.static('assets'));
@@ -89,6 +89,9 @@ app.get('/contactus', (req, res) => {
   res.sendFile(__dirname + '/views/contactus.html');
 });
 
+app.listen(port, '0.0.0.0', () => { // Hostu 0.0.0.0 olarak ayarlayın
+    console.log(`Server is running on port ${port}`);
+});
 /*
 const parts_query = 'SELECT products.product_name, parts.part_name FROM products INNER JOIN parts ON products.product_id = parts.product_id'
 
