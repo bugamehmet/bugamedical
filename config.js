@@ -21,5 +21,5 @@ if (process.env.NODE_ENV === 'production') {
         } else {
             console.log('Veritabanına başarıyla bağlandı (Üretim Ortamı): ' + connection.threadId);
         }
-    });
+    });}
 module.exports = connection;
