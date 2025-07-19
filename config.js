@@ -8,6 +8,7 @@ const config = {
 	},
 };
 */
+const mysql = require('mysql');
 
 const connection = mysql.createConnection({
     host     : process.env.DB_HOST,     // Render'dan gelecek
@@ -18,3 +19,10 @@ const connection = mysql.createConnection({
 });
 module.exports = connection;
 
+connection.connect((err) => {
+    if (err) {
+        console.error('Veritabanına bağlanırken hata oluştu: ' + err.stack);
+        return;
+    }
+    console.log('Veritabanına başarıyla bağlandı id: ' + connection.threadId);
+});
