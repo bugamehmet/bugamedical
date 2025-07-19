@@ -1,4 +1,5 @@
 const express = require('express');
+const mysql = require('mysql');
 const connection = require('./db');
 const app = express();
 const nodemailer = require('nodemailer');
