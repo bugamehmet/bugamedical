@@ -96,10 +96,11 @@ connection.query(parts_query, (err, parts)=>{
   console.log(parts)
 })
 */
-
+/*
 app.listen(port, (error) => {
 	if (error) {
 		throw error;
 	}
 	console.log(`Server http://localhost:${port} adresinde başladı`);
 });
+*/
