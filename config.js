@@ -1,13 +1,5 @@
 const mysql = require('mysql');
-*/
-const connection = mysql.createConnection({
-    host     : process.env.DB_HOST,     // Render'dan gelecek
-    user     : process.env.DB_USER,     // Render'dan gelecek
-    password : process.env.DB_PASSWORD, // Render'dan gelecek
-    database : process.env.DB_NAME,     // Render'dan gelecek
-    port     : process.env.DB_PORT      // Render'dan gelecek
-});
-*/
+
 // NODE_ENV değişkenini kontrol ederek ortamı belirle
 if (process.env.NODE_ENV === 'production') {
     // Üretim ortamında (Render gibi) gerçek veritabanı bağlantısını kur
