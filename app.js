@@ -5,7 +5,11 @@ const app = express();
 const nodemailer = require('nodemailer');
 const bodyParser = require('body-parser');
 const cors = require('cors'); // CORS hatalarını önlemek için
+<<<<<<< HEAD
 const port = process.env.PORT || 5001;
+=======
+const port = process.env.PORT || 10000; 
+>>>>>>> 3ddfa4be1b2ad4c47f2fbfd01cb56522478643ea
 require('dotenv').config();
 
 app.use('/assets', express.static('assets'));
@@ -89,6 +93,9 @@ app.get('/contactus', (req, res) => {
   res.sendFile(__dirname + '/views/contactus.html');
 });
 
+app.listen(port, '0.0.0.0', () => { // Hostu 0.0.0.0 olarak ayarlayın
+    console.log(`Server is running on port ${port}`);
+});
 /*
 const parts_query = 'SELECT products.product_name, parts.part_name FROM products INNER JOIN parts ON products.product_id = parts.product_id'
 
@@ -97,10 +104,11 @@ connection.query(parts_query, (err, parts)=>{
   console.log(parts)
 })
 */
-
+/*
 app.listen(port, (error) => {
 	if (error) {
 		throw error;
 	}
 	console.log(`Server http://localhost:${port} adresinde başladı`);
 });
+*/
