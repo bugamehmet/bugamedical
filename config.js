@@ -26,3 +26,5 @@ connection.connect((err) => {
     }
     console.log('Veritabanına başarıyla bağlandı id: ' + connection.threadId);
 });
+
+module.exports = connection;
