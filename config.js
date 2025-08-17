@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 /*
 const config = {
 	db: {
@@ -29,7 +28,7 @@ connection.connect((err) => {
 });
 
 module.exports = connection;
-=======
+
 const mysql = require('mysql');
 
 // NODE_ENV değişkenini kontrol ederek ortamı belirle
@@ -55,4 +54,4 @@ if (process.env.NODE_ENV === 'production') {
         }
     });}
 module.exports = connection;
->>>>>>> 3ddfa4be1b2ad4c47f2fbfd01cb56522478643ea
+
