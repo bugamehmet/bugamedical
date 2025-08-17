@@ -1,3 +1,4 @@
+/*
 const mysql= require('mysql')
 const config = require('./config')
 
@@ -9,3 +10,4 @@ connection.connect((error)=>{
 })
 
 module.exports = connection;
+*/

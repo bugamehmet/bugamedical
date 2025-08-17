@@ -8,6 +8,7 @@ const config = {
 	},
 };
 */
+/*
 const mysql = require('mysql');
 
 const connection = mysql.createConnection({
@@ -55,3 +56,4 @@ if (process.env.NODE_ENV === 'production') {
     });}
 module.exports = connection;
 
+*/
