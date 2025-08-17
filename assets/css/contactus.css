@@ -212,9 +212,9 @@ select {
 
 /* Select kutusu odaklandığında stil */
 select:focus {
-  border-color: #007bff; /* Mavi bir kenarlık */
+  border-color:rgb(109, 131, 113); /* Mavi bir kenarlık */
   outline: none; /* Varsayılan odak çerçevesini kaldır */
-  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25); /* Hafif gölge */
+  box-shadow: rgb(109, 131, 113); /* Hafif gölge */
 }
 
 /* Küçük ekranlar için düzenleme */
