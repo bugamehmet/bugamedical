@@ -207,9 +207,7 @@ select {
   border: 1px solid #ccc; /* Kenarlık */
   border-radius: 8px; /* Hafif yuvarlak köşeler */
   box-sizing: border-box; /* Padding ve border genişliğe dahil */
-  font-size: 16px; /* Yazı boyutu */
   background-color: #f8f8f8; /* Arka plan rengi */
-  color: #333; /* Yazı rengi */
   -webkit-appearance: none; /* Varsayılan tarayıcı stilini kaldır */
   -moz-appearance: none; /* Varsayılan tarayıcı stilini kaldır */
   appearance: none; /* Varsayılan tarayıcı stilini kaldır */
