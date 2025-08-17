@@ -205,10 +205,6 @@ select {
   border-radius: 8px; /* Hafif yuvarlak köşeler */
   box-sizing: border-box; /* Padding ve border genişliğe dahil */
   background-color: #f8f8f8; /* Arka plan rengi */
-  -webkit-appearance: none; /* Varsayılan tarayıcı stilini kaldır */
-  -moz-appearance: none; /* Varsayılan tarayıcı stilini kaldır */
-  appearance: none; /* Varsayılan tarayıcı stilini kaldır */
-  background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23000000%22%20d%3D%22M287%2C197.6l-131.6%2C-131.6c-4.7%2C-4.7%2C-12.3%2C-4.7%2C-17%2C0L5.4%2C197.6c-4.7%2C4.7%2C-4.7%2C12.3%2C0%2C17l16%2C16c4.7%2C4.7%2C12.3%2C4.7%2C17%2C0l110.8%2C-110.8c4.7%2C-4.7%2C12.3%2C-4.7%2C17%2C0l110.8%2C110.8c4.7%2C4.7%2C12.3%2C4.7%2C17%2C0l16%2C-16C291.7%2C209.9%2C291.7%2C202.3%2C287%2C197.6z%22%2F%3E%3C%2Fsvg%3E'); /* Özel ok ikonu */
   background-repeat: no-repeat;
   background-position: right 10px center;
   cursor: pointer; /* Fare imleci */
