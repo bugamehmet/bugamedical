@@ -1,13 +1,17 @@
+//AŞAĞISI KAPALI
 /*
 const config = {
-	db: {
-		host: 'localhost',
-		user: 'root',
-		password: '12345678',
-		database: 'bugaMed',
-	},
+  db: {
+    host: 'localhost',
+    user: 'root',
+    password: '12345678',
+    database: 'bugaMed',
+  },
 };
+
+module.exports = config;
 */
+
 /*
 const mysql = require('mysql');
 
@@ -33,6 +37,7 @@ module.exports = connection;
 const mysql = require('mysql');
 
 // NODE_ENV değişkenini kontrol ederek ortamı belirle
+
 if (process.env.NODE_ENV === 'production') {
     // Üretim ortamında (Render gibi) gerçek veritabanı bağlantısını kur
     connection = mysql.createConnection({

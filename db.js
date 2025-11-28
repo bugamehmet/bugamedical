@@ -1,3 +1,4 @@
+//BURDAN KAPALI AŞAĞISI
 /*
 const mysql= require('mysql')
 const config = require('./config')
