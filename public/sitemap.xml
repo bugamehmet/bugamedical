@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+    <!-- Genel sayfalar -->
+    <url>
+        <loc>https://bugamed.core/</loc>
+        <priority>1.0</priority>
+    </url>
+    <url>
+        <loc>https://bugamed.core/parts-catalog</loc>
+        <priority>0.9</priority>
+    </url>
+    <url>
+        <loc>https://bugamed.core/why</loc>
+        <priority>0.6</priority>
+    </url>
+    <url>
+        <loc>https://bugamed.core/about</loc>
+        <priority>0.6</priority>
+    </url>
+    <url>
+        <loc>https://bugamed.core/contactus</loc>
+        <priority>0.6</priority>
+    </url>
+    <url>
+        <loc>https://bugamed.core/photos</loc>
+        <priority>0.5</priority>
+    </url>
+
+    <!-- PRODUCT PAGES -->
+
+    <url>
+        <loc>https://bugamed.core/part/45221330437/pfei-c-1-5t-assy</loc>
+        <priority>0.8</priority>
+    </url>
+
+    <url>
+        <loc>https://bugamed.core/part/452213274332/magnet-electronics-unit-meu</loc>
+        <priority>0.8</priority>
+    </url>
+
+    <url>
+        <loc>https://bugamed.core/part/453564100741/philips-mri-wbtu-assembly</loc>
+        <priority>0.8</priority>
+    </url>
+
+    <url>
+        <loc>https://bugamed.core/part/452213156083/philips-mri-audio-module-assembly</loc>
+        <priority>0.8</priority>
+    </url>
+
+    <url>
+        <loc>https://bugamed.core/part/989803163121/invivo-ecg</loc>
+        <priority>0.8</priority>
+    </url>
+
+    <url>
+        <loc>https://bugamed.core/part/452211790753/philips-table-control-panel-button-switch</loc>
+        <priority>0.8</priority>
+    </url>
+
+    <url>
+        <loc>https://bugamed.core/part/452213258551/philips-mc1-x32-odu-cable</loc>
+        <priority>0.8</priority>
+    </url>
+
+    <url>
+        <loc>https://bugamed.core/part/459800343492/philips-mri-mc1-x30-odu-cable</loc>
+        <priority>0.8</priority>
+    </url>
+
+    <url>
+        <loc>https://bugamed.core/part/452211749241/philips-qbc-t5a-25kw-hybride</loc>
+        <priority>0.8</priority>
+    </url>
+
+    <url>
+        <loc>https://bugamed.core/part/452213168794/philips-1-5t-mri</loc>
+        <priority>0.8</priority>
+    </url>
+
+    <url>
+        <loc>https://bugamed.core/part/philips-eriks-pressure-gauge/philips-eriks-pressure-gauge</loc>
+        <priority>0.8</priority>
+    </url>
+
+    <url>
+        <loc>https://bugamed.core/part/453564127061/philips-mri-diversity-antenna-compenent-side</loc>
+        <priority>0.8</priority>
+    </url>
+
+    <url>
+        <loc>https://bugamed.core/part/ZC9331/philips-mri-burst-rupture-disk</loc>
+        <priority>0.8</priority>
+    </url>
+
+    <url>
+        <loc>https://bugamed.core/part/452215039281/philips-axis-assembly-281</loc>
+        <priority>0.8</priority>
+    </url>
+
+    <url>
+        <loc>https://bugamed.core/part/452213264551/philips-gradient-amplifier-system-281-cabinet</loc>
+        <priority>0.8</priority>
+    </url>
+
+    <url>
+        <loc>https://bugamed.core/part/45221179529/philips-dga-board-mri</loc>
+        <priority>0.8</priority>
+    </url>
+
+    <url>
+        <loc>https://bugamed.core/part/45221179496/philips-gci-board-mri</loc>
+        <priority>0.8</priority>
+    </url>
+
+    <url>
+        <loc>https://bugamed.core/part/452215031182/philips-601-d-power-supply</loc>
+        <priority>0.8</priority>
+    </url>
+
+    <url>
+        <loc>https://bugamed.core/part/452213245971/philips-t-mains-inlet-unit-mri</loc>
+        <priority>0.8</priority>
+    </url>
+
+    <url>
+        <loc>https://bugamed.core/part/452213208993/philips-cdas-rack-mri</loc>
+        <priority>0.8</priority>
+    </url>
+
+    <url>
+        <loc>https://bugamed.core/part/45221179589/philips-cdas-clk-gradm-pcb-circuit-board</loc>
+        <priority>0.8</priority>
+    </url>
+
+    <url>
+        <loc>https://bugamed.core/part/45221179425/philips-cdas-rx2-mri-intera-achiva-circuit-board</loc>
+        <priority>0.8</priority>
+    </url>
+
+    <url>
+        <loc>https://bugamed.core/part/45221179445/philips-1-5t-nova-dual-cdas-pat-mri</loc>
+        <priority>0.8</priority>
+    </url>
+
+    <url>
+        <loc>https://bugamed.core/part/45221179587/philips-cdas-gradm-v2-0-mri</loc>
+        <priority>0.8</priority>
+    </url>
+
+    <url>
+        <loc>https://bugamed.core/part/45356703132/philips-1-5t-nova-dual-cdas-bulk-if-mri</loc>
+        <priority>0.8</priority>
+    </url>
+
+    <url>
+        <loc>https://bugamed.core/part/45221179725/philips-cdas-txr-v2-board-mri</loc>
+        <priority>0.8</priority>
+    </url>
+
+    <url>
+        <loc>https://bugamed.core/part/452215034253/philips-mri-cdas-sbc-board</loc>
+        <priority>0.8</priority>
+    </url>
+
+    <url>
+        <loc>https://bugamed.core/part/CPA5004530G/power-one-cpa500-4530g</loc>
+        <priority>0.8</priority>
+    </url>
+
+    <url>
+        <loc>https://bugamed.core/part/452213203242/philips-rf-power-amplifier</loc>
+        <priority>0.8</priority>
+    </url>
+
+</urlset>
