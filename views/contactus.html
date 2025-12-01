@@ -1,17 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link rel="stylesheet" href="assets/css/contactus.css">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta
+			name="description"
+			content="Contact Bugamed Care for MRI, CT, and X-ray equipment parts or technical support. Our team is ready to assist with fast response times."
+		/>
+
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+		/>
+		<link rel="stylesheet" href="assets/css/contactus.css" />
 		<title>BugaMed - MRI & CT Parts | Contact Us</title>
 		<link rel="shortcut icon" type="png" href="/assets/images/favicon.png" />
-</head>
-<header>
-  <nav id="navbar">
-    <div class="navbar-links">
-      <img src="assets/images/buga-logo.png" alt="BugaMed Logo">
+	</head>
+	<header>
+		<nav id="navbar">
+			<div class="navbar-links">
+				<img src="assets/images/buga-logo.png" alt="BugaMed Logo" />
 				<!-- VERİTABANI HAZIRLANINCA KULLANILACAK
 				<div class="search-container">
 					<form action="#">
@@ -20,76 +28,77 @@
 					</form>
 				</div>
 			-->
-      <a href="/">Home</a>
-      <a href="/parts-catalog">Parts Catalog</a>
-      <a href="/why">Why Bugamed</a>
-      <a href="/about">About</a>
-      <a href="/contactus" class="active">Contact Us</a>
-      				<a href="/photos">Gallery</a>
-      <a href="javascript:void(0);" class="icon" onclick="navFunction()">
-        <i class="fa fa-bars"></i>
-      </a>
-    </div>
-  </nav> 
-</header>
-<body>
-  <div class="container">
-    <form method="POST" action="/send-email" id="contactForm">
-  
-      <label for="name">Firstname and Lastname</label>
-      <input type="text" id="name" name="name" placeholder="Your name and lastname..">
-  
-      <label for="email">E-mail</label>
-      <input type="text" id="email" name="email" placeholder="Your e-mail..">
-  
-      <label for="country">Country</label>
+				<a href="/">Home</a>
+				<a href="/parts-catalog">Parts Catalog</a>
+				<a href="/why">Why Bugamed</a>
+				<a href="/about">About</a>
+				<a href="/contactus" class="active">Contact Us</a>
+				<a href="/photos">Gallery</a>
+				<a href="javascript:void(0);" class="icon" onclick="navFunction()">
+					<i class="fa fa-bars"></i>
+				</a>
+			</div>
+		</nav>
+	</header>
+	<body>
+		<div class="container">
+			<form method="POST" action="/send-email" id="contactForm">
+				<label for="name">Firstname and Lastname</label>
+				<input type="text" id="name" name="name" placeholder="Your name and lastname.." />
 
-      <select id="country" name="country">
-  <option value="Select Country"></option>
-        <option value="usa">ABD</option>
-        <option value="germany">Almanya</option>
-        <option value="australia">Avustralya</option>
-        <option value="belgium">Belçika</option>
-        <option value="brazil">Brezilya</option>
-        <option value="china">Çin</option>
-        <option value="denmark">Danimarka</option>
-        <option value="finland">Finlandiya</option>
-        <option value="france">Fransa</option>
-        <option value="south-korea">Güney Kore</option>
-        <option value="india">Hindistan</option>
-        <option value="netherlands">Hollanda</option>
-        <option value="uk">İngiltere</option>
-        <option value="ireland">İrlanda</option>
-        <option value="spain">İspanya</option>
-        <option value="israel">İsrail</option>
-        <option value="sweden">İsveç</option>
-        <option value="switzerland">İsviçre</option>
-        <option value="italy">İtalya</option>
-        <option value="japan">Japonya</option>
-        <option value="canada">Kanada</option>
-        <option value="mexico">Meksika</option>
-        <option value="norway">Norveç</option>
-        <option value="russia">Rusya</option>
-        <option value="singapore">Singapur</option>
-        <option value="turkey">Türkiye</option>
-        <option value="uae">Birleşik Arap Emirlikleri</option>
-      </select>
-  
-      <label for="subject">Subject</label>
-      <textarea id="subject" name="subject" placeholder="Write something.." style="height:200px"></textarea>
-  
-      <input type="submit" value="Submit">
-      <div id="formMessage"></div>
-  
-    </form>
-  </div>
+				<label for="email">E-mail</label>
+				<input type="text" id="email" name="email" placeholder="Your e-mail.." />
+
+				<label for="country">Country</label>
+
+				<select id="country" name="country">
+					<option value="Select Country"></option>
+					<option value="usa">ABD</option>
+					<option value="germany">Almanya</option>
+					<option value="australia">Avustralya</option>
+					<option value="belgium">Belçika</option>
+					<option value="brazil">Brezilya</option>
+					<option value="china">Çin</option>
+					<option value="denmark">Danimarka</option>
+					<option value="finland">Finlandiya</option>
+					<option value="france">Fransa</option>
+					<option value="south-korea">Güney Kore</option>
+					<option value="india">Hindistan</option>
+					<option value="netherlands">Hollanda</option>
+					<option value="uk">İngiltere</option>
+					<option value="ireland">İrlanda</option>
+					<option value="spain">İspanya</option>
+					<option value="israel">İsrail</option>
+					<option value="sweden">İsveç</option>
+					<option value="switzerland">İsviçre</option>
+					<option value="italy">İtalya</option>
+					<option value="japan">Japonya</option>
+					<option value="canada">Kanada</option>
+					<option value="mexico">Meksika</option>
+					<option value="norway">Norveç</option>
+					<option value="russia">Rusya</option>
+					<option value="singapore">Singapur</option>
+					<option value="turkey">Türkiye</option>
+					<option value="uae">Birleşik Arap Emirlikleri</option>
+				</select>
+
+				<label for="subject">Subject</label>
+				<textarea
+					id="subject"
+					name="subject"
+					placeholder="Write something.."
+					style="height: 200px"
+				></textarea>
+
+				<input type="submit" value="Submit" />
+				<div id="formMessage"></div>
+			</form>
+		</div>
 		<footer>
 			<div class="footer-content">
 				<div class="contact-info">
 					<h3>Contact</h3>
-					<p>
-						<i class="fa fa-phone"></i> Tel: <a href="tel:+905367210565">+90 536 721 05 65</a>
-					</p>
+					<p><i class="fa fa-phone"></i> Tel: <a href="tel:+905367210565">+90 536 721 05 65</a></p>
 					<p>
 						<i class="fa fa-envelope"></i> Email:
 						<a href="mailto:bugamedical@gmail.com">bugamedical@gmail.com</a>
@@ -100,53 +109,55 @@
 				</div>
 			</div>
 		</footer>
-</body>
+	</body>
 </html>
 <script>
-  function navFunction() {
-  var x = document.getElementById("navbar");
-  if (x.className === "nav") {
-    x.className += " responsive";
-  } else {
-    x.className = "nav";
-  }
-}
- document.getElementById('contactForm').addEventListener('submit', async function(event) {
-            event.preventDefault(); // Formun varsayılan gönderimini engelle
+	function navFunction() {
+		var x = document.getElementById('navbar');
+		if (x.className === 'nav') {
+			x.className += ' responsive';
+		} else {
+			x.className = 'nav';
+		}
+	}
+	document.getElementById('contactForm').addEventListener('submit', async function (event) {
+		event.preventDefault(); // Formun varsayılan gönderimini engelle
 
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const subject = document.getElementById('subject').value;
-            const country = document.getElementById('country').value; // Burada aslında mesajı temsil ediyor
+		const name = document.getElementById('name').value;
+		const email = document.getElementById('email').value;
+		const subject = document.getElementById('subject').value;
+		const country = document.getElementById('country').value; // Burada aslında mesajı temsil ediyor
 
-            const formMessageDiv = document.getElementById('formMessage');
-            formMessageDiv.textContent = ''; // Önceki mesajı temizle
-            formMessageDiv.className = ''; // Önceki sınıfı temizle
+		const formMessageDiv = document.getElementById('formMessage');
+		formMessageDiv.textContent = ''; // Önceki mesajı temizle
+		formMessageDiv.className = ''; // Önceki sınıfı temizle
 
-            try {
-                const response = await fetch('/send-email', { // Sunucunuzdaki POST rotası
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({ name, email, subject, country })
-                });
+		try {
+			const response = await fetch('/send-email', {
+				// Sunucunuzdaki POST rotası
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify({ name, email, subject, country }),
+			});
 
-                const result = await response.json(); // Sunucudan gelen JSON yanıtını oku
+			const result = await response.json(); // Sunucudan gelen JSON yanıtını oku
 
-                if (result.success) {
-                    formMessageDiv.textContent = result.message;
-                    formMessageDiv.classList.add('message-success');
-                    // Formu sıfırlayabilirsiniz
-                    document.getElementById('contactForm').reset();
-                } else {
-                    formMessageDiv.textContent = result.message;
-                    formMessageDiv.classList.add('message-error');
-                }
-            } catch (error) {
-                console.error('Gönderme sırasında ağ veya sunucu hatası:', error);
-                formMessageDiv.textContent = 'Bir sorun oluştu. Lütfen internet bağlantınızı kontrol edin veya daha sonra tekrar deneyin.';
-                formMessageDiv.classList.add('message-error');
-            }
-        });
+			if (result.success) {
+				formMessageDiv.textContent = result.message;
+				formMessageDiv.classList.add('message-success');
+				// Formu sıfırlayabilirsiniz
+				document.getElementById('contactForm').reset();
+			} else {
+				formMessageDiv.textContent = result.message;
+				formMessageDiv.classList.add('message-error');
+			}
+		} catch (error) {
+			console.error('Gönderme sırasında ağ veya sunucu hatası:', error);
+			formMessageDiv.textContent =
+				'Bir sorun oluştu. Lütfen internet bağlantınızı kontrol edin veya daha sonra tekrar deneyin.';
+			formMessageDiv.classList.add('message-error');
+		}
+	});
 </script>
