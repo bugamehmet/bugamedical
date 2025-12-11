@@ -1,0 +1,146 @@
+<%- include('partials/header', {
+  pageTitle: product.title || ('BugaMed - ' + product.name + ' ' + product.sku),
+  metaDescription: product.descriptionShort || ('Spare part ' + product.name + ' ' + product.sku),
+  canonicalUrl: product.canonicalUrl || ('/part/' + product.sku + '/' + (product.slug || '')),
+  currentPage: 'parts'
+}) %>
+
+<main class="product-page">
+  <!-- Breadcrumb -->
+  <div class="breadcrumb">
+    <a href="/">Home</a> &gt; <a href="/parts-catalog">Parts Catalog</a> &gt;
+    <span><%= product.name %> <%= product.sku %></span>
+  </div>
+
+  <!-- Üst bölüm -->
+  <section class="product-top">
+    <div class="product-image-wrapper">
+      <img
+        src="<%= product.imageUrl %>"
+        alt="<%= product.name %> <%= product.sku %>"
+        class="zoomable-image"
+      />
+    </div>
+
+    <div class="product-main-info">
+      <h1 class="product-title"><%= product.name %> <%= product.sku %></h1>
+      <p class="product-subtitle">
+        <%= product.subtitle || ('1.5T MRI Scanner Parts P/N ' + product.sku) %>
+      </p>
+
+      <div class="badge-row">
+        <% if (product.isTested) { %>
+          <span class="badge badge-condition-good">
+            <i class="fa fa-check-circle"></i> Tested & Working
+          </span>
+        <% } %>
+
+        <span class="badge">
+          <i class="fa fa-industry"></i> OEM: <%= product.oem || 'N/A' %>
+        </span>
+
+        <% if (product.warranty) { %>
+          <span class="badge">
+            <i class="fa fa-shield"></i> Warranty: <%= product.warranty %>
+          </span>
+        <% } %>
+      </div>
+
+      <div class="key-info">
+        <div class="key-info-item">
+          <span>Part Number</span>
+          <span><%= product.sku %></span>
+        </div>
+        <div class="key-info-item">
+          <span>Serial Number</span>
+          <span><%= product.sku %></span>
+        </div>
+        <div class="key-info-item">
+          <span>System Model</span>
+          <span><%= product.system || 'MRI Scanner Part' %></span>
+        </div>
+        <div class="key-info-item">
+          <span>Condition</span>
+          <span><%= product.condition || 'Used – Tested' %></span>
+        </div>
+      </div>
+
+      <div class="cta-row">
+        <span class="cta-note">
+          For pricing, availability and exchange options, contact BugaMedical.
+        </span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Alt bölüm: Description + Specs + Compatibility -->
+  <section class="product-sections">
+    <div>
+      <div class="section-card">
+        <div class="section-title">
+          <i class="fa fa-file-text-o"></i>
+          Description
+        </div>
+        <div class="section-body">
+          <p><%= product.name %> <%= product.sku %></p>
+          <p>
+            <%= product.descriptionText || 'All boards are visually inspected, cleaned, and tested under load before shipping.' %>
+          </p>
+        </div>
+      </div>
+
+      <div class="section-card">
+        <div class="section-title">
+          <i class="fa fa-cogs"></i>
+          Technical Specifications
+        </div>
+        <div class="section-body">
+          <table class="spec-table">
+            <tr>
+              <th>OEM</th>
+              <td><%= product.oem || 'N/A' %></td>
+            </tr>
+            <tr>
+              <th>System</th>
+              <td><%= product.system || '1.5T MRI' %></td>
+            </tr>
+            <tr>
+              <th>Part Number</th>
+              <td><%= product.sku %></td>
+            </tr>
+            <tr>
+              <th>Condition</th>
+              <td><%= product.condition || 'Used – Tested' %></td>
+            </tr>
+            <tr>
+              <th>Warranty</th>
+              <td><%= product.warranty || '30 Days' %></td>
+            </tr>
+          </table>
+        </div>
+      </div>
+
+      <div class="section-card">
+        <div class="section-title">
+          <i class="fa fa-plug"></i>
+          Compatibility
+        </div>
+        <div class="section-body">
+          <p>
+            For detailed compatibility, please share your system model and software version with BugaMedical.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sağ tarafa ileride Request Quote formunu taşıyabiliriz -->
+  </section>
+
+  <!-- Image Modal (resme tıklayınca açılan büyük görüntü) -->
+  <div id="imageModal" class="image-modal">
+    <span class="image-modal-close">&times;</span>
+    <img id="modalImg" class="image-modal-content" alt="Product Image" />
+  </div>
+</main>
+
+<%- include('partials/footer') %>

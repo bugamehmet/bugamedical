@@ -1,77 +1,124 @@
-const express = require('express');
-const mysql = require('mysql');
-const connection = require('./db');
-const app = express();
-const path = require('path');
-const nodemailer = require('nodemailer');
-const bodyParser = require('body-parser');
-const cors = require('cors'); // CORS hatalarını önlemek için
-const port = process.env.PORT || 5001;
-
+// --- ENV mutlaka en üstte olsun ---
 require('dotenv').config();
 
-app.use('/assets', express.static('assets'));
+const express = require('express');
+const path = require('path');
+const nodemailer = require('nodemailer');
+const cors = require('cors');
+const connectDB = require('./db'); // MongoDB bağlantı fonksiyonu
+const Product = require('./models/Product');
+const GalleryImage = require('./models/GalleryImage');
+
+const app = express();
+const port = process.env.PORT || 5001;
+
+// --- MongoDB'ye bağlan ---
+connectDB();
+
+// --- Middleware'ler ---
+app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(cors());
+
+// Statik dosyalar
+app.use('/assets', express.static('assets'));
 app.use(express.static('views'));
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Middleware'ler
-app.use(bodyParser.json()); // Gelen JSON isteklerini ayrıştırmak için
-app.use(cors()); // Tüm kaynaklardan gelen isteklere izin vermek için (güvenlik için daha spesifik ayarlanabilir)
+// EJS ayarı
+app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, 'views'));
 
-app.get('/part/:id/:slug?', (req, res) => {
-	const { id, slug } = req.params; // slug burada tanımlı artık
-	console.log('Part route hit:', id, slug);
+// --- ROUTE'lar ---
 
-	const filePath = path.join(__dirname, 'public', 'parts', `${id}.html`);
+// Part detay sayfaları: /part/45221179529/philips-dga-board-mri
+app.get('/part/:sku/:slug?', async (req, res) => {
+	try {
+		const { sku, slug } = req.params;
 
-	res.sendFile(filePath, (err) => {
-		if (err) {
-			console.error('Part page not found:', filePath, err.code);
+		// MongoDB'den ürünü bul
+		const product = await Product.findOne({ sku });
+
+		if (!product) {
+			console.log('Product not found for SKU:', sku);
 			return res.status(404).send('Part not found.');
 		}
-	});
+
+		// SEO için: slug uyuşmuyorsa canonical slug'a yönlendirebilirsin (opsiyonel)
+		if (product.slug && slug !== product.slug) {
+			return res.redirect(301, product.canonicalUrl || `/part/${product.sku}/${product.slug}`);
+		}
+
+		// EJS template render
+		res.render('part-detail', { product });
+	} catch (err) {
+		console.error('Error in /part route:', err);
+		res.status(500).send('Internal server error');
+	}
 });
 
 app.get('/', (req, res) => {
-	res.sendFile(__dirname + 'index.html');
+	res.sendFile(path.join(__dirname, 'index.html'));
 });
+
+app.get('/parts-catalog', async (req, res) => {
+	try {
+		const products = await Product.find({}).sort({ sku: 1 }); // istersen sıralama
+
+		res.render('parts-catalog', {
+			products,
+			pageTitle: 'BugaMed - Parts Catalog',
+			metaDescription: 'Philips, Toshiba, GE MRI & CT spare parts catalog by BugaMedical.',
+			canonicalUrl: '/parts-catalog',
+			currentPage: 'parts',
+		});
+	} catch (err) {
+		console.error('Parts catalog hata:', err);
+		res.status(500).send('Something went wrong.');
+	}
+});
+
 app.get('/about', (req, res) => {
-	res.sendFile(__dirname + '/views/about.html');
+	res.sendFile(path.join(__dirname, 'views', 'about.html'));
 });
+
 app.get('/why', (req, res) => {
-	res.sendFile(__dirname + '/views/why-bugamed.html');
+	res.sendFile(path.join(__dirname, 'views', 'why-bugamed.html'));
 });
+
 app.get('/contactus', (req, res) => {
-	res.sendFile(__dirname + '/views/contactus.html');
-});
-app.get('/parts-catalog', (req, res) => {
-	res.sendFile(__dirname + '/views/parts-catalog.html');
-});
-app.get('/photos', (req, res) => {
-	res.sendFile(__dirname + '/views/photos.html');
+	res.sendFile(path.join(__dirname, 'views', 'contactus.html'));
 });
 
-// Middleware'ler
-app.use(bodyParser.json()); // Gelen JSON isteklerini ayrıştırmak için
-app.use(cors()); // Tüm kaynaklardan gelen isteklere izin vermek için (güvenlik için daha spesifik ayarlanabilir)
+app.get('/photos', async (req, res) => {
+	try {
+		const images = await GalleryImage.find({}).sort({ order: 1, createdAt: 1 });
 
-// E-posta gönderimini yapılandırma (Gmail örneği)
-// Kendi e-posta servis sağlayıcınızın SMTP bilgilerini buraya girin.
-// Gmail için 'Daha az güvenli uygulama erişimi'ni açmanız veya uygulama şifresi kullanmanız gerekebilir.
+		res.render('photos', {
+			images,
+			pageTitle: 'BugaMed - MRI & CT Parts | Gallery',
+			metaDescription: 'Bugamed Care MRI, CT and X-ray parts & field photos gallery.',
+			currentPage: 'photos',
+		});
+	} catch (err) {
+		console.error('Gallery hata:', err);
+		res.status(500).send('Something went wrong.');
+	}
+});
+
+// --- Nodemailer ayarları ---
 const transporter = nodemailer.createTransport({
-	service: 'gmail', // veya 'Outlook', 'Yahoo' vb.
+	service: 'gmail',
 	auth: {
 		user: process.env.EMAIL_USER,
 		pass: process.env.EMAIL_PASS,
 	},
 });
 
+// İletişim / Request Quote POST rotası
 app.post('/send-email', async (req, res) => {
-	// Bu rota muhtemelen bir POST rotası olacak
-	const { name, email, subject, country } = req.body; // body-parser veya express.json ile gelen veriler
+	const { name, email, subject, country } = req.body;
 
-	// 1. Alan Doğrulaması
 	if (!name || !email || !subject || !country) {
 		return res.status(400).json({ success: false, message: 'Lütfen tüm alanları doldurun.' });
 	}
@@ -90,14 +137,11 @@ app.post('/send-email', async (req, res) => {
 	};
 
 	try {
-		// 2. E-posta Gönderme
 		await transporter.sendMail(mailOptions);
 		console.log('E-posta başarıyla gönderildi!');
-		// Başarılı olduğunda da JSON yanıtı gönderin
 		return res.status(200).json({ success: true, message: 'E-postanız başarıyla gönderildi!' });
 	} catch (error) {
 		console.error('E-posta gönderme hatası:', error);
-		// E-posta gönderme hatası olduğunda da JSON yanıtı gönderin
 		return res.status(500).json({
 			success: false,
 			message: 'E-posta gönderilirken bir hata oluştu. Lütfen daha sonra tekrar deneyin.',
@@ -105,32 +149,7 @@ app.post('/send-email', async (req, res) => {
 	}
 });
 
-// Ayrıca contactus.html dosyasını sunan bir GET rotasına ihtiyacınız olacak
-app.get('/contactus', (req, res) => {
-	res.sendFile(__dirname + '/views/contactus.html');
-});
-
-app.listen(port, '0.0.0.0', () => {
-	// Hostu 0.0.0.0 olarak ayarlayın
+// --- Sunucuyu başlat ---
+app.listen(port, () => {
 	console.log(`Server is running on port ${port}`);
 });
-
-//BURDAN AŞAĞISI KAPALI
-/*
-const parts_query =
-	'SELECT products.product_name, parts.part_name FROM products INNER JOIN parts ON products.product_id = parts.product_id';
-
-connection.query(parts_query, (err, parts) => {
-	if (err) {
-		throw err;
-	}
-	console.log(parts);
-});
-
-app.listen(port, (error) => {
-	if (error) {
-		throw error;
-	}
-	console.log(`Server http://localhost:${port} adresinde başladı`);
-});
-*/
