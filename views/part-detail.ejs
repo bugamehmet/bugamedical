@@ -1,146 +1,266 @@
-<%- include('partials/header', {
-  pageTitle: product.title || ('BugaMed - ' + product.name + ' ' + product.sku),
-  metaDescription: product.descriptionShort || ('Spare part ' + product.name + ' ' + product.sku),
-  canonicalUrl: product.canonicalUrl || ('/part/' + product.sku + '/' + (product.slug || '')),
-  currentPage: 'parts'
-}) %>
+<%- include('partials/header', { pageTitle: product.title || ('BugaMed - ' + product.name + ' ' +
+product.sku), metaDescription: product.descriptionShort || ('Spare part ' + product.name + ' ' +
+product.sku), canonicalUrl: product.canonicalUrl || ('/part/' + product.sku + '/' + (product.slug ||
+'')), currentPage: 'parts' }) %>
 
 <main class="product-page">
-  <!-- Breadcrumb -->
-  <div class="breadcrumb">
-    <a href="/">Home</a> &gt; <a href="/parts-catalog">Parts Catalog</a> &gt;
-    <span><%= product.name %> <%= product.sku %></span>
-  </div>
+	<!-- Breadcrumb -->
+	<div class="breadcrumb">
+		<a href="/">Home</a> &gt; <a href="/parts-catalog">Parts Catalog</a> &gt;
+		<span><%= product.name %> <%= product.sku %></span>
+	</div>
 
-  <!-- Üst bölüm -->
-  <section class="product-top">
-    <div class="product-image-wrapper">
-      <img
-        src="<%= product.imageUrl %>"
-        alt="<%= product.name %> <%= product.sku %>"
-        class="zoomable-image"
-      />
-    </div>
+	<!-- Üst bölüm -->
+	<section class="product-top">
+		<div class="product-image-wrapper">
+			<img
+				src="<%= product.imageUrl %>"
+				alt="<%= product.name %> <%= product.sku %>"
+				class="zoomable-image"
+			/>
+		</div>
 
-    <div class="product-main-info">
-      <h1 class="product-title"><%= product.name %> <%= product.sku %></h1>
-      <p class="product-subtitle">
-        <%= product.subtitle || ('1.5T MRI Scanner Parts P/N ' + product.sku) %>
-      </p>
+		<div class="product-main-info">
+			<h1 class="product-title"><%= product.name %> <%= product.sku %></h1>
+			<p class="product-subtitle">
+				<%= product.subtitle || ('1.5T MRI Scanner Parts P/N ' + product.sku) %>
+			</p>
 
-      <div class="badge-row">
-        <% if (product.isTested) { %>
-          <span class="badge badge-condition-good">
-            <i class="fa fa-check-circle"></i> Tested & Working
-          </span>
-        <% } %>
+			<div class="badge-row">
+				<% if (product.isTested) { %>
+				<span class="badge badge-condition-good">
+					<i class="fa fa-check-circle"></i> Tested & Working
+				</span>
+				<% } %>
 
-        <span class="badge">
-          <i class="fa fa-industry"></i> OEM: <%= product.oem || 'N/A' %>
-        </span>
+				<span class="badge"> <i class="fa fa-industry"></i> OEM: <%= product.oem || 'N/A' %> </span>
 
-        <% if (product.warranty) { %>
-          <span class="badge">
-            <i class="fa fa-shield"></i> Warranty: <%= product.warranty %>
-          </span>
-        <% } %>
-      </div>
+				<% if (product.warranty) { %>
+				<span class="badge"> <i class="fa fa-shield"></i> Warranty: <%= product.warranty %> </span>
+				<% } %>
+			</div>
 
-      <div class="key-info">
-        <div class="key-info-item">
-          <span>Part Number</span>
-          <span><%= product.sku %></span>
-        </div>
-        <div class="key-info-item">
-          <span>Serial Number</span>
-          <span><%= product.sku %></span>
-        </div>
-        <div class="key-info-item">
-          <span>System Model</span>
-          <span><%= product.system || 'MRI Scanner Part' %></span>
-        </div>
-        <div class="key-info-item">
-          <span>Condition</span>
-          <span><%= product.condition || 'Used – Tested' %></span>
-        </div>
-      </div>
+			<div class="key-info">
+				<div class="key-info-item">
+					<span>Part Number</span>
+					<span><%= product.sku %></span>
+				</div>
+				<div class="key-info-item">
+					<span>Serial Number</span>
+					<span><%= product.sku %></span>
+				</div>
+				<div class="key-info-item">
+					<span>System Model</span>
+					<span><%= product.system || 'MRI Scanner Part' %></span>
+				</div>
+				<div class="key-info-item">
+					<span>Condition</span>
+					<span><%= product.condition || 'Used – Tested' %></span>
+				</div>
+			</div>
 
-      <div class="cta-row">
-        <span class="cta-note">
-          For pricing, availability and exchange options, contact BugaMedical.
-        </span>
-      </div>
-    </div>
-  </section>
+			<div class="cta-row">
+				<span class="cta-note">
+					For pricing, availability and exchange options, contact BugaMedical.
+				</span>
+			</div>
+		</div>
+	</section>
 
-  <!-- Alt bölüm: Description + Specs + Compatibility -->
-  <section class="product-sections">
-    <div>
-      <div class="section-card">
-        <div class="section-title">
-          <i class="fa fa-file-text-o"></i>
-          Description
-        </div>
-        <div class="section-body">
-          <p><%= product.name %> <%= product.sku %></p>
-          <p>
-            <%= product.descriptionText || 'All boards are visually inspected, cleaned, and tested under load before shipping.' %>
-          </p>
-        </div>
-      </div>
+	<!-- Alt bölüm: 2 kolon -->
+	<section class="product-sections">
+		<!-- SOL KOLON -->
+		<div class="product-left">
+			<div class="section-card">
+				<div class="section-title">
+					<i class="fa fa-file-text-o"></i>
+					Description
+				</div>
+				<div class="section-body">
+					<p><%= product.name %> <%= product.sku %></p>
 
-      <div class="section-card">
-        <div class="section-title">
-          <i class="fa fa-cogs"></i>
-          Technical Specifications
-        </div>
-        <div class="section-body">
-          <table class="spec-table">
-            <tr>
-              <th>OEM</th>
-              <td><%= product.oem || 'N/A' %></td>
-            </tr>
-            <tr>
-              <th>System</th>
-              <td><%= product.system || '1.5T MRI' %></td>
-            </tr>
-            <tr>
-              <th>Part Number</th>
-              <td><%= product.sku %></td>
-            </tr>
-            <tr>
-              <th>Condition</th>
-              <td><%= product.condition || 'Used – Tested' %></td>
-            </tr>
-            <tr>
-              <th>Warranty</th>
-              <td><%= product.warranty || '30 Days' %></td>
-            </tr>
-          </table>
-        </div>
-      </div>
+					<p>
+						<%= product.descriptionText || `All boards are visually inspected, cleaned, and tested
+						under load before shipping.` %>
+					</p>
+				</div>
+			</div>
 
-      <div class="section-card">
-        <div class="section-title">
-          <i class="fa fa-plug"></i>
-          Compatibility
-        </div>
-        <div class="section-body">
-          <p>
-            For detailed compatibility, please share your system model and software version with BugaMedical.
-          </p>
-        </div>
-      </div>
-    </div>
+			<div class="section-card">
+				<div class="section-title">
+					<i class="fa fa-cogs"></i>
+					Technical Specifications
+				</div>
+				<div class="section-body">
+					<table class="spec-table">
+						<tr>
+							<th>OEM</th>
+							<td><%= product.oem || 'N/A' %></td>
+						</tr>
+						<tr>
+							<th>System</th>
+							<td><%= product.system || '1.5T MRI' %></td>
+						</tr>
+						<tr>
+							<th>Part Number</th>
+							<td><%= product.sku %></td>
+						</tr>
+						<tr>
+							<th>Condition</th>
+							<td><%= product.condition || 'Used – Tested' %></td>
+						</tr>
+						<tr>
+							<th>Warranty</th>
+							<td><%= product.warranty || '30 Days' %></td>
+						</tr>
+					</table>
+				</div>
+			</div>
 
-    <!-- Sağ tarafa ileride Request Quote formunu taşıyabiliriz -->
-  </section>
+			<div class="section-card">
+				<div class="section-title">
+					<i class="fa fa-plug"></i>
+					Compatibility
+				</div>
+				<div class="section-body">
+					<p>
+						For detailed compatibility, please share your system model and software version with
+						BugaMedical.
+					</p>
+				</div>
+			</div>
+		</div>
 
-  <!-- Image Modal (resme tıklayınca açılan büyük görüntü) -->
-  <div id="imageModal" class="image-modal">
-    <span class="image-modal-close">&times;</span>
-    <img id="modalImg" class="image-modal-content" alt="Product Image" />
-  </div>
+		<!-- SAĞ KOLON -->
+		<div class="product-right">
+			<div class="section-card">
+				<div class="section-title">
+					<i class="fa fa-envelope"></i>
+					Request a Quote
+				</div>
+
+				<div class="section-body">
+					<p style="margin-bottom: 8px">
+						Send us your request and our team will respond with price, availability and shipping
+						options.
+					</p>
+
+					<form id="quoteForm" class="quote-form">
+						<input
+							type="hidden"
+							id="quoteSubject"
+							value="<%= (product.name || '') + ' ' + (product.sku || '') %> Quote Request"
+						/>
+						<input type="hidden" id="quoteSource" value="Product Detail Page Inquiry" />
+						<input type="hidden" id="quoteSku" value="<%= product.sku %>" />
+						<input
+							type="hidden"
+							id="quoteProductUrl"
+							value="<%= product.canonicalUrl || ('/part/' + product.sku + '/' + (product.slug || '')) %>"
+						/>
+
+						<div>
+							<label for="quoteName">Name / Company</label>
+							<input
+								type="text"
+								id="quoteName"
+								name="name"
+								placeholder="Your name or company"
+								required
+							/>
+						</div>
+
+						<div>
+							<label for="quoteEmail">Email</label>
+							<input
+								type="email"
+								id="quoteEmail"
+								name="email"
+								placeholder="you@example.com"
+								required
+							/>
+						</div>
+
+						<div>
+							<label for="quoteMessage">Message</label>
+							<textarea
+								id="quoteMessage"
+								name="message"
+								placeholder="System model, software version, shipping country, etc."
+								required
+							></textarea>
+						</div>
+
+						<button type="submit" class="btn-primary">
+							<i class="fa fa-paper-plane"></i>
+							Send Request
+						</button>
+
+						<div id="quoteFormMessage" style="margin-top: 10px"></div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Image Modal -->
+	<div id="imageModal" class="image-modal">
+		<span class="image-modal-close">&times;</span>
+		<img id="modalImg" class="image-modal-content" alt="Product Image" />
+	</div>
 </main>
+<script>
+	(function () {
+		const form = document.getElementById('quoteForm');
+		if (!form) return;
+
+		form.addEventListener('submit', async function (event) {
+			event.preventDefault();
+
+			const payload = {
+				name: document.getElementById('quoteName')?.value?.trim(),
+				email: document.getElementById('quoteEmail')?.value?.trim(),
+				subject: document.getElementById('quoteSubject')?.value?.trim(),
+				message: document.getElementById('quoteMessage')?.value?.trim(),
+				source: document.getElementById('quoteSource')?.value?.trim(),
+				sku: document.getElementById('quoteSku')?.value?.trim(),
+				productUrl: document.getElementById('quoteProductUrl')?.value?.trim(),
+			};
+
+			const msg = document.getElementById('quoteFormMessage');
+			msg.textContent = '';
+			msg.className = '';
+
+			if (!payload.name || !payload.email || !payload.subject || !payload.message) {
+				msg.textContent = 'Please fill in all required fields.';
+				msg.classList.add('message-error');
+				return;
+			}
+
+			try {
+				const response = await fetch('/send-email', {
+					method: 'POST',
+					headers: { 'Content-Type': 'application/json' },
+					body: JSON.stringify(payload),
+				});
+
+				const result = await response.json().catch(() => null);
+
+				if (response.ok && result?.success) {
+					msg.textContent = result.message || 'Request sent successfully.';
+					msg.classList.add('message-success');
+					form.reset();
+				} else {
+					msg.textContent = result?.message || 'Request failed. Please try again.';
+					msg.classList.add('message-error');
+				}
+			} catch (err) {
+				console.error(err);
+				msg.textContent = 'A problem occurred. Please try again later.';
+				msg.classList.add('message-error');
+			}
+		});
+	})();
+</script>
 
 <%- include('partials/footer') %>
