@@ -115,7 +115,6 @@ const transporter = nodemailer.createTransport({
 	},
 });
 
-// İletişim / Request Quote POST rotası
 // Contact / Request Quote POST
 app.post('/send-email', async (req, res) => {
 	const {
@@ -139,7 +138,7 @@ app.post('/send-email', async (req, res) => {
 	if (!nameC || !emailC || !subjectC || !messageC) {
 		return res.status(400).json({
 			success: false,
-			message: 'Lütfen ad, e-posta, konu ve mesaj alanlarını doldurun.',
+			message: 'Please fill in the name, email, subject, and message fields.',
 		});
 	}
 
@@ -179,21 +178,19 @@ app.post('/send-email', async (req, res) => {
 		await transporter.sendMail(mailOptions);
 		return res.status(200).json({
 			success: true,
-			message: 'E-postanız başarıyla gönderildi!',
+			message: 'Your email has been sent successfully!',
 		});
 	} catch (error) {
 		// prod’da log kalsın (debug değil, hata logu)
 		console.error('E-posta gönderme hatası:', error);
 		return res.status(500).json({
 			success: false,
-			message: 'E-posta gönderilirken bir hata oluştu. Lütfen daha sonra tekrar deneyin.',
+			message: 'An error occurred while sending the email. Please try again later.',
 		});
 	}
 });
-
 
 // --- Sunucuyu başlat ---
 app.listen(port, () => {
 	console.log(`Server is running on port ${port}`);
 });
-
