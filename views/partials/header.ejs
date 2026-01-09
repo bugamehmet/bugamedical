@@ -1,402 +1,600 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title><%= pageTitle || 'BugaMed - MRI & CT Parts' %></title>
+		<title><%= pageTitle || 'BugaMed - MRI & CT Parts' %></title>
 
-    <meta
-      name="description"
-      content="<%= metaDescription || 'MRI, CT, X-Ray parts and service by BugaMedical.' %>"
-    />
+		<meta
+			name="description"
+			content="<%= metaDescription || 'MRI, CT, X-Ray parts and service by BugaMedical.' %>"
+		/>
 
-    <% if (canonicalUrl) { %>
-      <link
-        rel="canonical"
-        href="https://www.bugamedical.com<%= canonicalUrl %>"
-      />
-    <% } %>
+		<% if (canonicalUrl) { %>
+		<link rel="canonical" href="https://www.bugamedical.com<%= canonicalUrl %>" />
+		<% } %>
 
-    <!-- Font Awesome (ikonlar için) -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
-    />
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+		/>
 
-    <!-- Genel CSS -->
-    <link rel="stylesheet" href="/assets/css/parts-catalog.css" />
+		<link rel="stylesheet" href="/assets/css/parts-catalog.css" />
 
-    <style>
-      /* Buraya ürün detayına özel CSS'leri de ekleyebilirsin
-         (az sonra part-detail'den taşıdıklarımızı buraya koyacağız) */
-      /* Sayfa genel alanı */
-      .product-page {
-        max-width: 1200px;
-        margin: 40px auto;
-        padding: 0 20px;
-      }
+		<style>
+			/* --- (senin mevcut product css'lerin aynen duruyor) --- */
+			.product-page {
+				max-width: 1200px;
+				margin: 40px auto;
+				padding: 0 20px;
+			}
+			.breadcrumb {
+				font-size: 13px;
+				color: #6b7280;
+				margin-bottom: 16px;
+			}
+			.breadcrumb a {
+				color: #4b5563;
+				text-decoration: none;
+			}
+			.breadcrumb a:hover {
+				text-decoration: underline;
+			}
+			.product-top {
+				display: flex;
+				flex-wrap: wrap;
+				gap: 30px;
+				background: #ffffff;
+				border-radius: 16px;
+				padding: 24px;
+				box-shadow: 0 10px 25px rgba(15, 23, 42, 0.08);
+				border: 1px solid #e5e7eb;
+				margin-bottom: 30px;
+			}
+			.product-image-wrapper {
+				flex: 1 1 280px;
+				min-width: 280px;
+				max-width: 420px;
+			}
+			.product-image-wrapper img {
+				width: 100%;
+				border-radius: 12px;
+				border: 1px solid #e5e7eb;
+				object-fit: cover;
+			}
+			.product-main-info {
+				flex: 2 1 320px;
+				min-width: 320px;
+			}
+			.product-title {
+				font-size: 24px;
+				font-weight: 700;
+				color: #111827;
+				margin-bottom: 6px;
+			}
+			.product-subtitle {
+				font-size: 14px;
+				color: #6b7280;
+				margin-bottom: 14px;
+			}
+			.badge-row {
+				display: flex;
+				flex-wrap: wrap;
+				gap: 10px;
+				margin-bottom: 16px;
+			}
+			.badge {
+				display: inline-flex;
+				align-items: center;
+				padding: 4px 10px;
+				border-radius: 999px;
+				font-size: 12px;
+				font-weight: 500;
+				border: 1px solid #e5e7eb;
+				background: #f9fafb;
+				color: #374151;
+			}
+			.badge i {
+				margin-right: 6px;
+				font-size: 11px;
+			}
+			.badge-condition-good {
+				background: #dcfce7;
+				color: #166534;
+				border-color: #22c55e;
+			}
+			.badge-condition-refurbished {
+				background: #e0f2fe;
+				color: #075985;
+				border-color: #38bdf8;
+			}
+			.badge-condition-faulty {
+				background: #fee2e2;
+				color: #b91c1c;
+				border-color: #ef4444;
+			}
+			.key-info {
+				display: grid;
+				grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+				gap: 10px 20px;
+				margin-bottom: 20px;
+				font-size: 14px;
+			}
+			.key-info-item span:first-child {
+				display: block;
+				color: #6b7280;
+				font-size: 12px;
+				margin-bottom: 2px;
+			}
+			.key-info-item span:last-child {
+				color: #111827;
+				font-weight: 500;
+			}
+			.cta-row {
+				margin-top: 10px;
+				display: flex;
+				flex-wrap: wrap;
+				gap: 10px;
+				align-items: center;
+			}
+			.btn-primary {
+				background: #2563eb;
+				color: #ffffff;
+				border: none;
+				padding: 10px 18px;
+				border-radius: 999px;
+				font-size: 14px;
+				font-weight: 500;
+				cursor: pointer;
+				display: inline-flex;
+				align-items: center;
+				gap: 8px;
+			}
+			.btn-primary i {
+				font-size: 13px;
+			}
+			.btn-primary:hover {
+				background: #1d4ed8;
+			}
+			.cta-note {
+				font-size: 12px;
+				color: #6b7280;
+			}
+			.product-sections {
+				display: grid;
+				grid-template-columns: 2fr 1.4fr;
+				gap: 24px;
+				margin-bottom: 40px;
+			}
+			.section-card {
+				background: #ffffff;
+				border-radius: 12px;
+				padding: 18px 20px;
+				border: 1px solid #e5e7eb;
+				box-shadow: 0 6px 16px rgba(15, 23, 42, 0.04);
+				margin-bottom: 10px;
+			}
+			.section-title {
+				font-size: 16px;
+				font-weight: 600;
+				color: #111827;
+				margin-bottom: 10px;
+				display: flex;
+				align-items: center;
+				gap: 6px;
+			}
+			.section-title i {
+				font-size: 14px;
+				color: #6b7280;
+			}
+			.section-body {
+				font-size: 14px;
+				color: #4b5563;
+				line-height: 1.6;
+			}
+			.spec-table {
+				width: 100%;
+				border-collapse: collapse;
+				font-size: 14px;
+				margin-top: 4px;
+			}
+			.spec-table tr:nth-child(odd) {
+				background: #f9fafb;
+			}
+			.spec-table th,
+			.spec-table td {
+				padding: 8px 10px;
+				border-bottom: 1px solid #e5e7eb;
+			}
+			.spec-table th {
+				width: 40%;
+				text-align: left;
+				color: #6b7280;
+				font-weight: 500;
+				font-size: 13px;
+			}
+			.spec-table td {
+				color: #111827;
+			}
+			.quote-form {
+				display: flex;
+				flex-direction: column;
+				gap: 10px;
+				margin-top: 8px;
+			}
+			.quote-form label {
+				font-size: 13px;
+				color: #374151;
+			}
+			.quote-form input,
+			.quote-form textarea {
+				width: 100%;
+				padding: 8px 10px;
+				border-radius: 8px;
+				border: 1px solid #d1d5db;
+				font-size: 14px;
+				outline: none;
+			}
+			.quote-form input:focus,
+			.quote-form textarea:focus {
+				border-color: #2563eb;
+				box-shadow: 0 0 0 1px rgba(37, 99, 235, 0.3);
+			}
+			.quote-form textarea {
+				resize: vertical;
+				min-height: 80px;
+			}
+			.quote-form button {
+				align-self: flex-start;
+				margin-top: 4px;
+			}
+			@media (max-width: 900px) {
+				.product-sections {
+					grid-template-columns: 1fr;
+				}
+			}
+			@media (max-width: 700px) {
+				.product-top {
+					padding: 16px;
+				}
+			}
+			.zoomable-image {
+				cursor: zoom-in;
+				transition: transform 0.2s ease;
+			}
+			.zoomable-image:hover {
+				transform: scale(1.02);
+			}
+			.image-modal {
+				display: none;
+				position: fixed;
+				z-index: 9999;
+				left: 0;
+				top: 0;
+				width: 100%;
+				height: 100%;
+				background-color: rgba(0, 0, 0, 0.85);
+				align-items: center;
+				justify-content: center;
+				padding: 20px;
+			}
+			.image-modal-content {
+				max-width: 95%;
+				max-height: 95%;
+				border-radius: 12px;
+				box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+			}
+			.image-modal-close {
+				position: absolute;
+				top: 20px;
+				right: 30px;
+				color: #ffffff;
+				font-size: 32px;
+				font-weight: bold;
+				cursor: pointer;
+			}
 
-      /* Breadcrumb */
-      .breadcrumb {
-        font-size: 13px;
-        color: #6b7280;
-        margin-bottom: 16px;
-      }
+			/* --- Search UI (eski stilinle uyumlu) --- */
+			.search-container {
+				position: relative;
+				display: flex;
+				align-items: center;
+				margin: 0 14px;
+			}
+			.search-container form {
+				display: flex;
+				align-items: center;
+				gap: 8px;
+			}
+			.search-container input {
+				padding: 8px 12px;
+				border: 1px solid #d1d5db;
+				border-radius: 6px;
+				font-size: 14px;
+				width: 260px;
+				outline: none;
+			}
+			.search-container input:focus {
+				border-color: #2563eb;
+				box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.15);
+			}
+			.search-container button {
+				border: 1px solid #d1d5db;
+				background: #ffffff;
+				padding: 8px 10px;
+				border-radius: 6px;
+				cursor: pointer;
+			}
+			.search-container button:hover {
+				background: #f3f4f6;
+			}
 
-      .breadcrumb a {
-        color: #4b5563;
-        text-decoration: none;
-      }
+			/* ✅ Dropdown FIXED: nav overflow hidden olsa bile kırpılmaz */
+			.search-dropdown {
+				position: fixed;
+				z-index: 99999;
+				width: 420px;
+				max-width: 92vw;
+				background: #fff;
+				border: 1px solid #e5e7eb;
+				border-radius: 8px;
+				box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+				overflow: hidden;
+				display: none;
+			}
 
-      .breadcrumb a:hover {
-        text-decoration: underline;
-      }
+			.search-item {
+				padding: 10px 12px;
+				display: flex;
+				justify-content: space-between;
+				gap: 10px;
+				cursor: pointer;
+			}
+			.search-item:hover,
+			.search-item.active {
+				background: #f3f4f6;
+			}
+			.search-item .left .title {
+				font-size: 13px;
+				font-weight: 600;
+				color: #111827;
+			}
+			.search-item .left .meta {
+				margin-top: 2px;
+				font-size: 12px;
+				color: #6b7280;
+			}
+			.search-item .right {
+				font-size: 12px;
+				color: #2563eb;
+				font-weight: 600;
+				white-space: nowrap;
+			}
+			.search-empty {
+				padding: 12px;
+				font-size: 13px;
+				color: #6b7280;
+			}
 
-      /* Üst bölüm: görsel + temel bilgiler */
-      .product-top {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 30px;
-        background: #ffffff;
-        border-radius: 16px;
-        padding: 24px;
-        box-shadow: 0 10px 25px rgba(15, 23, 42, 0.08);
-        border: 1px solid #e5e7eb;
-        margin-bottom: 30px;
-      }
+			@media (max-width: 900px) {
+				.search-container {
+					width: 100%;
+					margin: 10px 0;
+				}
+				.search-container input {
+					width: 100%;
+				}
+			}
+		</style>
+	</head>
 
-      .product-image-wrapper {
-        flex: 1 1 280px;
-        min-width: 280px;
-        max-width: 420px;
-      }
+	<body>
+		<header>
+			<nav id="navbar">
+				<div class="navbar-links">
+					<img src="/assets/images/buga-logo.png" alt="BugaMed Logo" />
 
-      .product-image-wrapper img {
-        width: 100%;
-        border-radius: 12px;
-        border: 1px solid #e5e7eb;
-        object-fit: cover;
-      }
+					<!-- NAVBAR SEARCH -->
+					<div class="search-container">
+						<form id="navSearchForm" action="/search" method="GET" autocomplete="off">
+							<input
+								id="navSearchInput"
+								type="text"
+								placeholder="Enter Part Number or Part Name"
+								name="q"
+								value="<%= (typeof searchQuery !== 'undefined' && searchQuery) ? searchQuery : '' %>"
+							/>
+							<button type="submit" aria-label="Search">
+								<i class="fa fa-search"></i>
+							</button>
+						</form>
+					</div>
 
-      .product-main-info {
-        flex: 2 1 320px;
-        min-width: 320px;
-      }
+					<a href="/" class="<%= currentPage === 'home' ? 'active' : '' %>">Home</a>
+					<a href="/parts-catalog" class="<%= currentPage === 'parts' ? 'active' : '' %>"
+						>Parts Catalog</a
+					>
+					<a href="/why" class="<%= currentPage === 'why' ? 'active' : '' %>">Why Bugamed</a>
+					<a href="/about" class="<%= currentPage === 'about' ? 'active' : '' %>">About</a>
+					<a href="/contactus" class="<%= currentPage === 'contact' ? 'active' : '' %>"
+						>Contact Us</a
+					>
+					<a href="/photos" class="<%= currentPage === 'photos' ? 'active' : '' %>">Gallery</a>
 
-      .product-title {
-        font-size: 24px;
-        font-weight: 700;
-        color: #111827;
-        margin-bottom: 6px;
-      }
+					<a href="javascript:void(0);" class="icon" onclick="navFunction()">
+						<i class="fa fa-bars"></i>
+					</a>
+				</div>
+			</nav>
+		</header>
 
-      .product-subtitle {
-        font-size: 14px;
-        color: #6b7280;
-        margin-bottom: 14px;
-      }
+		<!-- ✅ Dropdown'u NAV DIŞINA aldık (overflow hidden kesemez) -->
+		<div id="navSearchDropdown" class="search-dropdown"></div>
 
-      .badge-row {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 10px;
-        margin-bottom: 16px;
-      }
+		<script>
+			function navFunction() {
+				var x = document.getElementById('navbar');
+				if (x.className === 'nav') {
+					x.className += ' responsive';
+				} else {
+					x.className = 'nav';
+				}
+			}
 
-      .badge {
-        display: inline-flex;
-        align-items: center;
-        padding: 4px 10px;
-        border-radius: 999px;
-        font-size: 12px;
-        font-weight: 500;
-        border: 1px solid #e5e7eb;
-        background: #f9fafb;
-        color: #374151;
-      }
+			(function () {
+				const input = document.getElementById('navSearchInput');
+				const dropdown = document.getElementById('navSearchDropdown');
+				if (!input || !dropdown) return;
 
-      .badge i {
-        margin-right: 6px;
-        font-size: 11px;
-      }
+				let timer = null;
+				let aborter = null;
+				let items = [];
+				let activeIndex = -1;
 
-      .badge-condition-good {
-        background: #dcfce7;
-        color: #166534;
-        border-color: #22c55e;
-      }
+				function esc(s) {
+					return String(s || '')
+						.replace(/&/g, '&amp;')
+						.replace(/</g, '&lt;')
+						.replace(/>/g, '&gt;')
+						.replace(/"/g, '&quot;')
+						.replace(/'/g, '&#39;');
+				}
 
-      .badge-condition-refurbished {
-        background: #e0f2fe;
-        color: #075985;
-        border-color: #38bdf8;
-      }
+				function placeDropdown() {
+					const r = input.getBoundingClientRect();
+					dropdown.style.left = r.left + 'px';
+					dropdown.style.top = r.bottom + 6 + 'px';
+					// input genişliğine göre mantıklı bir genişlik
+					const w = Math.min(520, Math.max(320, r.width + 160));
+					dropdown.style.width = w + 'px';
+				}
 
-      .badge-condition-faulty {
-        background: #fee2e2;
-        color: #b91c1c;
-        border-color: #ef4444;
-      }
+				function closeDropdown() {
+					dropdown.style.display = 'none';
+					dropdown.innerHTML = '';
+					items = [];
+					activeIndex = -1;
+				}
 
-      .key-info {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-        gap: 10px 20px;
-        margin-bottom: 20px;
-        font-size: 14px;
-      }
+				function openDropdown() {
+					placeDropdown();
+					dropdown.style.display = 'block';
+				}
 
-      .key-info-item span:first-child {
-        display: block;
-        color: #6b7280;
-        font-size: 12px;
-        margin-bottom: 2px;
-      }
+				function render(list) {
+					if (!list || !list.length) {
+						dropdown.innerHTML = `<div class="search-empty">No results</div>`;
+						openDropdown();
+						return;
+					}
 
-      .key-info-item span:last-child {
-        color: #111827;
-        font-weight: 500;
-      }
+					dropdown.innerHTML = list
+						.map(
+							(it, idx) => `
+								<div class="search-item ${idx === activeIndex ? 'active' : ''}" data-idx="${idx}">
+									<div class="left">
+										<div class="title">${esc(it.name || '(No name)')}</div>
+										<div class="meta">
+											${esc(it.oem || '')}${it.mpn ? ' • MPN: ' + esc(it.mpn) : ''}
+										</div>
+									</div>
+									<div class="right">${esc(it.sku || '')}</div>
+								</div>
+							`
+						)
+						.join('');
 
-      /* Request Quote butonu */
-      .cta-row {
-        margin-top: 10px;
-        display: flex;
-        flex-wrap: wrap;
-        gap: 10px;
-        align-items: center;
-      }
+					openDropdown();
+				}
 
-      .btn-primary {
-        background: #2563eb;
-        color: #ffffff;
-        border: none;
-        padding: 10px 18px;
-        border-radius: 999px;
-        font-size: 14px;
-        font-weight: 500;
-        cursor: pointer;
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-      }
+				async function fetchSuggest(q) {
+					if (aborter) aborter.abort();
+					aborter = new AbortController();
 
-      .btn-primary i {
-        font-size: 13px;
-      }
+					const res = await fetch(`/api/search-suggest?q=${encodeURIComponent(q)}`, {
+						signal: aborter.signal,
+					});
 
-      .btn-primary:hover {
-        background: #1d4ed8;
-      }
+					const data = await res.json().catch(() => null);
+					return data && data.ok && Array.isArray(data.items) ? data.items : [];
+				}
 
-      .cta-note {
-        font-size: 12px;
-        color: #6b7280;
-      }
+				input.addEventListener('input', function () {
+					const q = input.value.trim();
+					if (timer) clearTimeout(timer);
 
-      /* Alt bölüm: detay alanları */
-      .product-sections {
-        display: grid;
-        grid-template-columns: 2fr 1.4fr;
-        gap: 24px;
-        margin-bottom: 40px;
-      }
+					if (q.length < 2) {
+						closeDropdown();
+						return;
+					}
 
-      .section-card {
-        background: #ffffff;
-        border-radius: 12px;
-        padding: 18px 20px;
-        border: 1px solid #e5e7eb;
-        box-shadow: 0 6px 16px rgba(15, 23, 42, 0.04);
-        margin-bottom: 10px;
-      }
+					timer = setTimeout(async () => {
+						try {
+							const list = await fetchSuggest(q);
+							items = list;
+							activeIndex = -1;
+							render(items);
+						} catch (e) {
+							if (e && e.name === 'AbortError') return;
+							closeDropdown();
+						}
+					}, 250);
+				});
 
-      .section-title {
-        font-size: 16px;
-        font-weight: 600;
-        color: #111827;
-        margin-bottom: 10px;
-        display: flex;
-        align-items: center;
-        gap: 6px;
-      }
+				input.addEventListener('keydown', function (e) {
+					if (dropdown.style.display !== 'block') return;
 
-      .section-title i {
-        font-size: 14px;
-        color: #6b7280;
-      }
+					if (e.key === 'ArrowDown') {
+						e.preventDefault();
+						activeIndex = Math.min(activeIndex + 1, items.length - 1);
+						render(items);
+					} else if (e.key === 'ArrowUp') {
+						e.preventDefault();
+						activeIndex = Math.max(activeIndex - 1, 0);
+						render(items);
+					} else if (e.key === 'Enter') {
+						if (activeIndex >= 0 && items[activeIndex]?.url) {
+							e.preventDefault();
+							window.location.href = items[activeIndex].url;
+						}
+						// yoksa normal form submit -> /search?q=
+					} else if (e.key === 'Escape') {
+						closeDropdown();
+					}
+				});
 
-      .section-body {
-        font-size: 14px;
-        color: #4b5563;
-        line-height: 1.6;
-      }
+				dropdown.addEventListener('mousedown', function (e) {
+					const row = e.target.closest('.search-item');
+					if (!row) return;
+					const idx = Number(row.getAttribute('data-idx'));
+					if (items[idx]?.url) window.location.href = items[idx].url;
+				});
 
-      .section-body ul {
-        margin-left: 18px;
-        margin-top: 6px;
-      }
+				document.addEventListener('click', function (e) {
+					if (e.target === input) return;
+					if (dropdown.contains(e.target)) return;
+					closeDropdown();
+				});
 
-      .section-body li {
-        margin-bottom: 4px;
-      }
+				// ✅ scroll/resize olunca dropdown input'un altında kalmaya devam etsin
+				window.addEventListener('resize', () => {
+					if (dropdown.style.display === 'block') placeDropdown();
+				});
+				window.addEventListener(
+					'scroll',
+					() => {
+						if (dropdown.style.display === 'block') placeDropdown();
+					},
+					true
+				);
 
-      /* Teknik özellikler tablosu */
-      .spec-table {
-        width: 100%;
-        border-collapse: collapse;
-        font-size: 14px;
-        margin-top: 4px;
-      }
-
-      .spec-table tr:nth-child(odd) {
-        background: #f9fafb;
-      }
-
-      .spec-table th,
-      .spec-table td {
-        padding: 8px 10px;
-        border-bottom: 1px solid #e5e7eb;
-      }
-
-      .spec-table th {
-        width: 40%;
-        text-align: left;
-        color: #6b7280;
-        font-weight: 500;
-        font-size: 13px;
-      }
-
-      .spec-table td {
-        color: #111827;
-      }
-
-      /* Request Quote formu */
-      .quote-form {
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-        margin-top: 8px;
-      }
-
-      .quote-form label {
-        font-size: 13px;
-        color: #374151;
-      }
-
-      .quote-form input,
-      .quote-form textarea {
-        width: 100%;
-        padding: 8px 10px;
-        border-radius: 8px;
-        border: 1px solid #d1d5db;
-        font-size: 14px;
-        outline: none;
-      }
-
-      .quote-form input:focus,
-      .quote-form textarea:focus {
-        border-color: #2563eb;
-        box-shadow: 0 0 0 1px rgba(37, 99, 235, 0.3);
-      }
-
-      .quote-form textarea {
-        resize: vertical;
-        min-height: 80px;
-      }
-
-      .quote-form button {
-        align-self: flex-start;
-        margin-top: 4px;
-      }
-
-      /* Responsive */
-      @media (max-width: 900px) {
-        .product-sections {
-          grid-template-columns: 1fr;
-        }
-      }
-
-      @media (max-width: 700px) {
-        .product-top {
-          padding: 16px;
-        }
-      }
-
-      /* Resim üzerine gelince hafif zoom efekti */
-      .zoomable-image {
-        cursor: zoom-in;
-        transition: transform 0.2s ease;
-      }
-
-      .zoomable-image:hover {
-        transform: scale(1.02);
-      }
-
-      /* Modal arka plan (full ekran koyu alan) */
-      .image-modal {
-        display: none; /* başlangıçta kapalı */
-        position: fixed;
-        z-index: 9999;
-        left: 0;
-        top: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0, 0, 0, 0.85);
-        align-items: center;
-        justify-content: center;
-        padding: 20px;
-      }
-
-      /* Modal içindeki büyük resim */
-      .image-modal-content {
-        max-width: 95%;
-        max-height: 95%;
-        border-radius: 12px;
-        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
-      }
-
-      /* Kapatma butonu (X) */
-      .image-modal-close {
-        position: absolute;
-        top: 20px;
-        right: 30px;
-        color: #ffffff;
-        font-size: 32px;
-        font-weight: bold;
-        cursor: pointer;
-      }
-      
-    </style>
-  </head>
-  <body>
-    <header>
-      <nav id="navbar">
-        <div class="navbar-links">
-          <img src="/assets/images/buga-logo.png" alt="BugaMed Logo" />
-
-          <a href="/" class="<%= currentPage === 'home' ? 'active' : '' %>">Home</a>
-          <a href="/parts-catalog" class="<%= currentPage === 'parts' ? 'active' : '' %>">Parts Catalog</a>
-          <a href="/why" class="<%= currentPage === 'why' ? 'active' : '' %>">Why Bugamed</a>
-          <a href="/about" class="<%= currentPage === 'about' ? 'active' : '' %>">About</a>
-          <a href="/contactus" class="<%= currentPage === 'contact' ? 'active' : '' %>">Contact Us</a>
-          <a href="/photos" class="<%= currentPage === 'photos' ? 'active' : '' %>">Gallery</a>
-
-          <a href="javascript:void(0);" class="icon" onclick="navFunction()">
-            <i class="fa fa-bars"></i>
-          </a>
-        </div>
-      </nav>
-    </header>
-
-    <script>
-      function navFunction() {
-        var x = document.getElementById('navbar');
-        if (x.className === 'nav') {
-          x.className += ' responsive';
-        } else {
-          x.className = 'nav';
-        }
-      }
-    </script>
+				input.addEventListener('blur', function () {
+					setTimeout(() => {
+						if (!dropdown.matches(':hover')) closeDropdown();
+					}, 150);
+				});
+			})();
+		</script>
+	</body>
+</html>

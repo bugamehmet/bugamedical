@@ -1,0 +1,45 @@
+<%- include('partials/header', { pageTitle, metaDescription, canonicalUrl, currentPage, searchQuery
+}) %>
+
+<main class="product-page">
+	<div class="breadcrumb">
+		<a href="/">Home</a> &gt; <a href="/parts-catalog">Parts Catalog</a> &gt; <span>Search</span>
+	</div>
+
+	<div class="section-card">
+		<div class="section-title">
+			<i class="fa fa-search"></i>
+			Search Results
+		</div>
+		<div class="section-body">
+			<% if (!searchQuery) { %>
+			<p>Type something to search (SKU, MPN or Name).</p>
+			<% } else { %>
+			<p><strong><%= total %></strong> result(s) for: <strong><%= searchQuery %></strong></p>
+			<% } %>
+		</div>
+	</div>
+
+	<% if (products && products.length) { %>
+	<div class="product-grid">
+		<% products.forEach(p => { %>
+		<a class="product-card" href="<%= p.canonicalUrl %>">
+			<img src="<%= p.imageUrl %>" alt="<%= p.name %> <%= p.sku %>" />
+			<div class="product-card-body">
+				<div class="product-card-title"><%= p.name %></div>
+				<div class="product-card-sku"><%= p.sku %></div>
+				<div class="product-card-meta">
+					<%= p.oem || '' %><%= p.mpn ? (' • MPN: ' + p.mpn) : '' %>
+				</div>
+			</div>
+		</a>
+		<% }) %>
+	</div>
+	<% } else if (searchQuery) { %>
+	<div class="section-card">
+		<div class="section-body">No results found.</div>
+	</div>
+	<% } %>
+</main>
+
+<%- include('partials/footer') %>

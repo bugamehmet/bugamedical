@@ -2,8 +2,8 @@
 const mongoose = require('mongoose');
 
 const productSchema = new mongoose.Schema({
-  sku: { type: String, required: true, unique: true },
-  mpn: String,
+  sku: { type: String, required: true, unique: true, index: true },
+  mpn: { type: String, index: true },
   oem: String,
   name: String,
   title: String,
@@ -19,6 +19,20 @@ const productSchema = new mongoose.Schema({
   isTested: Boolean,
   conditionTag: String,
   serialNumber: String,
+});
+
+/**
+ * ✅ Text search index (tek adet)
+ * - MongoDB text search için gerekli
+ */
+productSchema.index({
+  sku: 'text',
+  mpn: 'text',
+  name: 'text',
+  oem: 'text',
+  title: 'text',
+  subtitle: 'text',
+  descriptionShort: 'text',
 });
 
 module.exports = mongoose.model('Product', productSchema);
