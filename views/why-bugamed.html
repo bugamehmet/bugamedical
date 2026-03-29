@@ -1,11 +1,11 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<meta
 			name="description"
-			content="Bugamed Care provides MRI, CT, and X-ray equipment parts and technical services. We supply Philips, Siemens, GE, and Toshiba components with fast delivery and expert support."
+			content="Discover why BugaMed is a trusted partner for MRI, CT and X-Ray parts, technical support and reliable imaging solutions."
 		/>
 
 		<link
@@ -22,61 +22,410 @@
 			type="text/css"
 			href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"
 		/>
-		<link rel="stylesheet" href="assets/css/why.css" />
-		<title>BugaMed - MRI & CT Parts | Why BugaMedical</title>
+		<link rel="stylesheet" href="/assets/css/why.css" />
+
+		<title>BugaMed - MRI & CT Parts | Why BugaMed</title>
 		<link rel="shortcut icon" type="png" href="/assets/images/favicon.png" />
+
+		<style>
+			* {
+				box-sizing: border-box;
+			}
+
+			body {
+				margin: 0;
+				font-family:
+					system-ui,
+					-apple-system,
+					BlinkMacSystemFont,
+					'Segoe UI',
+					sans-serif;
+				background: #f3f4f6;
+				color: #111827;
+			}
+
+			/* PAGE */
+			.why-page {
+				max-width: 1200px;
+				margin: 40px auto 0 auto;
+				padding: 0 20px 60px;
+			}
+
+			/* HERO */
+			.why-hero {
+				text-align: center;
+				margin-bottom: 30px;
+			}
+
+			.why-hero h1 {
+				font-size: 32px;
+				font-weight: 700;
+				margin-bottom: 10px;
+			}
+
+			.why-hero p {
+				font-size: 15px;
+				color: rgb(109, 131, 113);
+				max-width: 760px;
+				margin: 0 auto;
+				line-height: 1.7;
+			}
+
+			/* SLIDER */
+			.slider-section {
+				margin-bottom: 40px;
+			}
+
+			.slider {
+				width: 100%;
+				margin: 0 auto;
+			}
+
+			.slider-item {
+				padding: 0 6px;
+			}
+
+			.slider img {
+				width: 100%;
+				height: 420px;
+				object-fit: cover;
+				border-radius: 16px;
+				border: 1px solid #e5e7eb;
+				box-shadow: 0 10px 24px rgba(15, 23, 42, 0.08);
+			}
+
+			/* SECTION TITLES */
+			.why-section {
+				margin-bottom: 40px;
+			}
+
+			.why-section h2 {
+				font-size: 22px;
+				margin-bottom: 16px;
+			}
+
+			.why-section-intro {
+				font-size: 14px;
+				color: #4b5563;
+				line-height: 1.7;
+				margin-bottom: 18px;
+				max-width: 800px;
+			}
+
+			/* GRID */
+			.why-grid {
+				display: grid;
+				grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+				gap: 18px;
+			}
+
+			.why-card {
+				background: #ffffff;
+				border-radius: 12px;
+				padding: 18px 16px;
+				border: 1px solid #e5e7eb;
+				box-shadow: 0 8px 20px rgba(15, 23, 42, 0.06);
+			}
+
+			.why-card i {
+				font-size: 20px;
+				margin-bottom: 10px;
+				color: rgb(109, 131, 113);
+			}
+
+			.why-card h3 {
+				font-size: 16px;
+				margin: 0 0 8px;
+			}
+
+			.why-card p {
+				font-size: 14px;
+				color: #4b5563;
+				line-height: 1.6;
+				margin: 0;
+			}
+
+			/* CTA */
+			.why-cta {
+				background: #ffffff;
+				border-radius: 14px;
+				padding: 24px;
+				border: 1px solid #e5e7eb;
+				box-shadow: 0 8px 20px rgba(15, 23, 42, 0.06);
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				gap: 20px;
+				flex-wrap: wrap;
+			}
+
+			.why-cta-text h2 {
+				margin: 0 0 10px;
+				font-size: 22px;
+			}
+
+			.why-cta-text p {
+				margin: 0;
+				font-size: 14px;
+				color: #4b5563;
+				line-height: 1.7;
+				max-width: 700px;
+			}
+
+			.why-btn {
+				display: inline-flex;
+				align-items: center;
+				gap: 8px;
+				background: rgb(109, 131, 113);
+				color: #ffffff;
+				text-decoration: none;
+				border-radius: 999px;
+				padding: 12px 20px;
+				font-size: 14px;
+				font-weight: 600;
+				white-space: nowrap;
+				transition:
+					background 0.2s ease,
+					transform 0.2s ease;
+			}
+
+			.why-btn:hover {
+				background: #1d4ed8;
+				transform: translateY(-1px);
+			}
+
+			/* FOOTER */
+			footer {
+				background-color: rgb(109, 131, 113);
+				color: #fff;
+				padding: 30px 20px;
+				text-align: center;
+				margin-top: 40px;
+			}
+
+			.footer-content {
+				max-width: 1200px;
+				margin: 0 auto;
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				flex-wrap: wrap;
+				gap: 20px;
+			}
+
+			.contact-info {
+				text-align: left;
+			}
+
+			.contact-info h3 {
+				font-size: 20px;
+				margin-bottom: 10px;
+				color: #fff;
+			}
+
+			.contact-info p {
+				margin-bottom: 8px;
+				font-size: 14px;
+			}
+
+			.contact-info a {
+				color: #fff;
+				text-decoration: none;
+			}
+
+			.contact-info a:hover {
+				color: #d1d0d0;
+			}
+
+			.contact-info .fa {
+				margin-right: 8px;
+			}
+
+			.copyright {
+				font-size: 14px;
+			}
+
+			/* RESPONSIVE */
+			@media (max-width: 900px) {
+				.slider img {
+					height: 320px;
+				}
+			}
+
+			@media (max-width: 768px) {
+				.why-hero h1 {
+					font-size: 26px;
+				}
+
+				.footer-content {
+					flex-direction: column;
+					align-items: center;
+					text-align: center;
+				}
+
+				.contact-info {
+					text-align: center;
+				}
+			}
+
+			@media (max-width: 600px) {
+				.slider img {
+					height: 220px;
+				}
+			}
+		</style>
 	</head>
-	<header>
-		<nav id="navbar">
-			<div class="navbar-links">
-				<img src="assets/images/buga-logo.png" alt="BugaMed Logo" />
-				<!-- VERİTABANI HAZIRLANINCA KULLANILACAK
-				<div class="search-container">
-					<form action="#">
-						<input type="text" placeholder="Enter Part Number or Part Name" name="search" />
-						<button type="submit"><i class="fa fa-search"></i></button>
-					</form>
-				</div>
-			-->
-				<a href="/">Home</a>
-				<a href="/parts-catalog">Parts Catalog</a>
-				<a href="/why" class="active">Why Bugamed</a>
-				<a href="/about">About</a>
-				<a href="/contactus">Contact Us</a>
-				<a href="/photos">Gallery</a>
 
-				<a href="javascript:void(0);" class="icon" onclick="navFunction()">
-					<i class="fa fa-bars"></i>
-				</a>
-			</div>
-		</nav>
-	</header>
 	<body>
-		<!-- Slider Section -->
-		<div class="slider-section">
-			<div class="slider">
-				<div><img src="/assets/images/foto1.jpeg" alt="Proje 1" /></div>
-				<div><img src="/assets/images/foto2.jpeg" alt="Proje 2" /></div>
-				<div><img src="/assets/images/foto3.jpeg" alt="Proje 3" /></div>
-			</div>
-		</div>
+		<header>
+			<nav id="navbar">
+				<div class="navbar-links">
+					<img src="assets/images/buga-logo.png" alt="BugaMed Logo" />
+					<a href="/">Home</a>
+					<a href="/parts-catalog">Parts Catalog</a>
+					<a href="/why" class="active">Why Bugamed</a>
+					<a href="/about">About</a>
+					<a href="/contactus">Contact Us</a>
+					<a href="/photos">Gallery</a>
+				</div>
+			</nav>
+		</header>
 
-		<!-- jQuery ve Slick Slider JS -->
-		<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-		<script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
-		<script>
-			$(document).ready(function () {
-				$('.slider').slick({
-					dots: true,
-					infinite: true,
-					speed: 300,
-					slidesToShow: 1,
-					adaptiveHeight: true,
-					autoplay: true,
-					autoplaySpeed: 2000,
-				});
-			});
-		</script>
+		<main class="why-page">
+			<section class="why-hero">
+				<h1>Why BugaMed</h1>
+				<p>
+					We combine technical understanding, reliable sourcing and fast communication to support
+					hospitals, engineers and service providers with MRI, CT and X-Ray parts and solutions.
+				</p>
+			</section>
+
+			<section class="slider-section">
+				<div class="slider">
+					<div class="slider-item">
+						<img src="/assets/images/foto1.jpeg" alt="BugaMed project 1" />
+					</div>
+					<div class="slider-item">
+						<img src="/assets/images/foto2.jpeg" alt="BugaMed project 2" />
+					</div>
+					<div class="slider-item">
+						<img src="/assets/images/foto3.jpeg" alt="BugaMed project 3" />
+					</div>
+				</div>
+			</section>
+
+			<section class="why-section">
+				<h2>Why Customers Work With Us</h2>
+				<p class="why-section-intro">
+					Medical imaging systems need more than just spare parts. They require the right part,
+					clear communication and a partner who understands urgency, compatibility and technical
+					risk.
+				</p>
+
+				<div class="why-grid">
+					<div class="why-card">
+						<i class="fa fa-cogs"></i>
+						<h3>Technical Understanding</h3>
+						<p>
+							We know imaging systems from a field-service perspective, not only from a sales side.
+							This helps us support better part identification and project planning.
+						</p>
+					</div>
+
+					<div class="why-card">
+						<i class="fa fa-check-circle"></i>
+						<h3>Reliable Parts</h3>
+						<p>
+							We focus on tested and carefully sourced parts for MRI, CT and X-Ray systems, helping
+							customers reduce uncertainty and downtime.
+						</p>
+					</div>
+
+					<div class="why-card">
+						<i class="fa fa-clock-o"></i>
+						<h3>Fast Response</h3>
+						<p>
+							When a system is down, speed matters. We aim to respond quickly on availability,
+							alternatives and next steps.
+						</p>
+					</div>
+
+					<div class="why-card">
+						<i class="fa fa-comments-o"></i>
+						<h3>Clear Communication</h3>
+						<p>
+							We keep communication direct and practical, so engineers, clinics and purchasing teams
+							can move faster with fewer misunderstandings.
+						</p>
+					</div>
+
+					<div class="why-card">
+						<i class="fa fa-exchange"></i>
+						<h3>Flexible Solutions</h3>
+						<p>
+							Depending on the project, we can support direct supply, replacement options and
+							project-based sourcing approaches.
+						</p>
+					</div>
+
+					<div class="why-card">
+						<i class="fa fa-handshake-o"></i>
+						<h3>Long-Term Approach</h3>
+						<p>
+							We value long-term cooperation and trust. Our goal is not just one sale, but becoming
+							a dependable solution partner.
+						</p>
+					</div>
+				</div>
+			</section>
+
+			<section class="why-section">
+				<h2>What Makes Us Different</h2>
+				<div class="why-grid">
+					<div class="why-card">
+						<i class="fa fa-stethoscope"></i>
+						<h3>Focused on Imaging</h3>
+						<p>
+							Our work is centered on MRI, CT and X-Ray systems, which allows us to stay focused on
+							the real needs of imaging departments and technical teams.
+						</p>
+					</div>
+
+					<div class="why-card">
+						<i class="fa fa-globe"></i>
+						<h3>International Perspective</h3>
+						<p>
+							We support local and international opportunities with flexible communication and parts
+							sourcing experience.
+						</p>
+					</div>
+
+					<div class="why-card">
+						<i class="fa fa-shield"></i>
+						<h3>Confidence & Transparency</h3>
+						<p>
+							We try to provide clear information about part condition, suitability and process so
+							customers can make better decisions.
+						</p>
+					</div>
+				</div>
+			</section>
+
+			<section class="why-cta">
+				<div class="why-cta-text">
+					<h2>Need a Part or Technical Support?</h2>
+					<p>
+						If you are searching for an MRI, CT or X-Ray part, or would like to discuss a service or
+						project requirement, contact us directly and we will review the options with you.
+					</p>
+				</div>
+				<a href="/contactus" class="why-btn">
+					<i class="fa fa-envelope-o"></i>
+					Contact BugaMed
+				</a>
+			</section>
+		</main>
+
 		<footer>
 			<div class="footer-content">
 				<div class="contact-info">
@@ -92,15 +441,22 @@
 				</div>
 			</div>
 		</footer>
+
+		<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+		<script>
+			$(document).ready(function () {
+				$('.slider').slick({
+					dots: true,
+					infinite: true,
+					speed: 400,
+					slidesToShow: 1,
+					adaptiveHeight: false,
+					autoplay: true,
+					autoplaySpeed: 2500,
+					arrows: false,
+				});
+			});
+		</script>
 	</body>
 </html>
-<script>
-	function navFunction() {
-		var x = document.getElementById('navbar');
-		if (x.className === 'nav') {
-			x.className += ' responsive';
-		} else {
-			x.className = 'nav';
-		}
-	}
-</script>
