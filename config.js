@@ -1,5 +1,5 @@
 //AŞAĞISI KAPALI
-/*
+
 const config = {
   db: {
     host: 'localhost',
@@ -10,7 +10,7 @@ const config = {
 };
 
 module.exports = config;
-*/
+
 
 /*
 const mysql = require('mysql');
