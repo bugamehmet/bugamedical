@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 
 # Sitemap
-Sitemap: https://bugamed.care/sitemap.xml
+Sitemap: https://www.bugamed.care/sitemap.xml

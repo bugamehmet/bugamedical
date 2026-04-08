@@ -33,7 +33,7 @@ app.set('views', path.join(__dirname, 'views'));
 //SİTEMAP ROUTE
 app.get('/sitemap.xml', async (req, res) => {
 	try {
-		const baseUrl = 'https://bugamed.care';
+		const baseUrl = 'https://www.bugamed.care';
 
 		const staticPages = [
 			'/',
@@ -52,33 +52,32 @@ app.get('/sitemap.xml', async (req, res) => {
 			updatedAt: 1
 		}).lean();
 
-		const staticUrls = staticPages.map((page) => ({
-			loc: `${baseUrl}${page}`,
-			lastmod: new Date().toISOString()
-		}));
+		const staticUrls = staticPages.map((page) => `
+  <url>
+    <loc>${baseUrl}${page}</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>`);
 
-		const productUrls = products.map((product) => ({
-			loc: product.canonicalUrl
+		const productUrls = products.map((product) => `
+  <url>
+    <loc>${
+			product.canonicalUrl
 				? `${baseUrl}${product.canonicalUrl}`
-				: `${baseUrl}/part/${product.sku}/${product.slug || ''}`,
-			lastmod: product.updatedAt
-				? new Date(product.updatedAt).toISOString()
-				: new Date().toISOString()
-		}));
-
-		const allUrls = [...staticUrls, ...productUrls];
+				: `${baseUrl}/part/${product.sku}/${product.slug || ''}`
+		}</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>`);
 
 		const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-${allUrls.map((url) => `
-  <url>
-    <loc>${url.loc}</loc>
-    <lastmod>${url.lastmod}</lastmod>
-  </url>`).join('')}
+${[...staticUrls, ...productUrls].join('')}
 </urlset>`;
 
 		res.header('Content-Type', 'application/xml');
 		res.send(xml);
+
 	} catch (err) {
 		console.error('Sitemap error:', err);
 		res.status(500).send('Failed to generate sitemap');
