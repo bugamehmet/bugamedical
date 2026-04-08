@@ -30,6 +30,7 @@ app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
 // --- ROUTE'lar ---
+
 //SİTEMAP ROUTE
 app.get('/sitemap.xml', async (req, res) => {
 	try {
@@ -42,24 +43,30 @@ app.get('/sitemap.xml', async (req, res) => {
 			'/contactus',
 			'/photos',
 			'/parts-catalog',
-			'/search'
+			'/search',
 		];
 
-		const products = await Product.find({}, {
-			sku: 1,
-			slug: 1,
-			canonicalUrl: 1,
-			updatedAt: 1
-		}).lean();
+		const products = await Product.find(
+			{},
+			{
+				sku: 1,
+				slug: 1,
+				canonicalUrl: 1,
+				updatedAt: 1,
+			},
+		).lean();
 
-		const staticUrls = staticPages.map((page) => `
+		const staticUrls = staticPages.map(
+			(page) => `
   <url>
     <loc>${baseUrl}${page}</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
-  </url>`);
+  </url>`,
+		);
 
-		const productUrls = products.map((product) => `
+		const productUrls = products.map(
+			(product) => `
   <url>
     <loc>${
 			product.canonicalUrl
@@ -68,7 +75,8 @@ app.get('/sitemap.xml', async (req, res) => {
 		}</loc>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
-  </url>`);
+  </url>`,
+		);
 
 		const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
@@ -77,12 +85,58 @@ ${[...staticUrls, ...productUrls].join('')}
 
 		res.header('Content-Type', 'application/xml');
 		res.send(xml);
-
 	} catch (err) {
 		console.error('Sitemap error:', err);
 		res.status(500).send('Failed to generate sitemap');
 	}
 });
+// İMAGE SITEMAP ROUTE
+app.get('/image-sitemap.xml', async (req, res) => {
+	try {
+		const baseUrl = 'https://www.bugamed.care';
+
+		const products = await Product.find(
+			{},
+			{
+				canonicalUrl: 1,
+				sku: 1,
+				slug: 1,
+				imageUrl: 1,
+				name: 1,
+			},
+		).lean();
+
+		const xml = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset
+	xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+	xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+${products
+	.map(
+		(product) => `
+	<url>
+		<loc>${
+			product.canonicalUrl
+				? `${baseUrl}${product.canonicalUrl}`
+				: `${baseUrl}/part/${product.sku}/${product.slug || ''}`
+		}</loc>
+		<image:image>
+			<image:loc>${baseUrl}${product.imageUrl}</image:loc>
+			<image:title><![CDATA[${product.name || product.sku}]]></image:title>
+		</image:image>
+	</url>
+`,
+	)
+	.join('')}
+</urlset>`;
+
+		res.header('Content-Type', 'application/xml');
+		res.send(xml);
+	} catch (err) {
+		console.error('Image sitemap error:', err);
+		res.status(500).send('Failed to generate image sitemap');
+	}
+});
+
 
 // Part detay sayfaları: /part/45221179529/philips-dga-board-mri
 app.get('/part/:sku/:slug?', async (req, res) => {
@@ -191,7 +245,7 @@ app.get('/api/search-suggest', async (req, res) => {
 		if (merged.length < 8) {
 			const c = await Product.find(
 				{ $or: [{ sku: rxAny }, { mpn: rxAny }, { name: rxAny }, { oem: rxAny }] },
-				projection
+				projection,
 			)
 				.limit(8)
 				.lean();
@@ -251,7 +305,7 @@ app.get('/search', async (req, res) => {
 				slug: 1,
 				canonicalUrl: 1,
 				descriptionShort: 1,
-			}
+			},
 		)
 			.limit(30)
 			.lean();
@@ -271,7 +325,7 @@ app.get('/search', async (req, res) => {
 						slug: 1,
 						canonicalUrl: 1,
 						descriptionShort: 1,
-					}
+					},
 				)
 					.sort({ score: { $meta: 'textScore' } })
 					.limit(30)
@@ -298,7 +352,7 @@ app.get('/search', async (req, res) => {
 					slug: 1,
 					canonicalUrl: 1,
 					descriptionShort: 1,
-				}
+				},
 			)
 				.limit(30)
 				.lean();
