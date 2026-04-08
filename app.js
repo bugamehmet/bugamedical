@@ -30,6 +30,60 @@ app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
 // --- ROUTE'lar ---
+//SİTEMAP ROUTE
+app.get('/sitemap.xml', async (req, res) => {
+	try {
+		const baseUrl = 'https://bugamed.care';
+
+		const staticPages = [
+			'/',
+			'/about',
+			'/why',
+			'/contactus',
+			'/photos',
+			'/parts-catalog',
+			'/search'
+		];
+
+		const products = await Product.find({}, {
+			sku: 1,
+			slug: 1,
+			canonicalUrl: 1,
+			updatedAt: 1
+		}).lean();
+
+		const staticUrls = staticPages.map((page) => ({
+			loc: `${baseUrl}${page}`,
+			lastmod: new Date().toISOString()
+		}));
+
+		const productUrls = products.map((product) => ({
+			loc: product.canonicalUrl
+				? `${baseUrl}${product.canonicalUrl}`
+				: `${baseUrl}/part/${product.sku}/${product.slug || ''}`,
+			lastmod: product.updatedAt
+				? new Date(product.updatedAt).toISOString()
+				: new Date().toISOString()
+		}));
+
+		const allUrls = [...staticUrls, ...productUrls];
+
+		const xml = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${allUrls.map((url) => `
+  <url>
+    <loc>${url.loc}</loc>
+    <lastmod>${url.lastmod}</lastmod>
+  </url>`).join('')}
+</urlset>`;
+
+		res.header('Content-Type', 'application/xml');
+		res.send(xml);
+	} catch (err) {
+		console.error('Sitemap error:', err);
+		res.status(500).send('Failed to generate sitemap');
+	}
+});
 
 // Part detay sayfaları: /part/45221179529/philips-dga-board-mri
 app.get('/part/:sku/:slug?', async (req, res) => {
