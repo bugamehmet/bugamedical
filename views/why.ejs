@@ -1,0 +1,167 @@
+<%- include('partials/header', {
+	pageTitle: 'BugaMed - MRI & CT Parts | Why BugaMed',
+	metaDescription: 'Discover why BugaMed is a trusted partner for MRI, CT and X-Ray parts, technical support and reliable imaging solutions.',
+	canonicalUrl: '/why',
+	currentPage: 'why'
+}) %>
+
+<link
+	rel="stylesheet"
+	type="text/css"
+	href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"
+/>
+<link
+	rel="stylesheet"
+	type="text/css"
+	href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"
+/>
+
+<link rel="stylesheet" href="/assets/css/why.css" />
+
+<main class="why-page">
+	<section class="why-hero">
+		<h1>Why BugaMed</h1>
+		<p>
+			We combine technical understanding, reliable sourcing and fast communication to support
+			hospitals, engineers and service providers with MRI, CT and X-Ray parts and solutions.
+		</p>
+	</section>
+
+	<section class="slider-section">
+		<div class="slider">
+			<div class="slider-item">
+				<img src="/assets/images/foto1.jpeg" alt="BugaMed project 1" />
+			</div>
+			<div class="slider-item">
+				<img src="/assets/images/foto2.jpeg" alt="BugaMed project 2" />
+			</div>
+			<div class="slider-item">
+				<img src="/assets/images/foto3.jpeg" alt="BugaMed project 3" />
+			</div>
+		</div>
+	</section>
+
+	<section class="why-section">
+		<h2>Why Customers Work With Us</h2>
+		<p class="why-section-intro">
+			Medical imaging systems need more than just spare parts. They require the right part,
+			clear communication and a partner who understands urgency, compatibility and technical
+			risk.
+		</p>
+
+		<div class="why-grid">
+			<div class="why-card">
+				<i class="fa fa-cogs"></i>
+				<h3>Technical Understanding</h3>
+				<p>
+					We know imaging systems from a field-service perspective, not only from a sales side.
+				</p>
+			</div>
+
+			<div class="why-card">
+				<i class="fa fa-check-circle"></i>
+				<h3>Reliable Parts</h3>
+				<p>
+					We focus on tested and carefully sourced parts for MRI, CT and X-Ray systems.
+				</p>
+			</div>
+
+			<div class="why-card">
+				<i class="fa fa-clock-o"></i>
+				<h3>Fast Response</h3>
+				<p>
+					When a system is down, speed matters. We aim to respond quickly.
+				</p>
+			</div>
+
+			<div class="why-card">
+				<i class="fa fa-comments-o"></i>
+				<h3>Clear Communication</h3>
+				<p>
+					Direct and practical communication for engineers, clinics and purchasing teams.
+				</p>
+			</div>
+
+			<div class="why-card">
+				<i class="fa fa-exchange"></i>
+				<h3>Flexible Solutions</h3>
+				<p>
+					Support for direct supply, replacement options and project-based sourcing.
+				</p>
+			</div>
+
+			<div class="why-card">
+				<i class="fa fa-handshake-o"></i>
+				<h3>Long-Term Approach</h3>
+				<p>
+					We focus on becoming a dependable long-term solution partner.
+				</p>
+			</div>
+		</div>
+	</section>
+
+	<section class="why-section">
+		<h2>What Makes Us Different</h2>
+
+		<div class="why-grid">
+			<div class="why-card">
+				<i class="fa fa-stethoscope"></i>
+				<h3>Focused on Imaging</h3>
+				<p>
+					We stay focused on the real needs of imaging departments and technical teams.
+				</p>
+			</div>
+
+			<div class="why-card">
+				<i class="fa fa-globe"></i>
+				<h3>International Perspective</h3>
+				<p>
+					We support local and international opportunities with flexible communication.
+				</p>
+			</div>
+
+			<div class="why-card">
+				<i class="fa fa-shield"></i>
+				<h3>Confidence & Transparency</h3>
+				<p>
+					Clear information about part condition, suitability and process.
+				</p>
+			</div>
+		</div>
+	</section>
+
+	<section class="why-cta">
+		<div class="why-cta-text">
+			<h2>Need a Part or Technical Support?</h2>
+			<p>
+				If you are searching for an MRI, CT or X-Ray part, contact us directly and we will
+				review the options with you.
+			</p>
+		</div>
+
+		<a href="/contactus" class="why-btn">
+			<i class="fa fa-envelope-o"></i>
+			Contact BugaMed
+		</a>
+	</section>
+</main>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+
+<script>
+	$(document).ready(function () {
+		$('.slider').slick({
+			dots: true,
+			infinite: true,
+			speed: 400,
+			slidesToShow: 1,
+			adaptiveHeight: false,
+			autoplay: true,
+			autoplaySpeed: 2500,
+			arrows: false,
+		});
+	});
+</script>
+
+<%- include('partials/footer') %>

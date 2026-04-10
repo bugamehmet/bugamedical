@@ -1,0 +1,68 @@
+<%- include('partials/header', {
+	pageTitle: 'BugaMed - MRI & CT Parts | RF Installation',
+	metaDescription: 'High performance RF cage installation solutions for MRI systems. BugaMed provides RF shielding and cage installation services for medical imaging facilities.',
+	canonicalUrl: '/rf',
+	currentPage: ''
+}) %>
+
+<link
+	rel="stylesheet"
+	type="text/css"
+	href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"
+/>
+<link
+	rel="stylesheet"
+	type="text/css"
+	href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"
+/>
+
+<link rel="stylesheet" href="/assets/css/rf.css" />
+
+<div class="rf-hero">
+	<h1>RF Cage Installation</h1>
+	<p>High performance radio frequency protective cage solutions for MRI systems.</p>
+</div>
+
+<section class="rf-content">
+	<div class="slider-container">
+		<div class="slider">
+			<div><img src="/assets/images/rf1.webp" alt="RF Installation 1" /></div>
+			<div><img src="/assets/images/rf2.png" alt="RF Installation 2" /></div>
+			<div><img src="/assets/images/rf4.png" alt="RF Installation 3" /></div>
+		</div>
+	</div>
+
+	<div class="rf-description">
+		<h3>Importance of RF Cages</h3>
+
+		<p>
+			Radio Frequency (RF) Cages are critical for the correct and reliable operation of MRI
+			systems. These specially designed structures protect the sensitive MRI signals by blocking
+			external radio frequency interference.
+		</p>
+
+		<p>
+			High performance RF cages improve image quality by minimizing interference and ensuring
+			clearer, more accurate diagnostic images while increasing safety for patients and operators.
+		</p>
+	</div>
+</section>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+
+<script>
+	$(document).ready(function () {
+		$('.slider').slick({
+			dots: true,
+			infinite: true,
+			speed: 300,
+			slidesToShow: 1,
+			adaptiveHeight: true,
+			autoplay: true,
+			autoplaySpeed: 2000,
+		});
+	});
+</script>
+
+<%- include('partials/footer') %>

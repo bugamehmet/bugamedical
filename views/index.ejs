@@ -1,0 +1,54 @@
+<%- include('partials/header', {
+	pageTitle: 'BugaMed - MRI & CT Parts | Service - GE, Siemens, Philips',
+	metaDescription: 'Bugamed Care provides MRI, CT, and X-ray equipment parts and technical services. We supply Philips, Siemens, GE, and Toshiba components with fast delivery and expert support.',
+	canonicalUrl: '/',
+	currentPage: 'home'
+}) %>
+
+<link rel="stylesheet" href="/assets/css/index.css" />
+
+<div class="foto-container">
+	<img src="/assets/images/Adsız tasarım.png" style="width: 100%" alt="BugaMed Home" />
+	<div class="yazilar">
+		<h1>MRI & CT Parts and Service</h1>
+		<p>Buy GE, Siemens & Philips Parts</p>
+	</div>
+</div>
+
+<section id="hizmetler" class="services">
+	<h2>Our Services</h2>
+
+	<div class="service-grid">
+		<div class="service-item">
+			<i class="fa fa-magnet fa-3x" style="color: rgb(109, 131, 113); margin-bottom: 10px"></i>
+			<h3>MRI Installation</h3>
+			<p>High-resolution magnetic resonance imaging system installation and consultancy.</p>
+			<a href="/mri" class="button-secondary">View Details</a>
+		</div>
+
+		<div class="service-item">
+			<i class="fa fa-medkit fa-3x" style="color: rgb(109, 131, 113); margin-bottom: 10px"></i>
+			<h3>CT Installation</h3>
+			<p>
+				Fast and detailed cross-sectional imaging with computed tomography systems installation.
+			</p>
+			<a href="/tomo" class="button-secondary">View Details</a>
+		</div>
+
+		<div class="service-item">
+			<i class="fa fa-plus-square fa-3x" style="color: rgb(109, 131, 113); margin-bottom: 10px"></i>
+			<h3>X-Ray Installation</h3>
+			<p>Installation and modernization of basic and digital radiography systems.</p>
+			<a href="/x-ray" class="button-secondary">View Details</a>
+		</div>
+
+		<div class="service-item">
+			<i class="fa fa-shield fa-3x" style="color: rgb(109, 131, 113); margin-bottom: 10px"></i>
+			<h3>RF Cage Installation</h3>
+			<p>High-performance radio frequency shielding cage solutions for MRI systems.</p>
+			<a href="/rf" class="button-secondary">View Details</a>
+		</div>
+	</div>
+</section>
+
+<%- include('partials/footer') %>

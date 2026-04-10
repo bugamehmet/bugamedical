@@ -1,0 +1,306 @@
+<%- include('partials/header', {
+	pageTitle: 'BugaMed - MRI & CT Parts | About',
+	metaDescription: 'Bugamed Care provides MRI, CT, and X-ray equipment parts and technical services. We supply Philips, Siemens, GE, and Toshiba components with fast delivery and expert support.',
+	canonicalUrl: '/about',
+	currentPage: 'about'
+}) %>
+
+<link rel="stylesheet" href="/assets/css/about.css" />
+
+<style>
+	body {
+		margin: 0;
+		font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+		background: #f3f4f6;
+		color: #111827;
+	}
+
+	.about-page {
+		max-width: 1200px;
+		margin: 40px auto 0 auto;
+		padding: 0 20px 60px;
+	}
+
+	.about-hero {
+		text-align: center;
+		margin-bottom: 30px;
+	}
+
+	.about-hero h1 {
+		font-size: 32px;
+		font-weight: 700;
+		margin-bottom: 10px;
+	}
+
+	.about-tagline {
+		font-size: 15px;
+		color: rgb(109, 131, 113);
+		max-width: 700px;
+		margin: 0 auto;
+	}
+
+	.about-intro {
+		display: grid;
+		grid-template-columns: minmax(0, 2fr) minmax(0, 1.2fr);
+		gap: 24px;
+		margin-bottom: 40px;
+	}
+
+	.about-intro-text h2 {
+		font-size: 22px;
+		margin-bottom: 10px;
+	}
+
+	.about-intro-text p {
+		font-size: 14px;
+		color: rgb(109, 131, 113);
+		line-height: 1.7;
+		margin-bottom: 10px;
+	}
+
+	.about-stats {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+		gap: 12px;
+	}
+
+	.stat-card {
+		background: #ffffff;
+		border-radius: 12px;
+		padding: 14px 16px;
+		border: 1px solid #e5e7eb;
+		box-shadow: 0 6px 16px rgba(15, 23, 42, 0.04);
+	}
+
+	.stat-number {
+		font-size: 18px;
+		font-weight: 700;
+		display: block;
+	}
+
+	.stat-label {
+		font-size: 13px;
+		color: #6b7280;
+	}
+
+	.stat-desc {
+		font-size: 12px;
+		color: rgb(109, 131, 113);
+		margin-top: 4px;
+	}
+
+	.about-what-we-do,
+	.about-why,
+	.about-values-contact {
+		margin-bottom: 40px;
+	}
+
+	.about-what-we-do h2,
+	.about-why h2,
+	.about-values-contact h2 {
+		font-size: 22px;
+		margin-bottom: 16px;
+	}
+
+	.about-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+		gap: 18px;
+	}
+
+	.about-card {
+		background: #ffffff;
+		border-radius: 12px;
+		padding: 18px 16px;
+		border: 1px solid #e5e7eb;
+		box-shadow: 0 8px 20px rgba(15, 23, 42, 0.06);
+	}
+
+	.about-card i {
+		font-size: 20px;
+		margin-bottom: 10px;
+		color: rgb(109, 131, 113);
+	}
+
+	.about-card h3 {
+		font-size: 16px;
+		margin-bottom: 8px;
+	}
+
+	.about-card p {
+		font-size: 14px;
+		color: #4b5563;
+		line-height: 1.6;
+	}
+
+	.about-values-contact {
+		display: grid;
+		grid-template-columns: minmax(0, 1.2fr) minmax(0, 1.5fr);
+		gap: 24px;
+		align-items: flex-start;
+	}
+
+	.about-values ul {
+		list-style: disc;
+		padding-left: 20px;
+		font-size: 14px;
+		color: #4b5563;
+		line-height: 1.7;
+	}
+
+	.about-values li {
+		margin-bottom: 6px;
+	}
+
+	.about-contact-cta p {
+		font-size: 14px;
+		color: #4b5563;
+		line-height: 1.7;
+		margin-bottom: 12px;
+	}
+
+	.about-btn {
+		display: inline-flex;
+		align-items: center;
+		gap: 8px;
+		background: rgb(109, 131, 113);
+		color: #ffffff;
+		text-decoration: none;
+		border-radius: 999px;
+		padding: 10px 18px;
+		font-size: 14px;
+		font-weight: 500;
+	}
+
+	.about-btn:hover {
+		background: #1d4ed8;
+	}
+
+	@media (max-width: 900px) {
+		.about-intro,
+		.about-values-contact {
+			grid-template-columns: 1fr;
+		}
+	}
+
+	@media (max-width: 600px) {
+		.about-hero h1 {
+			font-size: 26px;
+		}
+	}
+</style>
+
+<main class="about-page">
+	<section class="about-hero">
+		<h1>About BugaMed</h1>
+		<p class="about-tagline">
+			Specialized in MRI & CT parts, service and solutions – helping hospitals and imaging
+			centers keep their systems running safely and efficiently.
+		</p>
+	</section>
+
+	<section class="about-intro">
+		<div class="about-intro-text">
+			<h2>Who We Are</h2>
+			<p>
+				BugaMed is an independent medical imaging parts and service provider focused on
+				<strong>MRI, CT and X-Ray</strong> systems. We supply high quality tested parts and offer technical support to hospitals, clinics and service companies.
+			</p>
+			<p>
+				With experience in field service, troubleshooting and parts sourcing, we understand the real needs of engineers and biomedical departments: fast response, reliable parts and clear communication.
+			</p>
+		</div>
+
+		<div class="about-stats">
+			<div class="stat-card">
+				<span class="stat-number">3+</span>
+				<span class="stat-label">Modalities</span>
+				<p class="stat-desc">MRI, CT and X-Ray parts & support.</p>
+			</div>
+
+			<div class="stat-card">
+				<span class="stat-number">Brands</span>
+				<span class="stat-label">Siemens, Philips, GE</span>
+				<p class="stat-desc">Focus on major OEM systems.</p>
+			</div>
+
+			<div class="stat-card">
+				<span class="stat-number">Service</span>
+				<span class="stat-label">Parts & Solutions</span>
+				<p class="stat-desc">From spare parts to project support.</p>
+			</div>
+		</div>
+	</section>
+
+	<section class="about-what-we-do">
+		<h2>What We Do</h2>
+
+		<div class="about-grid">
+			<div class="about-card">
+				<i class="fa fa-cubes"></i>
+				<h3>MRI & CT Parts</h3>
+				<p>Tested spare parts for Siemens, Philips and GE systems.</p>
+			</div>
+
+			<div class="about-card">
+				<i class="fa fa-wrench"></i>
+				<h3>Technical Support</h3>
+				<p>Support for troubleshooting and part selection.</p>
+			</div>
+
+			<div class="about-card">
+				<i class="fa fa-exchange"></i>
+				<h3>Replacement & Exchange</h3>
+				<p>Direct purchase or exchange options depending on availability.</p>
+			</div>
+		</div>
+	</section>
+
+	<section class="about-why">
+		<h2>Why BugaMed</h2>
+
+		<div class="about-grid">
+			<div class="about-card">
+				<i class="fa fa-check-circle"></i>
+				<h3>Focused Expertise</h3>
+				<p>Deep knowledge of MRI, CT and X-Ray systems.</p>
+			</div>
+
+			<div class="about-card">
+				<i class="fa fa-clock-o"></i>
+				<h3>Fast Response</h3>
+				<p>Quick feedback on availability and alternatives.</p>
+			</div>
+
+			<div class="about-card">
+				<i class="fa fa-handshake-o"></i>
+				<h3>Partnership Approach</h3>
+				<p>Long-term relationship focused support.</p>
+			</div>
+		</div>
+	</section>
+
+	<section class="about-values-contact">
+		<div class="about-values">
+			<h2>Our Values</h2>
+			<ul>
+				<li><strong>Reliability:</strong> We only offer parts and solutions we trust.</li>
+				<li><strong>Transparency:</strong> Clear compatibility and condition info.</li>
+				<li><strong>Support:</strong> Assistance beyond the sale.</li>
+			</ul>
+		</div>
+
+		<div class="about-contact-cta">
+			<h2>Let’s Talk About Your System</h2>
+			<p>
+				If you are looking for a specific MRI or CT part, contact us directly for details.
+			</p>
+
+			<a href="/contactus" class="about-btn">
+				<i class="fa fa-envelope-o"></i> Contact BugaMed
+			</a>
+		</div>
+	</section>
+</main>
+
+<%- include('partials/footer') %>

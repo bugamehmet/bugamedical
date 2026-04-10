@@ -192,7 +192,7 @@ app.get('/part/:sku/:slug?', async (req, res) => {
 });
 
 app.get('/', (req, res) => {
-	res.sendFile(path.join(__dirname, 'index.html'));
+	res.render('index');
 });
 
 app.get('/parts-catalog', async (req, res) => {
@@ -213,15 +213,15 @@ app.get('/parts-catalog', async (req, res) => {
 });
 
 app.get('/about', (req, res) => {
-	res.sendFile(path.join(__dirname, 'views', 'about.html'));
+	res.render('about');
 });
 
 app.get('/why', (req, res) => {
-	res.sendFile(path.join(__dirname, 'views', 'why-bugamed.html'));
+	res.render('why');
 });
 
 app.get('/contactus', (req, res) => {
-	res.sendFile(path.join(__dirname, 'views', 'contactus.html'));
+	res.render('contactus');
 });
 
 app.get('/photos', async (req, res) => {
@@ -238,6 +238,22 @@ app.get('/photos', async (req, res) => {
 		console.error('Gallery hata:', err);
 		res.status(500).send('Something went wrong.');
 	}
+});
+
+app.get('/mri', (req, res) => {
+	res.render('mri');
+});
+
+app.get('/rf', (req, res) => {
+	res.render('rf');
+});
+
+app.get('/tomo', (req, res) => {
+	res.render('tomo');
+});
+
+app.get('/x-ray', (req, res) => {
+	res.render('x-ray');
 });
 
 function escapeRegex(s) {
