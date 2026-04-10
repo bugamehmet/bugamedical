@@ -17,6 +17,8 @@ product.sku), canonicalUrl: product.canonicalUrl || ('/part/' + product.sku + '/
 				src="<%= product.imageUrl %>"
 				alt="<%= product.name %> <%= product.sku %>"
 				class="zoomable-image"
+				loading="lazy"
+				decoding="async"
 			/>
 		</div>
 
@@ -63,6 +65,31 @@ product.sku), canonicalUrl: product.canonicalUrl || ('/part/' + product.sku + '/
 				<span class="cta-note">
 					For pricing, availability and exchange options, contact BugaMedical.
 				</span>
+				<% if (relatedProducts && relatedProducts.length) { %>
+<div class="related-products">
+	<h3>Related Parts</h3>
+
+	<div class="related-grid">
+		<% relatedProducts.forEach(item => { %>
+			<a
+				href="<%= item.canonicalUrl || `/part/${item.sku}/${item.slug}` %>"
+				class="related-card"
+			>
+				<img
+					src="<%= item.imageUrl %>"
+					alt="<%= item.name %>"
+					loading="lazy"
+				/>
+
+				<div class="related-info">
+					<div class="related-title"><%= item.name %></div>
+					<div class="related-sku"><%= item.sku %></div>
+				</div>
+			</a>
+		<% }) %>
+	</div>
+</div>
+<% } %>
 			</div>
 		</div>
 	</section>

@@ -137,29 +137,56 @@ ${products
 	}
 });
 
-
 // Part detay sayfaları: /part/45221179529/philips-dga-board-mri
 app.get('/part/:sku/:slug?', async (req, res) => {
 	try {
 		const { sku, slug } = req.params;
 
-		// MongoDB'den ürünü bul
 		const product = await Product.findOne({ sku });
 
 		if (!product) {
-			console.log('Product not found for SKU:', sku);
 			return res.status(404).send('Part not found.');
 		}
 
-		// SEO için: slug uyuşmuyorsa canonical slug'a yönlendirebilirsin (opsiyonel)
 		if (product.slug && slug !== product.slug) {
 			return res.redirect(301, product.canonicalUrl || `/part/${product.sku}/${product.slug}`);
 		}
 
-		// EJS template render
-		res.render('part-detail', { product });
+		// 1) Önce ilgili ürünleri random çek
+		let relatedProducts = await Product.aggregate([
+			{
+				$match: {
+					_id: { $ne: product._id },
+					$or: [{ system: product.system }, { oem: product.oem }],
+				},
+			},
+			{ $sample: { size: 3 } },
+		]);
+
+		// 2) 3'ten azsa, eksikleri rastgele başka ürünlerle tamamla
+		if (relatedProducts.length < 3) {
+			const existingIds = relatedProducts.map((p) => p._id);
+
+			const fillerProducts = await Product.aggregate([
+				{
+					$match: {
+						_id: {
+							$nin: [product._id, ...existingIds],
+						},
+					},
+				},
+				{ $sample: { size: 3 - relatedProducts.length } },
+			]);
+
+			relatedProducts = [...relatedProducts, ...fillerProducts];
+		}
+
+		res.render('part-detail', {
+			product,
+			relatedProducts,
+		});
 	} catch (err) {
-		console.error('Error in /part route:', err);
+		console.error(err);
 		res.status(500).send('Internal server error');
 	}
 });
