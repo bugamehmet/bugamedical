@@ -1,44 +1,16 @@
-<!DOCTYPE html>
-<html lang="tr">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<meta
-			name="description"
-			content="<%= metaDescription || 'Bugamed Care provides MRI, CT, and X-ray equipment parts and technical services.' %>"
-		/>
+<%- include('partials/header', {
+	pageTitle: pageTitle || 'BugaMed - MRI & CT Parts | Gallery',
+	metaDescription: metaDescription || 'Bugamed Care provides MRI, CT, and X-ray equipment parts and technical services.',
+	canonicalUrl: '/photos',
+	currentPage: 'photos'
+}) %>
+<link rel="stylesheet" href="/assets/css/global.css" />
+<link rel="stylesheet" href="/assets/css/photos.css" />
+<script src="/assets/js/photo-size.js" defer></script>
 
-		<title><%= pageTitle || 'BugaMed - MRI & CT Parts | Gallery' %></title>
-		<link rel="shortcut icon" type="png" href="/assets/images/favicon.png" />
-		<link rel="stylesheet" href="/assets/css/photos.css" />
-		<link
-			rel="stylesheet"
-			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
-		/>
-		<script src="/assets/js/photo-size.js" defer></script>
-	</head>
-	<body>
-		<header>
-			<nav id="navbar" class="nav">
-				<div class="navbar-links">
-					<img src="/assets/images/buga-logo.png" alt="BugaMed Logo" />
-
-					<a href="/">Home</a>
-					<a href="/parts-catalog">Parts Catalog</a>
-					<a href="/why">Why Bugamed</a>
-					<a href="/about">About</a>
-					<a href="/contactus">Contact Us</a>
-					<a href="/photos" class="active">Gallery</a>
-
-					<a href="javascript:void(0);" class="icon" onclick="navFunction()">
-						<i class="fa fa-bars"></i>
-					</a>
-				</div>
-			</nav>
-		</header>
-
-		<div class="gallery-container">
-			<% if (images && images.length > 0) { %> <% images.forEach(function(img, index) { %>
+<div class="gallery-container">
+	<% if (images && images.length > 0) { %>
+		<% images.forEach(function(img, index) { %>
 			<div class="gallery-item">
 				<img
 					src="<%= img.imagePath %>"
@@ -47,52 +19,21 @@
 					loading="lazy"
 				/>
 				<% if (img.caption) { %>
-				<div class="image-caption"><%= img.caption %></div>
+					<div class="image-caption"><%= img.caption %></div>
 				<% } %>
 			</div>
-			<% }) %> <% } else { %>
-			<p style="padding: 16px">Henüz galeri görseli bulunmuyor.</p>
-			<% } %>
-		</div>
+		<% }) %>
+	<% } else { %>
+		<p style="padding: 16px">Henüz galeri görseli bulunmuyor.</p>
+	<% } %>
+</div>
 
-		<!-- Modal kısmını birebir bırakıyoruz -->
-		<div id="myModal" class="modal">
-			<span class="close" onclick="closeModal()">&times;</span>
-			<img class="modal-content" id="modalImage" />
-			<div id="caption" class="caption-text"></div>
-			<a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-			<a class="next" onclick="plusSlides(1)">&#10095;</a>
-		</div>
+<div id="myModal" class="modal">
+	<span class="close" onclick="closeModal()">&times;</span>
+	<img class="modal-content" id="modalImage" alt="Gallery image" />
+	<div id="caption" class="caption-text"></div>
+	<a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+	<a class="next" onclick="plusSlides(1)">&#10095;</a>
+</div>
 
-		<footer>
-			<div class="footer-content">
-				<div class="contact-info">
-					<h3>Contact</h3>
-					<p>
-						<i class="fa fa-phone"></i>
-						Tel: <a href="tel:+905367210565">+90 536 721 05 65</a>
-					</p>
-					<p>
-						<i class="fa fa-envelope"></i>
-						Email:
-						<a href="mailto:bugamedical@gmail.com">bugamedical@gmail.com</a>
-					</p>
-				</div>
-				<div class="copyright">
-					<p>&copy; 2025 BugaMedical. Siemens, Philips, GE | MRI, CT, X-Ray Parts and Services.</p>
-				</div>
-			</div>
-		</footer>
-
-		<script>
-			function navFunction() {
-				var x = document.getElementById('navbar');
-				if (x.className === 'nav') {
-					x.className += ' responsive';
-				} else {
-					x.className = 'nav';
-				}
-			}
-		</script>
-	</body>
-</html>
+<%- include('partials/footer') %>

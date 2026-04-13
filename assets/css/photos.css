@@ -1,377 +1,178 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: 'Andale Mono';
-  src: url('/assets/font/Andale-Mono.ttf') format('truetype');
-}
-nav{
-  background-color: #d1d0d0;
-  overflow: hidden;
-}
-nav img {
-  float: left;
-  margin-left: 10%;
-  margin-right: 8%;
-  width: 70px;
-  padding: 10px;
-}
-nav a{
-  float: left;
-  display: block;
-  margin-top: 14px;
-  color: rgb(109,131,113);
-  text-align: center;
-  padding: 14px 36px;
-  text-decoration: none;
-  font-size: 14px;
-}
-nav a.active {
-  background-color: rgb(109,131,113);
-  border-radius: 10px;
-  color: black;
-}
-nav a:hover {
-  background-color: rgb(109,131,113);
-  color: black;
-  border-radius: 10px;
-}
-nav .icon {
-  display: none;
-}
-nav .icon:hover{
-  background-color: rgb(109,131,113);
-  color: black;
-  border-radius: 10px;
-}
-nav .search-container{
-  float: right;
-  
-}
-nav input[type=text] {
-  padding: 6px;
-  margin-top: 22px;
-  width: 295px;
-  font-size: 13px;
-  border: none;
-  border-radius: 10px;
-}
-nav .search-container button {
-  float: right;
-  padding: 6px 10px;
-  margin-top: 22px;
-  margin-right: 206px;
-  margin-left: 2px;
-  background-color: rgb(109, 131, 113);
-  font-size: 13px;
-  border: none;
-  border-radius: 10px;
-  cursor: pointer;
-}
-nav .search-container button:hover {
-  background: #025d3c;
-}
-
-@media screen and (max-width: 600px) {
-  nav a {display: none;}
-  nav .search-container {display: none;}
-  nav a.icon {
-    float: right;
-    display: block;
-    margin-right: 5px;
-  }
-}
-
-@media screen and (max-width: 600px) {
-  nav.responsive {position: relative;}
-  nav.responsive a.icon {
-    position: absolute;
-    right: 0;
-    top: 0;
-  }
-  nav.responsive .search-container{
-    float:none;
-    display: block;
-    text-align: left;
-    margin-left: 12px;
-  }
-  nav.responsive .search-container button{
-    float: none;
-  }
-  nav.responsive img{
-    float: none;
-    display: block;
-    align-items: left;
-  }
-  nav.responsive a {
-    float: none;
-    display: block;
-    text-align: left;
-  }
-}
-@media screen and (max-width:600px) {
-    .yazilar {
-        left: 0; 
-        top: auto; 
-        transform: none; 
-        width: 100%; 
-        top: 20%;
-        left: 0%; 
-}
-.yazilar p{
-  font-size: 14px;
-
-}
-.yazilar h1{
-  font-size: 24px;
-}
-}
-
 .gallery-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 1.5rem;
-    padding: 2rem;
-    max-width: 1200px;
-    margin: 2rem auto;
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+	gap: 1.5rem;
+	padding: 2rem;
+	max-width: 1200px;
+	margin: 2rem auto;
 }
 
 .gallery-item {
-    background-color: #fff;
-    border-radius: 12px;
-    overflow: hidden;
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    cursor: pointer;
+	background-color: #fff;
+	border-radius: 12px;
+	overflow: hidden;
+	box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+	transition:
+		transform 0.3s ease,
+		box-shadow 0.3s ease;
+	cursor: pointer;
 }
 
 .gallery-item:hover {
-    transform: translateY(-8px) scale(1.03);
-    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.12);
+	transform: translateY(-8px) scale(1.03);
+	box-shadow: 0 12px 35px rgba(0, 0, 0, 0.12);
 }
 
-/* YENİ: Tıklama anında küçük bir geri bildirim efekti */
 .gallery-item:active {
-    transform: translateY(0px) scale(0.98); /* Hafifçe içeri bastırma efekti */
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.07);
+	transform: translateY(0) scale(0.98);
+	box-shadow: 0 6px 20px rgba(0, 0, 0, 0.07);
 }
 
 .gallery-item img {
-    width: 100%;
-    height: auto;
-    display: block;
-    aspect-ratio: 4 / 3;
-    object-fit: cover;
+	width: 100%;
+	height: auto;
+	display: block;
+	aspect-ratio: 4 / 3;
+	object-fit: cover;
 }
 
 .image-caption {
-    padding: 1rem;
-    text-align: center;
-    font-size: 0.95rem;
-    font-weight: 600;
-    color: #555;
-    background-color: #f9f9f9;
+	padding: 1rem;
+	text-align: center;
+	font-size: 0.95rem;
+	font-weight: 600;
+	color: #555;
+	background-color: #f9f9f9;
 }
 
-/* Modal (Açılır Pencere) Stilleri */
 .modal {
-    display: none;
-    position: fixed;
-    z-index: 1000;
-    padding-top: 50px;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgba(0, 0, 0, 0.92); /* Arka planı biraz daha koyulaştırdık */
+	display: none;
+	position: fixed;
+	z-index: 1000;
+	padding-top: 50px;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	overflow: auto;
+	background-color: rgba(0, 0, 0, 0.92);
 }
 
 .modal-content {
-    margin: auto;
-    display: block;
-    width: auto;
-    max-width: 85%;
-    max-height: 85vh;
-    border-radius: 8px;
-    /* GÜNCELLENDİ: Yeni animasyon adı ve süresi */
-    animation-name: modalContentZoom;
-    animation-duration: 0.5s; /* Animasyon süresini biraz artırdık */
-    animation-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Daha esnek bir geçiş */
+	margin: auto;
+	display: block;
+	width: auto;
+	max-width: 85%;
+	max-height: 85vh;
+	border-radius: 8px;
+	animation-name: modalContentZoom;
+	animation-duration: 0.5s;
+	animation-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-/* GÜNCELLENDİ: Daha dinamik bir modal açılış animasyonu */
 @keyframes modalContentZoom {
-    0% {
-        opacity: 0;
-        transform: scale(0.6);
-    }
-    80% { /* Hafif bir sıçrama efekti için */
-        opacity: 1;
-        transform: scale(1.05);
-    }
-    100% {
-        opacity: 1;
-        transform: scale(1);
-    }
+	0% {
+		opacity: 0;
+		transform: scale(0.6);
+	}
+	80% {
+		opacity: 1;
+		transform: scale(1.05);
+	}
+	100% {
+		opacity: 1;
+		transform: scale(1);
+	}
 }
-
-/* ESKİ animasyonu silebilir veya yorum satırı yapabilirsiniz:
-@keyframes zoom {
-    from {transform: scale(0.8)}
-    to {transform: scale(1)}
-}
-*/
 
 .caption-text {
-    margin: auto;
-    display: block;
-    width: 80%;
-    max-width: 700px;
-    text-align: center;
-    color: #ccc;
-    padding: 15px 0;
-    font-size: 1.1rem;
-    font-weight: 400;
-    animation-name: fadeIn; /* Başlık için de hafif bir fade-in */
-    animation-duration: 0.5s;
-    animation-delay: 0.2s; /* Resimden biraz sonra gelsin */
-    animation-fill-mode: forwards; /* Animasyon sonunda stil kalsın */
-    opacity: 0; /* Başlangıçta gizli */
+	margin: auto;
+	display: block;
+	width: 80%;
+	max-width: 700px;
+	text-align: center;
+	color: #ccc;
+	padding: 15px 0;
+	font-size: 1.1rem;
+	font-weight: 400;
+	animation-name: fadeIn;
+	animation-duration: 0.5s;
+	animation-delay: 0.2s;
+	animation-fill-mode: forwards;
+	opacity: 0;
 }
 
 @keyframes fadeIn {
-    to {
-        opacity: 1;
-    }
+	to {
+		opacity: 1;
+	}
 }
 
 .close {
-    position: absolute;
-    top: 20px;
-    right: 35px;
-    color: #f1f1f1;
-    font-size: 45px;
-    font-weight: bold;
-    transition: 0.3s;
+	position: absolute;
+	top: 20px;
+	right: 35px;
+	color: #f1f1f1;
+	font-size: 45px;
+	font-weight: bold;
+	transition: 0.3s;
 }
 
 .close:hover,
 .close:focus {
-    color: #bbb;
-    text-decoration: none;
-    cursor: pointer;
+	color: #bbb;
+	text-decoration: none;
+	cursor: pointer;
 }
 
-.prev, .next {
-    cursor: pointer;
-    position: absolute;
-    top: 50%;
-    width: auto;
-    padding: 18px;
-    margin-top: -25px; /* Dikey ortalama için yarısı */
-    color: white;
-    font-weight: bold;
-    font-size: 28px;
-    transition: 0.4s ease;
-    border-radius: 0 3px 3px 0;
-    user-select: none;
-    background-color: rgba(0,0,0,0.3);
+.prev,
+.next {
+	cursor: pointer;
+	position: absolute;
+	top: 50%;
+	width: auto;
+	padding: 18px;
+	margin-top: -25px;
+	color: white;
+	font-weight: bold;
+	font-size: 28px;
+	transition: 0.4s ease;
+	border-radius: 0 3px 3px 0;
+	user-select: none;
+	background-color: rgba(0, 0, 0, 0.3);
 }
 
 .next {
-    right: 0;
-    border-radius: 3px 0 0 3px;
+	right: 0;
+	border-radius: 3px 0 0 3px;
 }
 
-.prev:hover, .next:hover {
-    background-color: rgba(0,0,0,0.6);
+.prev:hover,
+.next:hover {
+	background-color: rgba(0, 0, 0, 0.6);
 }
 
-footer {
-    text-align: center;
-    padding: 1.5rem;
-    background-color: #333;
-    color: #f0f2f5;
-    font-size: 0.9rem;
-    margin-top: 2rem;
-}
-
-/* Duyarlılık */
 @media (max-width: 768px) {
-    header h1 {
-        font-size: 2.2rem;
-    }
-    header p {
-        font-size: 1rem;
-    }
-    .gallery-container {
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        padding: 1rem;
-        gap: 1rem;
-    }
-    .modal-content {
-        max-width: 90%;
-        max-height: 80vh; /* Mobil için yüksekliği biraz daha ayarlayalım */
-    }
+	.gallery-container {
+		grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+		padding: 1rem;
+		gap: 1rem;
+	}
+
+	.modal-content {
+		max-width: 90%;
+		max-height: 80vh;
+	}
 }
 
 @media (max-width: 480px) {
-    header h1 {
-        font-size: 1.8rem;
-    }
-    .prev, .next {
-        font-size: 20px;
-        padding: 12px;
-    }
-    .caption-text {
-        font-size: 1rem;
-    }
-}
-footer {
-  background-color: rgb(109, 131, 113); /* Ana yeşil renginiz */
-  color: #fff;
-  padding: 30px 20px;
-  text-align: center;
-}
-.footer-content {
-  max-width: 1200px;
-  margin: 0 auto;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap; /* Küçük ekranlarda alt alta sıralama için */
-}
+	.prev,
+	.next {
+		font-size: 20px;
+		padding: 12px;
+	}
 
-.contact-info {
-  text-align: left;
-}
-
-.contact-info h3 {
-  font-size: 20px;
-  margin-bottom: 10px;
-  color: #fff;
-}
-
-.contact-info p {
-  margin-bottom: 8px;
-  font-size: 16px;
-}
-
-.contact-info a {
-  color: #fff;
-  text-decoration: none;
-  transition: color 0.3s ease;
-}
-
-.contact-info a:hover {
-  color: #d1d0d0; /* Açık bir renk tonu */
-}
-
-.contact-info .fa {
-  margin-right: 8px;
-}
-
-.copyright {
-  font-size: 14px;
+	.caption-text {
+		font-size: 1rem;
+	}
 }

@@ -1,0 +1,7 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Andale Mono';
+  src: url('/assets/font/Andale-Mono.ttf') format('truetype');
+}

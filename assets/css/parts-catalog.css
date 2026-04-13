@@ -1,180 +1,12 @@
-* {
-	margin: 0;
-	padding: 0;
-	box-sizing: border-box;
-	font-family: 'Andale Mono';
-	src: url('/assets/font/Andale-Mono.ttf') format('truetype');
-}
-nav {
-	background-color: #d1d0d0;
-	overflow: hidden;
-}
-nav img {
-	float: left;
-	margin-left: 10%;
-	margin-right: 8%;
-	width: 70px;
-	padding: 10px;
-}
-nav a {
-	float: left;
-	display: block;
-	margin-top: 14px;
-	color: rgb(109, 131, 113);
-	text-align: center;
-	padding: 14px 36px;
-	text-decoration: none;
-	font-size: 14px;
-}
-nav a.active {
-	background-color: rgb(109, 131, 113);
-	border-radius: 10px;
-	color: black;
-}
-nav a:hover {
-	background-color: rgb(109, 131, 113);
-	color: black;
-	border-radius: 10px;
-}
-nav .icon {
-	display: none;
-}
-nav .icon:hover {
-	background-color: rgb(109, 131, 113);
-	color: black;
-	border-radius: 10px;
-}
-nav .search-container {
-	float: right;
-}
-nav input[type='text'] {
-	padding: 6px;
-	margin-top: 22px;
-	width: 295px;
-	font-size: 13px;
-	border: none;
-	border-radius: 10px;
-}
-nav .search-container button {
-	float: right;
-	padding: 6px 10px;
-	margin-top: 22px;
-	margin-right: 206px;
-	margin-left: 2px;
-	background-color: rgb(109, 131, 113);
-	font-size: 13px;
-	border: none;
-	border-radius: 10px;
-	cursor: pointer;
-}
-nav .search-container button:hover {
-	background: #025d3c;
-}
-@media screen and (max-width: 600px) {
-	nav a {
-		display: none;
-	}
-	nav .search-container {
-		display: none;
-	}
-	nav a.icon {
-		float: right;
-		display: block;
-		margin-right: 5px;
-	}
-}
-
-@media screen and (max-width: 600px) {
-	nav.responsive {
-		position: relative;
-	}
-	nav.responsive a.icon {
-		position: absolute;
-		right: 0;
-		top: 0;
-	}
-	nav.responsive .search-container {
-		float: none;
-		display: block;
-		text-align: left;
-		margin-left: 12px;
-	}
-	nav.responsive .search-container button {
-		float: none;
-	}
-	nav.responsive img {
-		float: none;
-		display: block;
-		align-items: left;
-	}
-	nav.responsive a {
-		float: none;
-		display: block;
-		text-align: left;
-	}
-}
-
-/* assets/css/style.css (veya ilgili diğer CSS dosyaları) */
-
-footer {
-	background-color: rgb(109, 131, 113); /* Ana yeşil renginiz */
-	color: #fff;
-	padding: 30px 20px;
-	text-align: center;
-}
-
-.footer-content {
-	max-width: 1200px;
-	margin: 0 auto;
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	flex-wrap: wrap; /* Küçük ekranlarda alt alta sıralama için */
-}
-
-.contact-info {
-	text-align: left;
-}
-
-.contact-info h3 {
-	font-size: 20px;
-	margin-bottom: 10px;
-	color: #fff;
-}
-
-.contact-info p {
-	margin-bottom: 8px;
-	font-size: 16px;
-}
-
-.contact-info a {
-	color: #fff;
-	text-decoration: none;
-	transition: color 0.3s ease;
-}
-
-.contact-info a:hover {
-	color: #d1d0d0; /* Açık bir renk tonu */
-}
-
-.contact-info .fa {
-	margin-right: 8px;
-}
-
-.copyright {
-	font-size: 14px;
-}
-/* Kartları saran alan */
 .product-grid {
 	max-width: 1200px;
 	margin: 40px auto;
 	display: flex;
-	flex-wrap: wrap; /* Satır dolunca alta geçsin */
-	gap: 20px; /* Kartlar arası boşluk */
-	justify-content: center; /* Ortadan hizala */
+	flex-wrap: wrap;
+	gap: 20px;
+	justify-content: center;
 }
 
-/* Tek kart */
 .product-card {
 	background: #ffffff;
 	width: 320px;
@@ -185,9 +17,19 @@ footer {
 	transition:
 		transform 0.15s ease,
 		box-shadow 0.15s ease;
-
-	/* ÖNEMLİ: daha önce margin: 40px auto vardı, onu kaldırıyoruz */
 	margin: 0;
+}
+
+.product-image-wrapper {
+	flex: 1 1 280px;
+	min-width: 280px;
+	max-width: 420px;
+}
+.product-image-wrapper img {
+	width: 100%;
+	border-radius: 12px;
+	border: 1px solid #e5e7eb;
+	object-fit: cover;
 }
 
 .product-card:hover {
@@ -253,12 +95,13 @@ footer {
 	color: #075985;
 	border: 1px solid #38bdf8;
 }
+
 .product-link {
 	text-decoration: none;
 	color: inherit;
-	display: block; /* kartı tamamen kapsasın */
+	display: block;
 }
-/* ÖNERİ PARÇA CSS LERİ */
+
 .related-products {
 	margin-top: 30px;
 }
@@ -305,32 +148,4 @@ footer {
 .related-sku {
 	font-size: 13px;
 	color: #666;
-}
-/* Küçük ekranlar için düzenleme */
-@media (max-width: 600px) {
-	.footer-content {
-		flex-direction: column;
-		align-items: center;
-		text-align: center;
-	}
-
-	.contact-info {
-		text-align: center;
-		margin-bottom: 20px;
-	}
-}
-
-/* Küçük ekranlar için medya sorgusu */
-@media (max-width: 768px) {
-	.poster-container {
-		max-width: 95%; /* Daha küçük ekranlarda daha fazla alan kullanır */
-	}
-}
-
-/* Çok küçük ekranlar için medya sorgusu */
-@media (max-width: 480px) {
-	.poster-container {
-		max-width: 100%; /* Çok küçük ekranlarda tam genişlik */
-		border-radius: 0; /* Köşe yuvarlamayı kaldırabiliriz */
-	}
 }

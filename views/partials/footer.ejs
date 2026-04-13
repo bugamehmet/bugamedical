@@ -1,48 +1,46 @@
-    <footer>
-      <div class="footer-content">
-        <div class="contact-info">
-          <h3>Contact</h3>
-          <p><i class="fa fa-phone"></i> Tel: <a href="tel:+905367210565">+90 536 721 05 65</a></p>
-          <p>
-            <i class="fa fa-envelope"></i> Email:
-            <a href="mailto:bugamedical@gmail.com">bugamedical@gmail.com</a>
-          </p>
-        </div>
-        <div class="copyright">
-          <p>&copy; 2025 BugaMedical. Siemens, Philips, GE | MRI, CT, X-Ray Parts and Services.</p>
-        </div>
-      </div>
-    </footer>
+<footer>
+	<div class="footer-content">
+		<div class="contact-info">
+			<h3>Contact</h3>
+			<p><i class="fa fa-phone"></i> Tel: <a href="tel:+905367210565">+90 536 721 05 65</a></p>
+			<p>
+				<i class="fa fa-envelope"></i> Email:
+				<a href="mailto:bugamedical@gmail.com">bugamedical@gmail.com</a>
+			</p>
+		</div>
+		<div class="copyright">
+			<p>&copy; 2025 BugaMedical. Siemens, Philips, GE | MRI, CT, X-Ray Parts and Services.</p>
+		</div>
+	</div>
+</footer>
+<link rel="stylesheet" href="/assets/css/global.css" />
+<link rel="stylesheet" href="/assets/css/footer.css" />
 
-    <!-- Buraya ürün detayına özel JS'leri koyabilirsin (zoom modal vs.) -->
-    <script>
-      // ---- Resme tıklayınca büyütme (Modal) ----
-      const productImg = document.querySelector('.zoomable-image');
-      const modal = document.getElementById('imageModal');
-      const modalImg = document.getElementById('modalImg');
-      const modalClose = document.querySelector('.image-modal-close');
+<script>
+	const productImg = document.querySelector('.zoomable-image');
+	const modal = document.getElementById('imageModal');
+	const modalImg = document.getElementById('modalImg');
+	const modalClose = document.querySelector('.image-modal-close');
 
-      if (productImg && modal && modalImg) {
-        productImg.addEventListener('click', function () {
-          modal.style.display = 'flex';
-          modalImg.src = this.src;
-          modalImg.alt = this.alt || 'Product Image';
-        });
-      }
+	if (productImg && modal && modalImg) {
+		productImg.addEventListener('click', function () {
+			modal.style.display = 'flex';
+			modalImg.src = this.src;
+			modalImg.alt = this.alt || 'Product Image';
+		});
+	}
 
-      if (modalClose) {
-        modalClose.addEventListener('click', function () {
-          modal.style.display = 'none';
-        });
-      }
+	if (modalClose) {
+		modalClose.addEventListener('click', function () {
+			modal.style.display = 'none';
+		});
+	}
 
-      if (modal) {
-        modal.addEventListener('click', function (e) {
-          if (e.target === modal) {
-            modal.style.display = 'none';
-          }
-        });
-      }
-    </script>
-  </body>
-</html>
+	if (modal) {
+		modal.addEventListener('click', function (e) {
+			if (e.target === modal) {
+				modal.style.display = 'none';
+			}
+		});
+	}
+</script>
