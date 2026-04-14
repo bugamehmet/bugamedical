@@ -27,56 +27,56 @@
 	</head>
 
 	<body>
-		<header>
-			<nav id="navbar">
-				<div class="navbar-links">
-					<img src="/assets/images/buga-logo.png" alt="BugaMed Logo" />
+<header>
+  <nav id="navbar">
 
-					<!-- NAVBAR SEARCH -->
-					<div class="search-container">
-						<form id="navSearchForm" action="/search" method="GET" autocomplete="off">
-							<input
-								id="navSearchInput"
-								type="text"
-								placeholder="Enter Part Number or Part Name"
-								name="q"
-								value="<%= (typeof searchQuery !== 'undefined' && searchQuery) ? searchQuery : '' %>"
-							/>
-							<button type="submit" aria-label="Search">
-								<i class="fa fa-search"></i>
-							</button>
-						</form>
-					</div>
+    <!-- Logo -->
+    <a href="/" class="nav-logo">
+      <img src="/assets/images/buga-logo.png" alt="BugaMed Logo" />
+    </a>
+		    <!-- Mobil hamburger -->
+    <a href="javascript:void(0);" class="nav-icon" onclick="navFunction()">
+      <i class="fa fa-bars"></i>
+    </a>
 
-					<a href="/" class="<%= currentPage === 'home' ? 'active' : '' %>">Home</a>
-					<a href="/parts-catalog" class="<%= currentPage === 'parts' ? 'active' : '' %>"
-						>Parts Catalog</a
-					>
-					<a href="/why" class="<%= currentPage === 'why' ? 'active' : '' %>">Why Bugamed</a>
-					<a href="/about" class="<%= currentPage === 'about' ? 'active' : '' %>">About</a>
-					<a href="/contactus" class="<%= currentPage === 'contact' ? 'active' : '' %>"
-						>Contact Us</a
-					>
-					<a href="/photos" class="<%= currentPage === 'photos' ? 'active' : '' %>">Gallery</a>
+    <!-- Linkler -->
+    <div class="nav-links">
+      <a href="/" class="<%= currentPage === 'home' ? 'active' : '' %>">Home</a>
+      <a href="/parts-catalog" class="<%= currentPage === 'parts' ? 'active' : '' %>">Parts Catalog</a>
+      <a href="/why" class="<%= currentPage === 'why' ? 'active' : '' %>">Why Bugamed</a>
+      <a href="/about" class="<%= currentPage === 'about' ? 'active' : '' %>">About</a>
+      <a href="/contactus" class="<%= currentPage === 'contact' ? 'active' : '' %>">Contact Us</a>
+      <a href="/photos" class="<%= currentPage === 'photos' ? 'active' : '' %>">Gallery</a>
+    </div>
 
-					<a href="javascript:void(0);" class="icon" onclick="navFunction()">
-						<i class="fa fa-bars"></i>
-					</a>
-				</div>
-			</nav>
-		</header>
+    <!-- Search -->
+    <div class="nav-search">
+      <form id="navSearchForm" action="/search" method="GET" autocomplete="off">
+        <input
+          id="navSearchInput"
+          type="text"
+          placeholder="Enter Part Number or Part Name"
+          name="q"
+          value="<%= (typeof searchQuery !== 'undefined' && searchQuery) ? searchQuery : '' %>"
+        />
+        <button type="submit" aria-label="Search">
+          <i class="fa fa-search"></i>
+        </button>
+      </form>
+    </div>
 
-		<!-- ✅ Dropdown'u NAV DIŞINA aldık (overflow hidden kesemez) -->
+  </nav>
+</header>
+
+
+
+
 		<div id="navSearchDropdown" class="search-dropdown"></div>
 
 		<script>
 			function navFunction() {
-				var x = document.getElementById('navbar');
-				if (x.className === 'nav') {
-					x.className += ' responsive';
-				} else {
-					x.className = 'nav';
-				}
+				document.querySelector('.nav-links').classList.toggle('open');
+				document.querySelector('.nav-search').classList.toggle('open');
 			}
 
 			(function () {
