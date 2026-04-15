@@ -15,6 +15,10 @@ const port = process.env.PORT || 5001;
 // --- MongoDB'ye bağlan ---
 connectDB();
 
+// en üste, diğer middleware'lerden ÖNCE
+const compression = require('compression');
+app.use(compression());
+
 // --- Middleware'ler ---
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
