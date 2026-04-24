@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SEO Dashboard</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f5f7fb;
+      color: #1f2937;
+    }
+
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 24px;
+    }
+
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 24px;
+      flex-wrap: wrap;
+    }
+
+    .title-wrap h1 {
+      margin: 0 0 6px 0;
+      font-size: 32px;
+    }
+
+    .title-wrap p {
+      margin: 0;
+      color: #6b7280;
+      font-size: 14px;
+    }
+    .btn-primary {
+      display: inline-block;
+      padding: 10px 16px;
+      background: #2563eb;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 10px;
+      font-size: 14px;
+      transition: 0.2s;
+    }
+
+    .btn-primary:hover {
+      background: #1d4ed8;
+    }
+    .logout-btn {
+      display: inline-block;
+      padding: 10px 16px;
+      background: #111827;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 10px;
+      font-size: 14px;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .card {
+      background: #fff;
+      border-radius: 16px;
+      padding: 20px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+    }
+
+    .card .label {
+      font-size: 13px;
+      color: #6b7280;
+      margin-bottom: 8px;
+    }
+
+    .card .value {
+      font-size: 28px;
+      font-weight: 700;
+      color: #111827;
+    }
+
+    .insight-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .chart-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .panel {
+      background: #fff;
+      border-radius: 16px;
+      padding: 20px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+      margin-bottom: 24px;
+    }
+
+    .panel-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+    }
+
+    .panel-head h2,
+    .panel h2 {
+      margin: 0;
+      font-size: 22px;
+    }
+
+    .search-box {
+      min-width: 280px;
+    }
+
+    .search-box input {
+      width: 100%;
+      padding: 11px 14px;
+      border: 1px solid #d1d5db;
+      border-radius: 10px;
+      outline: none;
+      font-size: 14px;
+      background: #fff;
+    }
+
+    .table-wrap {
+      overflow-x: auto;
+      border-radius: 12px;
+      border: 1px solid #e5e7eb;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 900px;
+      background: #fff;
+    }
+
+    thead {
+      background: #f9fafb;
+    }
+
+    th, td {
+      padding: 14px 12px;
+      text-align: left;
+      border-bottom: 1px solid #e5e7eb;
+      vertical-align: top;
+      font-size: 14px;
+    }
+
+    th {
+      font-size: 13px;
+      color: #374151;
+      white-space: nowrap;
+    }
+
+    td.small {
+      white-space: nowrap;
+    }
+
+    td.url-cell {
+      max-width: 420px;
+      word-break: break-word;
+    }
+
+    td.url-cell a {
+      color: #2563eb;
+      text-decoration: none;
+    }
+
+    td.url-cell a:hover {
+      text-decoration: underline;
+    }
+
+    tbody tr:hover {
+      background: #f9fbff;
+    }
+
+    .empty {
+      padding: 24px;
+      text-align: center;
+      color: #6b7280;
+    }
+
+    .error-box {
+      background: #fee2e2;
+      color: #991b1b;
+      padding: 14px 16px;
+      border-radius: 12px;
+      margin-bottom: 16px;
+    }
+
+    .meta-line {
+      margin-bottom: 18px;
+      font-size: 14px;
+      color: #6b7280;
+    }
+
+    .mini-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .mini-item {
+      border: 1px solid #e5e7eb;
+      border-radius: 12px;
+      padding: 14px;
+      background: #fafafa;
+    }
+
+    .mini-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: #111827;
+      margin-bottom: 8px;
+      word-break: break-word;
+    }
+
+    .mini-title a {
+      color: #2563eb;
+      text-decoration: none;
+    }
+
+    .mini-title a:hover {
+      text-decoration: underline;
+    }
+
+    .mini-stats {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      font-size: 13px;
+      color: #4b5563;
+    }
+
+    .filter-bar {
+      margin-bottom: 20px;
+    }
+
+    .filter-bar form {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .filter-bar select {
+      padding: 10px 14px;
+      border-radius: 10px;
+      border: 1px solid #d1d5db;
+      font-size: 14px;
+      background: #fff;
+    }
+
+    .chart-box {
+      height: 360px;
+    }
+
+    @media (max-width: 980px) {
+      .cards {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .insight-grid,
+      .chart-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .cards {
+        grid-template-columns: 1fr;
+      }
+
+      .title-wrap h1 {
+        font-size: 26px;
+      }
+
+      .panel-head {
+        align-items: stretch;
+      }
+
+      .search-box {
+        width: 100%;
+        min-width: unset;
+      }
+    }
+  </style>
+</head>
+<body>
+  <%
+    const rows = Array.isArray(data) ? data : [];
+    const selectedRange = typeof range !== 'undefined' ? range : '7';
+
+    const totalClicks = rows.reduce((sum, row) => sum + (row.clicks || 0), 0);
+    const totalImpressions = rows.reduce((sum, row) => sum + (row.impressions || 0), 0);
+
+    const avgCtr = totalImpressions > 0
+      ? ((totalClicks / totalImpressions) * 100).toFixed(2)
+      : '0.00';
+
+    const avgPosition = rows.length > 0
+      ? (rows.reduce((sum, row) => sum + (row.position || 0), 0) / rows.length).toFixed(2)
+      : '0.00';
+
+    function formatNumber(num) {
+      return Number(num || 0).toLocaleString('tr-TR');
+    }
+
+    const queryMap = {};
+    const pageMap = {};
+    const countryMap = {};
+
+    rows.forEach((row) => {
+      const query = row.keys?.[0] || '(boş)';
+      const page = row.keys?.[1] || '(boş)';
+      const country = row.keys?.[2] || 'unknown';
+      const clicks = row.clicks || 0;
+      const impressions = row.impressions || 0;
+      const position = row.position || 0;
+
+      if (!queryMap[query]) {
+        queryMap[query] = {
+          name: query,
+          clicks: 0,
+          impressions: 0,
+          positionTotal: 0,
+          count: 0
+        };
+      }
+
+      queryMap[query].clicks += clicks;
+      queryMap[query].impressions += impressions;
+      queryMap[query].positionTotal += position;
+      queryMap[query].count += 1;
+
+      if (!pageMap[page]) {
+        pageMap[page] = {
+          page,
+          clicks: 0,
+          impressions: 0,
+          positionTotal: 0,
+          count: 0
+        };
+      }
+
+      pageMap[page].clicks += clicks;
+      pageMap[page].impressions += impressions;
+      pageMap[page].positionTotal += position;
+      pageMap[page].count += 1;
+
+      if (!countryMap[country]) {
+        countryMap[country] = 0;
+      }
+
+      countryMap[country] += impressions;
+    });
+
+    const topQueries = Object.values(queryMap)
+      .map((item) => ({
+        ...item,
+        avgPosition: item.count ? (item.positionTotal / item.count).toFixed(2) : '0.00'
+      }))
+      .sort((a, b) => b.impressions - a.impressions)
+      .slice(0, 5);
+
+    const topPages = Object.values(pageMap)
+      .map((item) => ({
+        ...item,
+        avgPosition: item.count ? (item.positionTotal / item.count).toFixed(2) : '0.00'
+      }))
+      .sort((a, b) => b.impressions - a.impressions)
+      .slice(0, 5);
+
+    const countryChartData = Object.entries(countryMap)
+      .sort((a, b) => b[1] - a[1])
+      .slice(0, 8);
+
+    const countryLabels = countryChartData.map((item) => item[0].toUpperCase());
+    const countryImpressions = countryChartData.map((item) => item[1]);
+
+    const queryChartData = [...topQueries]
+      .sort((a, b) => b.impressions - a.impressions)
+      .slice(0, 8);
+
+    const queryLabels = queryChartData.map((item) => item.name);
+    const queryImpressions = queryChartData.map((item) => item.impressions);
+  %>
+
+  <div class="container">
+    <div class="topbar">
+      <div class="title-wrap">
+        <h1>SEO Dashboard</h1>
+        <p>Google Search Console verileri</p>
+      </div>
+
+      <div style="display:flex; gap:10px;">
+        <a href="/admin/products/new" class="btn-primary">+ Ürün Ekle</a>
+        <a href="/admin/products" class="btn-primary">Ürünler</a>
+        <a href="/auth/logout" class="logout-btn">Çıkış Yap</a>
+      </div>
+    </div>
+
+    <% if (error) { %>
+      <div class="error-box"><%= error %></div>
+    <% } %>
+
+    <div class="meta-line">
+      Toplam <strong><%= rows.length %></strong> kayıt gösteriliyor.
+    </div>
+
+    <div class="filter-bar">
+      <form method="GET" action="/admin/seo">
+        <select name="range" onchange="this.form.submit()">
+          <option value="7" <%= selectedRange === '7' ? 'selected' : '' %>>Son 7 Gün</option>
+          <option value="28" <%= selectedRange === '28' ? 'selected' : '' %>>Son 28 Gün</option>
+          <option value="90" <%= selectedRange === '90' ? 'selected' : '' %>>Son 3 Ay</option>
+        </select>
+      </form>
+    </div>
+
+    <div class="cards">
+      <div class="card">
+        <div class="label">Toplam Tıklama</div>
+        <div class="value"><%= formatNumber(totalClicks) %></div>
+      </div>
+
+      <div class="card">
+        <div class="label">Toplam Gösterim</div>
+        <div class="value"><%= formatNumber(totalImpressions) %></div>
+      </div>
+
+      <div class="card">
+        <div class="label">Ortalama CTR</div>
+        <div class="value">%<%= avgCtr %></div>
+      </div>
+
+      <div class="card">
+        <div class="label">Ortalama Pozisyon</div>
+        <div class="value"><%= avgPosition %></div>
+      </div>
+    </div>
+
+    <div class="insight-grid">
+      <div class="panel">
+        <h2 style="margin-bottom:16px;">En Çok Aranan Sorgular</h2>
+
+        <% if (topQueries.length) { %>
+          <div class="mini-list">
+            <% topQueries.forEach((item, index) => { %>
+              <div class="mini-item">
+                <div class="mini-title"><%= index + 1 %>. <%= item.name %></div>
+                <div class="mini-stats">
+                  <span>Gösterim: <strong><%= formatNumber(item.impressions) %></strong></span>
+                  <span>Tıklama: <strong><%= formatNumber(item.clicks) %></strong></span>
+                  <span>Pozisyon: <strong><%= item.avgPosition %></strong></span>
+                </div>
+              </div>
+            <% }) %>
+          </div>
+        <% } else { %>
+          <div class="empty">Sorgu verisi bulunamadı.</div>
+        <% } %>
+      </div>
+
+      <div class="panel">
+        <h2 style="margin-bottom:16px;">En Çok Gösterim Alan Sayfalar</h2>
+
+        <% if (topPages.length) { %>
+          <div class="mini-list">
+            <% topPages.forEach((item, index) => { %>
+              <div class="mini-item">
+                <div class="mini-title">
+                  <%= index + 1 %>.
+                  <% if (item.page && item.page !== '(boş)') { %>
+                    <a href="<%= item.page %>" target="_blank"><%= item.page %></a>
+                  <% } else { %>
+                    <%= item.page %>
+                  <% } %>
+                </div>
+                <div class="mini-stats">
+                  <span>Gösterim: <strong><%= formatNumber(item.impressions) %></strong></span>
+                  <span>Tıklama: <strong><%= formatNumber(item.clicks) %></strong></span>
+                  <span>Pozisyon: <strong><%= item.avgPosition %></strong></span>
+                </div>
+              </div>
+            <% }) %>
+          </div>
+        <% } else { %>
+          <div class="empty">Sayfa verisi bulunamadı.</div>
+        <% } %>
+      </div>
+    </div>
+
+    <div class="chart-grid">
+      <div class="panel">
+        <div class="panel-head">
+          <h2>Ülkelere Göre Gösterim</h2>
+        </div>
+
+        <% if (countryLabels.length) { %>
+          <div class="chart-box">
+            <canvas id="countryChart"></canvas>
+          </div>
+        <% } else { %>
+          <div class="empty">Grafik için yeterli veri bulunamadı.</div>
+        <% } %>
+      </div>
+
+      <div class="panel">
+        <div class="panel-head">
+          <h2>En Çok Gösterim Alan Sorgular</h2>
+        </div>
+
+        <% if (queryLabels.length) { %>
+          <div class="chart-box">
+            <canvas id="queryChart"></canvas>
+          </div>
+        <% } else { %>
+          <div class="empty">Grafik için yeterli sorgu verisi bulunamadı.</div>
+        <% } %>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="panel-head">
+        <h2>Arama Verileri</h2>
+
+        <div class="search-box">
+          <input
+            type="text"
+            id="tableSearch"
+            placeholder="Query, page veya country ile filtrele..."
+          />
+        </div>
+      </div>
+
+      <div class="table-wrap">
+        <% if (rows.length) { %>
+          <table id="seoTable">
+            <thead>
+              <tr>
+                <th>Query</th>
+                <th>Page</th>
+                <th>Country</th>
+                <th>Clicks</th>
+                <th>Impressions</th>
+                <th>CTR</th>
+                <th>Position</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% rows.forEach((row) => { %>
+                <tr>
+                  <td><%= row.keys?.[0] || '' %></td>
+                  <td class="url-cell">
+                    <% if (row.keys?.[1]) { %>
+                      <a href="<%= row.keys[1] %>" target="_blank"><%= row.keys[1] %></a>
+                    <% } %>
+                  </td>
+                  <td class="small"><%= row.keys?.[2] || '' %></td>
+                  <td class="small"><%= row.clicks || 0 %></td>
+                  <td class="small"><%= row.impressions || 0 %></td>
+                  <td class="small">%<%= ((row.ctr || 0) * 100).toFixed(2) %></td>
+                  <td class="small"><%= Number(row.position || 0).toFixed(2) %></td>
+                </tr>
+              <% }) %>
+            </tbody>
+          </table>
+        <% } else { %>
+          <div class="empty">Veri bulunamadı.</div>
+        <% } %>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <script>
+    const searchInput = document.getElementById('tableSearch');
+    const table = document.getElementById('seoTable');
+
+    if (searchInput && table) {
+      searchInput.addEventListener('input', function () {
+        const value = this.value.toLowerCase().trim();
+        const tableRows = table.querySelectorAll('tbody tr');
+
+        tableRows.forEach((row) => {
+          const text = row.innerText.toLowerCase();
+          row.style.display = text.includes(value) ? '' : 'none';
+        });
+      });
+    }
+
+    const chartData = {
+      countryLabels: <%- JSON.stringify(countryLabels || []) %>,
+      countryImpressions: <%- JSON.stringify(countryImpressions || []) %>,
+      queryLabels: <%- JSON.stringify(queryLabels || []) %>,
+      queryImpressions: <%- JSON.stringify(queryImpressions || []) %>
+    };
+
+    const countryCanvas = document.getElementById('countryChart');
+    if (countryCanvas && chartData.countryLabels.length) {
+      new Chart(countryCanvas, {
+        type: 'bar',
+        data: {
+          labels: chartData.countryLabels,
+          datasets: [{
+            label: 'Impressions',
+            data: chartData.countryImpressions,
+            borderWidth: 1
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: {
+              display: true
+            }
+          },
+          scales: {
+            y: {
+              beginAtZero: true,
+              ticks: {
+                precision: 0
+              }
+            }
+          }
+        }
+      });
+    }
+
+    const queryCanvas = document.getElementById('queryChart');
+    if (queryCanvas && chartData.queryLabels.length) {
+      new Chart(queryCanvas, {
+        type: 'bar',
+        data: {
+          labels: chartData.queryLabels,
+          datasets: [{
+            label: 'Query Impressions',
+            data: chartData.queryImpressions,
+            borderWidth: 1
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          indexAxis: 'y',
+          plugins: {
+            legend: {
+              display: true
+            }
+          },
+          scales: {
+            x: {
+              beginAtZero: true,
+              ticks: {
+                precision: 0
+              }
+            }
+          }
+        }
+      });
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ürünler</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f5f7fb;
+      color: #111827;
+    }
+
+    .container {
+      max-width: 1180px;
+      margin: 40px auto;
+      padding: 24px;
+    }
+
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 22px;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 32px;
+    }
+
+    .actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 14px;
+      border-radius: 10px;
+      text-decoration: none;
+      font-size: 14px;
+      color: #fff;
+      border: 0;
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      background: #2563eb;
+    }
+
+    .btn-primary:hover {
+      background: #1d4ed8;
+    }
+
+    .btn-dark {
+      background: #111827;
+    }
+
+    .btn-dark:hover {
+      background: #030712;
+    }
+
+    .list-tools {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+    }
+
+    .search-input {
+      width: 100%;
+      max-width: 360px;
+      padding: 11px 14px;
+      border: 1px solid #d1d5db;
+      border-radius: 12px;
+      font-size: 14px;
+      outline: none;
+      background: #fff;
+    }
+
+    .search-input:focus {
+      border-color: #2563eb;
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.08);
+    }
+
+    .total-text {
+      font-size: 13px;
+      color: #6b7280;
+    }
+
+    .table-card {
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 10px 28px rgba(0, 0, 0, 0.06);
+      overflow: hidden;
+    }
+
+    .table-wrap {
+      overflow-x: auto;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 900px;
+    }
+
+    th, td {
+      padding: 14px 12px;
+      border-bottom: 1px solid #e5e7eb;
+      font-size: 14px;
+      vertical-align: middle;
+      text-align: left;
+    }
+
+    th {
+      background: #f9fafb;
+      color: #374151;
+      font-size: 13px;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    tbody tr:hover {
+      background: #f9fbff;
+    }
+
+    .product-img {
+      width: 62px;
+      height: 62px;
+      object-fit: cover;
+      border-radius: 10px;
+      border: 1px solid #e5e7eb;
+      background: #f3f4f6;
+      display: block;
+      cursor: zoom-in;
+      transition: opacity 0.2s ease;
+    }
+
+    .product-img:hover {
+      opacity: 0.86;
+    }
+
+    .no-img {
+      width: 62px;
+      height: 62px;
+      border-radius: 10px;
+      border: 1px dashed #d1d5db;
+      background: #f9fafb;
+      color: #9ca3af;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+    }
+
+    .sku {
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    .sku-wrap {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .copy-btn {
+      padding: 5px 8px;
+      border: 1px solid #e5e7eb;
+      border-radius: 7px;
+      background: #fff;
+      color: #374151;
+      font-size: 12px;
+      cursor: pointer;
+      font-family: inherit;
+    }
+
+    .copy-btn:hover {
+      background: #f3f4f6;
+    }
+
+    .name-cell {
+      max-width: 360px;
+      line-height: 1.4;
+    }
+
+    .oem-cell {
+      max-width: 220px;
+      line-height: 1.4;
+    }
+
+    .date-cell {
+      white-space: nowrap;
+      color: #4b5563;
+    }
+
+    .action-links {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .action-links form {
+      margin: 0;
+    }
+
+    .action-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 72px;
+      padding: 8px 11px;
+      border-radius: 9px;
+      font-size: 13px;
+      font-weight: 600;
+      text-decoration: none;
+      border: 0;
+      cursor: pointer;
+      line-height: 1;
+      font-family: inherit;
+    }
+
+    .action-view {
+      background: #ecfdf5;
+      color: #047857;
+    }
+
+    .action-view:hover {
+      background: #d1fae5;
+    }
+
+    .action-edit {
+      background: #eff6ff;
+      color: #1d4ed8;
+    }
+
+    .action-edit:hover {
+      background: #dbeafe;
+    }
+
+    .action-delete {
+      background: #fee2e2;
+      color: #b91c1c;
+    }
+
+    .action-delete:hover {
+      background: #fecaca;
+    }
+
+    .empty-row {
+      text-align: center;
+      color: #6b7280;
+      padding: 26px;
+    }
+
+    .pagination {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 22px;
+      flex-wrap: wrap;
+    }
+
+    .page-btn {
+      min-width: 38px;
+      padding: 9px 12px;
+      border-radius: 9px;
+      background: #fff;
+      color: #111827;
+      text-decoration: none;
+      border: 1px solid #e5e7eb;
+      font-size: 14px;
+      text-align: center;
+    }
+
+    .page-btn:hover {
+      background: #f3f4f6;
+    }
+
+    .page-btn.active {
+      background: #111827;
+      color: #fff;
+      border-color: #111827;
+    }
+
+    .image-modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.78);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 999;
+      padding: 24px;
+    }
+
+    .image-modal.open {
+      display: flex;
+    }
+
+    .image-modal-content {
+      position: relative;
+      max-width: 92vw;
+      max-height: 92vh;
+    }
+
+    .image-modal img {
+      max-width: 92vw;
+      max-height: 88vh;
+      border-radius: 14px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.45);
+      background: #fff;
+      display: block;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: -14px;
+      right: -14px;
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      border: 0;
+      background: #fff;
+      color: #111827;
+      cursor: pointer;
+      font-size: 20px;
+      line-height: 1;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        margin: 20px auto;
+        padding: 16px;
+      }
+
+      h1 {
+        font-size: 28px;
+      }
+
+      .actions {
+        width: 100%;
+      }
+
+      .btn {
+        flex: 1;
+      }
+
+      .search-input {
+        max-width: 100%;
+      }
+
+      .list-tools {
+        align-items: stretch;
+      }
+
+      .total-text {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="topbar">
+      <h1>Ürünler</h1>
+
+      <div class="actions">
+        <a href="/admin/products/new" class="btn btn-primary">+ Yeni Ürün</a>
+        <a href="/admin/seo" class="btn btn-dark">SEO Panel</a>
+        <a href="/auth/logout" class="btn btn-dark">Çıkış</a>
+      </div>
+    </div>
+
+    <div class="list-tools">
+      <input
+        type="text"
+        id="productSearch"
+        class="search-input"
+        placeholder="SKU, ürün adı, OEM veya MPN ara..."
+      />
+
+      <div class="total-text">
+        Toplam <strong><%= totalProducts || products.length %></strong> ürün
+      </div>
+    </div>
+
+    <div class="table-card">
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Resim</th>
+              <th>SKU</th>
+              <th>Name</th>
+              <th>OEM</th>
+              <th>Tarih</th>
+              <th>İşlem</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <% if (!products || products.length === 0) { %>
+              <tr>
+                <td colspan="6" class="empty-row">Ürün bulunamadı.</td>
+              </tr>
+            <% } %>
+
+            <% products.forEach(p => { %>
+              <tr>
+                <td>
+                  <% if (p.imageUrl) { %>
+                    <img
+                      class="product-img preview-image"
+                      src="<%= p.imageUrl %>"
+                      data-src="<%= p.imageUrl %>"
+                      alt="<%= p.name || p.sku || 'Product' %>"
+                    />
+                  <% } else { %>
+                    <div class="no-img">No Image</div>
+                  <% } %>
+                </td>
+
+                <td class="sku">
+                  <div class="sku-wrap">
+                    <span><%= p.sku || '-' %></span>
+
+                    <% if (p.sku) { %>
+                      <button type="button" class="copy-btn" data-copy="<%= p.sku %>">
+                        Kopyala
+                      </button>
+                    <% } %>
+                  </div>
+                </td>
+
+                <td class="name-cell"><%= p.name || '-' %></td>
+                <td class="oem-cell"><%= p.oem || '-' %></td>
+
+                <td class="date-cell">
+                  <% if (p.createdAt && !isNaN(new Date(p.createdAt).getTime())) { %>
+                    <%= new Date(p.createdAt).toLocaleDateString('tr-TR') %>
+                  <% } else { %>
+                    -
+                  <% } %>
+                </td>
+
+                <td>
+                  <div class="action-links">
+                    <a
+                      href="<%= p.canonicalUrl || `/part/${p.sku}/${p.slug || ''}` %>"
+                      target="_blank"
+                      class="action-btn action-view"
+                    >
+                      Site’de Gör
+                    </a>
+
+                    <a href="/admin/products/<%= p._id %>/edit" class="action-btn action-edit">
+                      Düzenle
+                    </a>
+
+                    <form action="/admin/products/<%= p._id %>/delete" method="POST">
+                      <button
+                        type="submit"
+                        class="action-btn action-delete"
+                        onclick="return confirm('Bu ürünü silmek istediğine emin misin?')"
+                      >
+                        Sil
+                      </button>
+                    </form>
+                  </div>
+                </td>
+              </tr>
+            <% }) %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <% if (totalPages && totalPages > 1) { %>
+      <div class="pagination">
+        <% if (currentPage > 1) { %>
+          <a href="/admin/products?page=<%= currentPage - 1 %>" class="page-btn">
+            Önceki
+          </a>
+        <% } %>
+
+        <% for (let i = 1; i <= totalPages; i++) { %>
+          <a
+            href="/admin/products?page=<%= i %>"
+            class="page-btn <%= currentPage === i ? 'active' : '' %>"
+          >
+            <%= i %>
+          </a>
+        <% } %>
+
+        <% if (currentPage < totalPages) { %>
+          <a href="/admin/products?page=<%= currentPage + 1 %>" class="page-btn">
+            Sonraki
+          </a>
+        <% } %>
+      </div>
+    <% } %>
+  </div>
+
+  <div id="imageModal" class="image-modal">
+    <div class="image-modal-content">
+      <button type="button" class="modal-close" id="modalClose">×</button>
+      <img id="modalImage" src="" alt="Product preview" />
+    </div>
+  </div>
+
+  <script>
+    const productSearch = document.getElementById('productSearch');
+    const productRows = document.querySelectorAll('tbody tr');
+
+    if (productSearch) {
+      productSearch.addEventListener('input', function () {
+        const value = this.value.toLowerCase().trim();
+
+        productRows.forEach((row) => {
+          const text = row.innerText.toLowerCase();
+          row.style.display = text.includes(value) ? '' : 'none';
+        });
+      });
+    }
+
+    document.querySelectorAll('.copy-btn').forEach((btn) => {
+      btn.addEventListener('click', async () => {
+        const value = btn.getAttribute('data-copy');
+
+        try {
+          await navigator.clipboard.writeText(value);
+          const oldText = btn.innerText;
+          btn.innerText = 'Kopyalandı';
+          setTimeout(() => {
+            btn.innerText = oldText;
+          }, 1200);
+        } catch (err) {
+          alert('Kopyalanamadı');
+        }
+      });
+    });
+
+    const imageModal = document.getElementById('imageModal');
+    const modalImage = document.getElementById('modalImage');
+    const modalClose = document.getElementById('modalClose');
+
+    function closeImageModal() {
+      imageModal.classList.remove('open');
+      modalImage.src = '';
+    }
+
+    document.querySelectorAll('.preview-image').forEach((img) => {
+      img.addEventListener('click', () => {
+        imageModal.classList.add('open');
+        modalImage.src = img.getAttribute('data-src');
+      });
+    });
+
+    imageModal.addEventListener('click', (event) => {
+      if (event.target === imageModal) {
+        closeImageModal();
+      }
+    });
+
+    modalClose.addEventListener('click', closeImageModal);
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && imageModal.classList.contains('open')) {
+        closeImageModal();
+      }
+    });
+  </script>
+</body>
+</html>

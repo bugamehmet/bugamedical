@@ -17,9 +17,9 @@ async function run() {
 
 		return {
 			imagePath: `/assets/images/galeri/rf${index}.${ext}`,
-			altText: `RF Image ${index} Açıklaması`,
-			caption: 'RF',
-			category: 'RF',
+			altText: ` Siemens, Philips, GE | MRI, CT, X-Ray Parts and Services.`,
+			caption: 'Siemens, Philips, GE | MRI, CT, X-Ray Parts and Services.',
+			category: 'Siemens, Philips, GE | MRI, CT, X-Ray Parts and Services.',
 			order: index,
 		};
 	});

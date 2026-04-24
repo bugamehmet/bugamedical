@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ürün Düzenle</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f5f7fb;
+      color: #111827;
+    }
+
+    .container {
+      max-width: 980px;
+      margin: 40px auto;
+      padding: 24px;
+    }
+
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 24px;
+      flex-wrap: wrap;
+    }
+
+    .topbar h1 {
+      margin: 0;
+      font-size: 30px;
+    }
+
+    .topbar p {
+      margin: 6px 0 0 0;
+      color: #6b7280;
+      font-size: 14px;
+    }
+
+    .topbar-actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .btn-link {
+      display: inline-block;
+      padding: 10px 14px;
+      border-radius: 10px;
+      text-decoration: none;
+      background: #111827;
+      color: #fff;
+      font-size: 14px;
+    }
+
+    .btn-blue {
+      background: #2563eb;
+    }
+
+    .card {
+      background: #fff;
+      border-radius: 18px;
+      padding: 24px;
+      box-shadow: 0 10px 28px rgba(0, 0, 0, 0.06);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .field.full {
+      grid-column: 1 / -1;
+    }
+
+    label {
+      font-size: 14px;
+      font-weight: 600;
+      color: #374151;
+    }
+
+    input[type="text"],
+    textarea {
+      width: 100%;
+      padding: 12px 14px;
+      border: 1px solid #d1d5db;
+      border-radius: 12px;
+      font-size: 14px;
+      outline: none;
+      background: #fff;
+    }
+
+    input[type="text"]:focus,
+    textarea:focus {
+      border-color: #2563eb;
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.08);
+    }
+
+    textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+
+    .checkbox-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding-top: 8px;
+    }
+
+    .message {
+      margin-bottom: 18px;
+      padding: 12px 14px;
+      border-radius: 12px;
+      font-size: 14px;
+    }
+
+    .message.error {
+      background: #fee2e2;
+      color: #991b1b;
+    }
+
+    .message.success {
+      background: #dcfce7;
+      color: #166534;
+    }
+
+    .hint {
+      font-size: 12px;
+      color: #6b7280;
+      line-height: 1.5;
+    }
+
+    .preview {
+      margin-bottom: 18px;
+      display: flex;
+      gap: 14px;
+      align-items: center;
+      padding: 14px;
+      background: #f9fafb;
+      border: 1px solid #e5e7eb;
+      border-radius: 14px;
+    }
+
+    .preview img {
+      width: 76px;
+      height: 76px;
+      object-fit: cover;
+      border-radius: 12px;
+      border: 1px solid #e5e7eb;
+      background: #fff;
+    }
+
+    .preview-title {
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .preview-url {
+      font-size: 12px;
+      color: #6b7280;
+      word-break: break-all;
+    }
+
+    .submit-wrap {
+      margin-top: 22px;
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    button {
+      padding: 12px 18px;
+      border: 0;
+      border-radius: 12px;
+      background: #111827;
+      color: #fff;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    .cancel-btn {
+      display: inline-flex;
+      align-items: center;
+      padding: 12px 18px;
+      border-radius: 12px;
+      background: #e5e7eb;
+      color: #111827;
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    .note-box {
+      margin-bottom: 18px;
+      padding: 14px;
+      border-radius: 12px;
+      background: #eff6ff;
+      color: #1d4ed8;
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    @media (max-width: 768px) {
+      .grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="topbar">
+      <div>
+        <h1>Ürün Düzenle</h1>
+        <p>Admin: <%= email || '' %></p>
+      </div>
+
+      <div class="topbar-actions">
+        <a href="/admin/products" class="btn-link btn-blue">Ürünler</a>
+        <a href="/admin/seo" class="btn-link">SEO Panel</a>
+        <a href="/auth/logout" class="btn-link">Çıkış Yap</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="note-box">
+        Görsel için sadece dosya adı yazabilirsin. Örnek: <strong>balbal.jpeg</strong>.
+        Sistem bunu <strong>/assets/images/product/balbal.jpeg</strong> şeklinde kaydeder.
+      </div>
+
+      <% if (product.imageUrl) { %>
+        <div class="preview">
+          <img src="<%= product.imageUrl %>" alt="<%= product.name || product.sku || 'Product' %>" />
+          <div>
+            <div class="preview-title"><%= product.name || '-' %></div>
+            <div class="preview-url"><%= product.imageUrl %></div>
+          </div>
+        </div>
+      <% } %>
+
+      <% if (error) { %>
+        <div class="message error"><%= error %></div>
+      <% } %>
+
+      <% if (success) { %>
+        <div class="message success"><%= success %></div>
+      <% } %>
+
+      <form method="POST" action="/admin/products/<%= product._id %>/update">
+        <div class="grid">
+          <div class="field">
+            <label>SKU *</label>
+            <input type="text" name="sku" value="<%= product.sku || '' %>" required />
+          </div>
+
+          <div class="field">
+            <label>MPN</label>
+            <input type="text" name="mpn" value="<%= product.mpn || '' %>" />
+          </div>
+
+          <div class="field">
+            <label>OEM</label>
+            <input type="text" name="oem" value="<%= product.oem || '' %>" />
+          </div>
+
+          <div class="field">
+            <label>Name *</label>
+            <input type="text" name="name" value="<%= product.name || '' %>" required />
+          </div>
+
+          <div class="field full">
+            <label>Title</label>
+            <input type="text" name="title" value="<%= product.title || '' %>" />
+            <div class="hint">Boş bırakırsan sistem otomatik üretir.</div>
+          </div>
+
+          <div class="field full">
+            <label>Subtitle</label>
+            <input type="text" name="subtitle" value="<%= product.subtitle || '' %>" />
+          </div>
+
+          <div class="field">
+            <label>System</label>
+            <input type="text" name="system" value="<%= product.system || '' %>" />
+          </div>
+
+          <div class="field">
+            <label>Condition</label>
+            <input type="text" name="condition" value="<%= product.condition || '' %>" />
+          </div>
+
+          <div class="field">
+            <label>Warranty</label>
+            <input type="text" name="warranty" value="<%= product.warranty || '' %>" />
+          </div>
+
+          <div class="field">
+            <label>Condition Tag</label>
+            <input type="text" name="conditionTag" value="<%= product.conditionTag || '' %>" />
+          </div>
+
+          <div class="field full">
+            <label>Image URL / Dosya Adı</label>
+            <input
+              type="text"
+              name="imageUrl"
+              value="<%= product.imageUrl || '' %>"
+              placeholder="Örn: balbal.jpeg veya /assets/images/product/balbal.jpeg"
+            />
+          </div>
+
+          <div class="field">
+            <label>Serial Number</label>
+            <input type="text" name="serialNumber" value="<%= product.serialNumber || '' %>" />
+          </div>
+
+          <div class="field">
+            <label>Test Durumu</label>
+            <div class="checkbox-row">
+              <input
+                type="checkbox"
+                name="isTested"
+                <%= product.isTested ? 'checked' : '' %>
+              />
+              <span>Tested</span>
+            </div>
+          </div>
+
+          <div class="field full">
+            <label>Short Description</label>
+            <textarea name="descriptionShort"><%= product.descriptionShort || '' %></textarea>
+          </div>
+
+          <div class="field full">
+            <label>Description Text</label>
+            <textarea name="descriptionText"><%= product.descriptionText || '' %></textarea>
+          </div>
+        </div>
+
+        <div class="submit-wrap">
+          <a href="/admin/products" class="cancel-btn">Vazgeç</a>
+          <button type="submit">Güncelle</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</body>
+</html>

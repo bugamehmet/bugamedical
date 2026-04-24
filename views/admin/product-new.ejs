@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Yeni Ürün Ekle</title>
+
+<style>
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f5f7fb;
+    color: #111827;
+  }
+
+  .container {
+    max-width: 980px;
+    margin: 40px auto;
+    padding: 24px;
+  }
+
+  .topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+  }
+
+  .topbar h1 {
+    margin: 0;
+    font-size: 30px;
+  }
+
+  .topbar p {
+    margin: 6px 0 0 0;
+    color: #6b7280;
+    font-size: 14px;
+  }
+
+  .topbar-actions {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  .btn-link {
+    display: inline-block;
+    padding: 10px 14px;
+    border-radius: 10px;
+    text-decoration: none;
+    background: #111827;
+    color: #fff;
+    font-size: 14px;
+  }
+
+  .card {
+    background: #fff;
+    border-radius: 18px;
+    padding: 24px;
+    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.06);
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  .field {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .field.full {
+    grid-column: 1 / -1;
+  }
+
+  .label-row {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+
+  label {
+    font-size: 14px;
+    font-weight: 600;
+    color: #374151;
+  }
+
+  .info-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 17px;
+    height: 17px;
+    border-radius: 50%;
+    background: #e5e7eb;
+    color: #374151;
+    font-size: 11px;
+    cursor: pointer;
+    position: relative;
+    user-select: none;
+  }
+
+  .info-icon::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: 135%;
+    left: 50%;
+    transform: translateX(-50%) translateY(5px);
+    background: #111827;
+    color: #fff;
+    padding: 8px 10px;
+    border-radius: 8px;
+    font-size: 12px;
+    line-height: 1.5;
+    width: 220px;
+    max-width: 220px;
+    text-align: left;
+    white-space: normal;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.2s ease;
+    z-index: 100;
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.18);
+  }
+
+  .info-icon::before {
+    content: "";
+    position: absolute;
+    bottom: 120%;
+    left: 50%;
+    transform: translateX(-50%) translateY(5px);
+    border: 6px solid transparent;
+    border-top-color: #111827;
+    opacity: 0;
+    transition: all 0.2s ease;
+    z-index: 101;
+  }
+
+  .info-icon:hover::after,
+  .info-icon:hover::before {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+
+  input[type="text"],
+  textarea {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid #d1d5db;
+    border-radius: 12px;
+    font-size: 14px;
+    outline: none;
+    background: #fff;
+  }
+
+  input[type="text"]:focus,
+  textarea:focus {
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.08);
+  }
+
+  textarea {
+    min-height: 120px;
+    resize: vertical;
+  }
+
+  .checkbox-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding-top: 8px;
+  }
+
+  .message {
+    margin-bottom: 18px;
+    padding: 12px 14px;
+    border-radius: 12px;
+    font-size: 14px;
+  }
+
+  .message.error {
+    background: #fee2e2;
+    color: #991b1b;
+  }
+
+  .message.success {
+    background: #dcfce7;
+    color: #166534;
+  }
+
+  .hint {
+    font-size: 12px;
+    color: #6b7280;
+    line-height: 1.5;
+  }
+
+  .submit-wrap {
+    margin-top: 22px;
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  button {
+    padding: 12px 18px;
+    border: 0;
+    border-radius: 12px;
+    background: #111827;
+    color: #fff;
+    cursor: pointer;
+    font-size: 14px;
+  }
+
+  .note-box {
+    margin-bottom: 18px;
+    padding: 14px;
+    border-radius: 12px;
+    background: #eff6ff;
+    color: #1d4ed8;
+    font-size: 13px;
+    line-height: 1.6;
+  }
+
+  @media (max-width: 768px) {
+    .grid {
+      grid-template-columns: 1fr;
+    }
+
+    .info-icon::after {
+      width: 180px;
+      max-width: 180px;
+      font-size: 11px;
+    }
+  }
+</style>
+
+</head>
+<body>
+  <div class="container">
+    <div class="topbar">
+      <div>
+        <h1>Yeni Ürün Ekle</h1>
+        <p>Admin: <%= email || '' %></p>
+      </div>
+
+      <div class="topbar-actions">
+        <a href="/admin/seo" class="btn-link">SEO Panel</a>
+        <a href="/auth/logout" class="btn-link">Çıkış Yap</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="note-box">
+        Ürün görsellerini repo içinde <strong>assets/images/product/</strong> klasöründe tut.
+        Bu alana sadece dosya adı da yazabilirsin. Örnek: <strong>balbal.jpeg</strong><br />
+        Sistem bunu otomatik olarak <strong>/assets/images/product/balbal.jpeg</strong> şeklinde kaydeder.
+      </div>
+
+      <% if (error) { %>
+        <div class="message error"><%= error %></div>
+      <% } %>
+
+      <% if (success) { %>
+        <div class="message success"><%= success %></div>
+      <% } %>
+
+      <form method="POST" action="/admin/products">
+        <div class="grid">
+          <div class="field">
+            <div class="label-row">
+              <label>SKU *</label>
+              <span class="info-icon" data-tooltip="Benzersiz ürün kodu. Örnek: 0790H1011D">?</span>
+            </div>
+            <input
+              type="text"
+              name="sku"
+              value="<%= formData.sku || '' %>"
+              placeholder="Örn: 0790H1011D"
+              required
+            />
+            <div class="hint">Her ürün için tekil olmalıdır.</div>
+          </div>
+
+          <div class="field">
+            <div class="label-row">
+              <label>MPN</label>
+              <span class="info-icon" data-tooltip="Manufacturer Part Number. Üreticinin verdiği parça numarası.">?</span>
+            </div>
+            <input
+              type="text"
+              name="mpn"
+              value="<%= formData.mpn || '' %>"
+              placeholder="Örn: 45221330437"
+            />
+            <div class="hint">Üretici parça koduysa buraya gir.</div>
+          </div>
+
+          <div class="field">
+            <div class="label-row">
+              <label>OEM</label>
+              <span class="info-icon" data-tooltip="Ürünü üreten marka. Örnek: Philips, GE, Siemens, Fuji">?</span>
+            </div>
+            <input
+              type="text"
+              name="oem"
+              value="<%= formData.oem || '' %>"
+              placeholder="Örn: Philips"
+            />
+          </div>
+
+          <div class="field">
+            <div class="label-row">
+              <label>Name *</label>
+              <span class="info-icon" data-tooltip="Ürünün kısa ve ana adı. Slug oluşturmak için de kullanılır.">?</span>
+            </div>
+            <input
+              type="text"
+              name="name"
+              value="<%= formData.name || '' %>"
+              placeholder="Örn: Fuji MECH Control Board"
+              required
+            />
+            <div class="hint">Ürün sayfasında görünen temel isim.</div>
+          </div>
+
+          <div class="field full">
+            <div class="label-row">
+              <label>Title</label>
+              <span class="info-icon" data-tooltip="SEO başlığı. Boş bırakırsan sistem otomatik üretir.">?</span>
+            </div>
+            <input
+              type="text"
+              name="title"
+              value="<%= formData.title || '' %>"
+              placeholder="Örn: BugaMed - Fuji MECH Control Board 0790H1011D"
+            />
+            <div class="hint">Boş bırakırsan sistem otomatik üretir.</div>
+          </div>
+
+          <div class="field full">
+            <div class="label-row">
+              <label>Subtitle</label>
+              <span class="info-icon" data-tooltip="Ürünün model veya sistem açıklaması.">?</span>
+            </div>
+            <input
+              type="text"
+              name="subtitle"
+              value="<%= formData.subtitle || '' %>"
+              placeholder="Örn: System Model: Fuji MRI Scanner Part"
+            />
+          </div>
+
+          <div class="field">
+            <div class="label-row">
+              <label>System</label>
+              <span class="info-icon" data-tooltip="Bağlı olduğu cihaz/sistem ailesi. Örnek: MRI, CT, Fuji">?</span>
+            </div>
+            <input
+              type="text"
+              name="system"
+              value="<%= formData.system || '' %>"
+              placeholder="Örn: Fuji"
+            />
+          </div>
+
+          <div class="field">
+            <div class="label-row">
+              <label>Condition</label>
+              <span class="info-icon" data-tooltip="Ürünün durumu. Örnek: Used – Tested, Refurbished, New">?</span>
+            </div>
+            <input
+              type="text"
+              name="condition"
+              value="<%= formData.condition || '' %>"
+              placeholder="Örn: Used – Tested"
+            />
+          </div>
+
+          <div class="field">
+            <div class="label-row">
+              <label>Warranty</label>
+              <span class="info-icon" data-tooltip="Garanti bilgisi. Örnek: 30 Days">?</span>
+            </div>
+            <input
+              type="text"
+              name="warranty"
+              value="<%= formData.warranty || '' %>"
+              placeholder="Örn: 30 Days"
+            />
+          </div>
+
+          <div class="field">
+            <div class="label-row">
+              <label>Condition Tag</label>
+              <span class="info-icon" data-tooltip="Durum etiketi. Örnek: good, used, tested">?</span>
+            </div>
+            <input
+              type="text"
+              name="conditionTag"
+              value="<%= formData.conditionTag || '' %>"
+              placeholder="Örn: good"
+            />
+          </div>
+
+          <div class="field full">
+            <div class="label-row">
+              <label>Image URL / Dosya Adı</label>
+              <span class="info-icon" data-tooltip="Sadece dosya adı yazarsan sistem otomatik /assets/images/product/ ekler.">?</span>
+            </div>
+            <input
+              type="text"
+              name="imageUrl"
+              value="<%= formData.imageUrl || '' %>"
+              placeholder="Örn: balbal.jpeg veya /assets/images/product/balbal.jpeg"
+            />
+            <div class="hint">
+              Sadece dosya adı yazarsan sistem otomatik olarak <strong>/assets/images/product/</strong> ekler.
+            </div>
+          </div>
+
+          <div class="field">
+            <div class="label-row">
+              <label>Serial Number</label>
+              <span class="info-icon" data-tooltip="Varsa ürünün seri numarası.">?</span>
+            </div>
+            <input
+              type="text"
+              name="serialNumber"
+              value="<%= formData.serialNumber || '' %>"
+              placeholder="Örn: SN-001245"
+            />
+          </div>
+
+          <div class="field">
+            <div class="label-row">
+              <label>Test Durumu</label>
+              <span class="info-icon" data-tooltip="Ürün test edildiyse işaretle.">?</span>
+            </div>
+            <div class="checkbox-row">
+              <input
+                type="checkbox"
+                name="isTested"
+                <%= formData.isTested ? 'checked' : '' %>
+              />
+              <span>Tested</span>
+            </div>
+          </div>
+
+          <div class="field full">
+            <div class="label-row">
+              <label>Short Description</label>
+              <span class="info-icon" data-tooltip="Kısa açıklama. Kartlarda veya kısa ürün özetinde kullanılabilir.">?</span>
+            </div>
+            <textarea
+              name="descriptionShort"
+              placeholder="Örn: Fuji MECH Control Board 0790H1011D. Tested and working spare part for Fuji."
+            ><%= formData.descriptionShort || '' %></textarea>
+          </div>
+
+          <div class="field full">
+            <div class="label-row">
+              <label>Description Text</label>
+              <span class="info-icon" data-tooltip="Detaylı ürün açıklaması. Ürün detay sayfasında kullanılır.">?</span>
+            </div>
+            <textarea
+              name="descriptionText"
+              placeholder="Örn: All parts are visually inspected, cleaned, and tested under load before shipping."
+            ><%= formData.descriptionText || '' %></textarea>
+          </div>
+        </div>
+
+        <div class="submit-wrap">
+          <button type="submit">Ürünü Kaydet</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</body>
+</html>

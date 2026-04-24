@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BugaMed Admin Giriş</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    :root {
+      --bg-dark: #0f172a;
+      --bg-mid: #1e293b;
+      --card-bg: rgba(255, 255, 255, 0.92);
+      --text-main: #111827;
+      --text-soft: #6b7280;
+      --border: #e5e7eb;
+      --danger-bg: #fee2e2;
+      --danger-text: #991b1b;
+      --shadow: 0 25px 60px rgba(0, 0, 0, 0.30);
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: Arial, sans-serif;
+      color: var(--text-main);
+      background:
+        radial-gradient(circle at top left, rgba(59, 130, 246, 0.22), transparent 28%),
+        radial-gradient(circle at bottom right, rgba(16, 185, 129, 0.16), transparent 26%),
+        linear-gradient(135deg, var(--bg-dark), var(--bg-mid));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      overflow: hidden;
+    }
+
+    .bg-shape {
+      position: fixed;
+      border-radius: 999px;
+      filter: blur(40px);
+      opacity: 0.35;
+      pointer-events: none;
+      z-index: 0;
+      animation: floatBlob 10s ease-in-out infinite;
+    }
+
+    .bg-shape.one {
+      width: 260px;
+      height: 260px;
+      background: #2563eb;
+      top: 8%;
+      left: 8%;
+    }
+
+    .bg-shape.two {
+      width: 320px;
+      height: 320px;
+      background: #10b981;
+      right: 6%;
+      bottom: 10%;
+      animation-delay: 1.5s;
+    }
+
+    @keyframes floatBlob {
+      0%, 100% {
+        transform: translateY(0) translateX(0);
+      }
+      50% {
+        transform: translateY(-10px) translateX(8px);
+      }
+    }
+
+    .shell {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      max-width: 460px;
+    }
+
+    .brand-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 14px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.08);
+      color: #e5e7eb;
+      font-size: 12px;
+      letter-spacing: 0.2px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      backdrop-filter: blur(8px);
+    }
+
+    .brand-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: #10b981;
+      box-shadow: 0 0 12px rgba(16, 185, 129, 0.8);
+    }
+
+    .login-card {
+      background: var(--card-bg);
+      backdrop-filter: blur(14px);
+      border: 1px solid rgba(255, 255, 255, 0.45);
+      border-radius: 24px;
+      padding: 34px 30px 28px;
+      box-shadow: var(--shadow);
+      animation: cardIn 0.45s ease;
+    }
+
+    @keyframes cardIn {
+      from {
+        opacity: 0;
+        transform: translateY(16px) scale(0.985);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    .logo-wrap {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 18px;
+    }
+
+    .logo-text {
+      min-width: 0;
+    }
+
+    .logo {
+      font-size: 27px;
+      font-weight: 700;
+      margin: 0 0 4px 0;
+      color: var(--text-main);
+      line-height: 1.1;
+    }
+
+    .subtitle {
+      margin: 0;
+      font-size: 14px;
+      color: var(--text-soft);
+      line-height: 1.5;
+    }
+
+    .divider {
+      height: 1px;
+      background: linear-gradient(to right, transparent, #d1d5db, transparent);
+      margin: 22px 0;
+    }
+
+    .error-box {
+      background: var(--danger-bg);
+      color: var(--danger-text);
+      padding: 12px 14px;
+      border-radius: 12px;
+      margin-bottom: 16px;
+      font-size: 14px;
+      text-align: left;
+      border: 1px solid #fecaca;
+    }
+
+    .google-btn {
+      width: 100%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      text-decoration: none;
+      color: #111827;
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 14px 16px;
+      font-size: 15px;
+      font-weight: 600;
+      transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease, border-color 0.18s ease;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+    }
+
+    .google-btn:hover {
+      background: #f9fafb;
+      border-color: #d1d5db;
+      transform: translateY(-1px);
+      box-shadow: 0 14px 24px rgba(0, 0, 0, 0.08);
+    }
+
+    .google-btn:active {
+      transform: translateY(0);
+    }
+
+    .google-icon {
+      width: 20px;
+      height: 20px;
+      flex-shrink: 0;
+    }
+
+    .info-box {
+      margin-top: 18px;
+      padding: 14px;
+      border-radius: 14px;
+      background: #f8fafc;
+      border: 1px solid #e5e7eb;
+      text-align: left;
+    }
+
+    .info-title {
+      margin: 0 0 6px 0;
+      font-size: 13px;
+      font-weight: 700;
+      color: #111827;
+    }
+
+    .info-text {
+      margin: 0;
+      font-size: 13px;
+      color: #6b7280;
+      line-height: 1.55;
+    }
+
+    .footer-text {
+      margin-top: 18px;
+      text-align: center;
+      font-size: 12px;
+      color: rgba(255, 255, 255, 0.74);
+    }
+
+    @media (max-width: 520px) {
+      body {
+        padding: 16px;
+      }
+
+      .login-card {
+        padding: 24px 18px 20px;
+        border-radius: 20px;
+      }
+
+      .logo {
+        font-size: 24px;
+      }
+
+      .subtitle {
+        font-size: 13px;
+      }
+
+      .logo-box {
+        width: 46px;
+        height: 46px;
+        font-size: 16px;
+      }
+
+      .google-btn {
+        padding: 13px 14px;
+        font-size: 14px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="bg-shape one"></div>
+  <div class="bg-shape two"></div>
+
+  <div class="shell">
+    <div class="brand-badge">
+      <span class="brand-dot"></span>
+      Secure Admin Access
+    </div>
+
+    <div class="login-card">
+      <div class="logo-wrap">
+        <div class="logo-box"><img src="/assets/images/buga-logo.webp" alt="BugaMed Logo" width="100%"></div>
+        <div class="logo-text">
+          <h1 class="logo">BugaMed</h1>
+          <p class="subtitle">Admin paneline erişmek için yetkili Google hesabınla giriş yap.</p>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <% if (error) { %>
+        <div class="error-box">
+          Giriş başarısız. Bu hesap admin erişkisine sahip değil.
+        </div>
+      <% } %>
+
+      <a href="/auth/google" class="google-btn">
+        <svg class="google-icon" viewBox="0 0 48 48" aria-hidden="true">
+          <path fill="#EA4335" d="M24 9.5c3.54 0 6.68 1.22 9.18 3.6l6.85-6.85C35.64 2.36 30.2 0 24 0 14.61 0 6.56 5.48 2.53 13.44l7.98 6.2C12.24 13.02 17.62 9.5 24 9.5z"/>
+          <path fill="#4285F4" d="M46.5 24c0-1.64-.15-3.22-.42-4.73H24v9h12.7c-.55 2.96-2.2 5.48-4.68 7.17l7.2 5.6C43.98 36.48 46.5 30.8 46.5 24z"/>
+          <path fill="#FBBC05" d="M10.5 28.5c-1-2.96-1-6.04 0-9l-7.98-6.2C.92 16.4 0 20.1 0 24s.92 7.6 2.52 10.7l7.98-6.2z"/>
+          <path fill="#34A853" d="M24 48c6.48 0 11.92-2.14 15.9-5.8l-7.2-5.6c-2 1.34-4.56 2.14-8.7 2.14-6.38 0-11.76-3.52-14.49-8.64l-7.98 6.2C6.56 42.52 14.61 48 24 48z"/>
+        </svg>
+        Google ile Giriş Yap
+      </a>
+
+      <div class="info-box">
+        <p class="info-title">Bilgilendirme</p>
+        <p class="info-text">
+          Yalnızca sistemde tanımlı admin e-posta adresiyle giriş yapılabilir.
+        </p>
+      </div>
+    </div>
+
+    <div class="footer-text">
+      BugaMed Admin • Protected Access
+    </div>
+  </div>
+</body>
+</html>
